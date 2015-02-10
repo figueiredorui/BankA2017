@@ -12,12 +12,12 @@ app.service("BankAccountService", function ($http, AppSettings) {
         return $http.get(urlBase + '/' + id);
     }
 
-    this.add = function (todo) {
-        return $http.post(urlBase, todo);
+    this.add = function (account) {
+        return $http.post(urlBase, account);
     }
 
-    this.update = function (todo) {
-        return $http.put(urlBase, todo);
+    this.update = function (account) {
+        return $http.put(urlBase + '/' + account.AccountID, account);
     }
 
     this.delete = function (id) {
