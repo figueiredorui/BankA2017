@@ -9,8 +9,8 @@ namespace BankA.Models
 {
     public partial class Transaction
     {
-        public Int64 ID { get; set; }
-        public Int64 AccountID { get; set; }
+        public int ID { get; set; }
+        public int AccountID { get; set; }
         public DateTime TransationDate { get; set; }
         public int Year { get; set; }
         public int Month { get; set; }

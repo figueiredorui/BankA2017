@@ -42,9 +42,9 @@ namespace BankA.Services
             accountRepository.Update(bank);
         }
 
-        public void Remove(Account model)
+        public void Delete(int id)
         {
-            var bank = AccountMapper.Map(model);
+            var bank = accountRepository.Find(id);
             accountRepository.Delete(bank);
         }
     }

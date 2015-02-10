@@ -109,28 +109,40 @@ namespace BankA.Data.Repositories
         {
             using (var ctx = new BankAContext())
             {
-                ctx.UpdateGraph<TEntity>(entity);
-
+                ctx.Set<TEntity>().Attach(entity);
+                ctx.Entry<TEntity>(entity).State = EntityState.Modified;
                 ctx.SaveChanges();
             }
 
             return entity;
         }
 
-        public TEntity Update<T2>(TEntity entity, Expression<Func<TEntity, System.Collections.Generic.ICollection<T2>>> details)
-        {
-            Expression<Func<IUpdateConfiguration<TEntity>, object>> template = _ => _.OwnedCollection(details);
-            var map = Expression.Parameter(typeof(IUpdateConfiguration<TEntity>), "map");
-            var graphDetails = Expression.Lambda<Func<IUpdateConfiguration<TEntity>, object>>(Expression.Call(((MethodCallExpression)template.Body).Method, map, Expression.Quote(details)), map);
+        //public TEntity Update(TEntity entity)
+        //{
+        //    using (var ctx = new BankAContext())
+        //    {
+        //        ctx.UpdateGraph<TEntity>(entity);
 
-            using (var ctx = new BankAContext())
-            {
-                ctx.UpdateGraph<TEntity>(entity, graphDetails);
-                ctx.SaveChanges();
-            }
+        //        ctx.SaveChanges();
+        //    }
 
-            return entity;
-        }
+        //    return entity;
+        //}
+
+        //public TEntity Update<T2>(TEntity entity, Expression<Func<TEntity, System.Collections.Generic.ICollection<T2>>> details)
+        //{
+        //    Expression<Func<IUpdateConfiguration<TEntity>, object>> template = _ => _.OwnedCollection(details);
+        //    var map = Expression.Parameter(typeof(IUpdateConfiguration<TEntity>), "map");
+        //    var graphDetails = Expression.Lambda<Func<IUpdateConfiguration<TEntity>, object>>(Expression.Call(((MethodCallExpression)template.Body).Method, map, Expression.Quote(details)), map);
+
+        //    using (var ctx = new BankAContext())
+        //    {
+        //        ctx.UpdateGraph<TEntity>(entity, graphDetails);
+        //        ctx.SaveChanges();
+        //    }
+
+        //    return entity;
+        //}
 
         public void Delete(TEntity entity)
         {

@@ -8,7 +8,7 @@ namespace BankA.Models
 {
     public class Account
     {
-        public Int64 AccountID { get; set; }
+        public int AccountID { get; set; }
         public string Description { get; set; }
         public string BankName { get; set; }
     }

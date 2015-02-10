@@ -49,13 +49,13 @@ namespace BankA.Data.Contexts
             }
         }
 
-        public DbSet<AccountTable> Accounts { get; set; }
-        public DbSet<TransactionTable> Transactions { get; set; }
+        public DbSet<BankAccountTable> Accounts { get; set; }
+        public DbSet<BankTransactionTable> Transactions { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Configurations.Add(new AccountMap());
-            modelBuilder.Configurations.Add(new TransactionMap());
+            modelBuilder.Configurations.Add(new BankAccountMap());
+            modelBuilder.Configurations.Add(new BankTransactionMap());
         }
 
         

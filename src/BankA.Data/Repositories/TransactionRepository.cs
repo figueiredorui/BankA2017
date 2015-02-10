@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace BankA.Data.Repositories
 {
-    public class TransactionRepository : RepositoryBase<TransactionTable>
+    public class TransactionRepository : RepositoryBase<BankTransactionTable>
     {
 
-        public void AddBatch(List<TransactionTable> transactionLst)
+        public void AddBatch(List<BankTransactionTable> transactionLst)
         {
             using (var ctx = new BankAContext())
             {

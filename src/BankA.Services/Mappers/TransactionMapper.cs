@@ -13,24 +13,24 @@ namespace BankA.Services.Mappers
     {
         static TransactionMapper()
         {
-            Mapper.CreateMap<TransactionTable, Transaction>();
+            Mapper.CreateMap<BankTransactionTable, Transaction>();
 
-            Mapper.CreateMap<Transaction, TransactionTable>();
+            Mapper.CreateMap<Transaction, BankTransactionTable>();
         }
 
-        public static Transaction Map(TransactionTable entity)
+        public static Transaction Map(BankTransactionTable entity)
         {
             return Mapper.Map<Transaction>(entity);
         }
 
-        public static List<Transaction> Map(List<TransactionTable> entityLst)
+        public static List<Transaction> Map(List<BankTransactionTable> entityLst)
         {
             return Mapper.Map<List<Transaction>>(entityLst);
         }
 
-        public static TransactionTable Map(Transaction entity)
+        public static BankTransactionTable Map(Transaction entity)
         {
-            return Mapper.Map<TransactionTable>(entity);
+            return Mapper.Map<BankTransactionTable>(entity);
         }
 
     }

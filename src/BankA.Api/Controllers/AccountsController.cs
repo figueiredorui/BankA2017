@@ -28,24 +28,28 @@ namespace BankA.Api.Controllers
         // GET: api/Accounts/5
         public IHttpActionResult Get(int id)
         {
-            return Ok();
+            var result = svc.Find(id);
+            return Ok(result);
         }
 
         // PUT: api/Accounts/5
         public IHttpActionResult Put(int id, Account account)
         {
+            svc.Update(account);
             return Ok();
         }
 
         // POST: api/Accounts
         public IHttpActionResult Post(Account account)
         {
+            svc.Add(account);
             return Ok();
         }
 
         // DELETE: api/Accounts/5
         public IHttpActionResult Delete(int id)
         {
+            svc.Delete(id);
             return Ok();
         }
 
