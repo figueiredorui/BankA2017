@@ -1,6 +1,8 @@
 ﻿<div class="row">
     <div class="col-lg-12">
-        <button ng-click="newAccount()">Add New</button>
+        <div class="btn-group" role="group" aria-label="true">
+            <button ng-click="newAccount()" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add New</button>
+        </div>
         <div class="table-responsive">
             <table class="table">
                 <thead>
@@ -40,10 +42,16 @@
             <div class="form-group">
                 <label class="col-lg-2 control-label">Bank</label>
                 <div class="col-lg-10">
-                    <input type="text" class="form-control" ng-model="account.BankName" placeholder="Bank Name">
+                    <select class="form-control" ng-model="account.BankName">
+                        <!--<option ng-repeat="item in items" value="{{item}}">{{item}}</option>-->
+                        <option value="B1">B1</option>
+                    </select>
                 </div>
             </div>
         </form>
+        /f
+        
+        </div>
     </div>
     <div class="modal-footer">
         <button class="btn btn-danger pull-left" ng-click="deleteAccount()">Delete</button>
