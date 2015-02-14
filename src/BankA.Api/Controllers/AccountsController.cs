@@ -10,6 +10,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using BankA.Models;
 using BankA.Services;
+using BankA.Models.Enums;
 
 namespace BankA.Api.Controllers
 {
@@ -53,6 +54,13 @@ namespace BankA.Api.Controllers
             return Ok();
         }
 
+        // GET: api/Accounts
+        [Route("Accounts/Banks")]
+        public IHttpActionResult GetBanks()
+        {
+            var lst = new string[] { BankEnum.HSBC.ToString(), BankEnum.LLOYDS.ToString() };
+            return Ok(lst);
+        }
 
     }
 }

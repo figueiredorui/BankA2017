@@ -110,11 +110,17 @@ namespace BankA.Data.Repositories
             using (var ctx = new BankAContext())
             {
                 ctx.Set<TEntity>().Attach(entity);
+               // SetOriginalRowVersion(ctx, entity);
                 ctx.Entry<TEntity>(entity).State = EntityState.Modified;
                 ctx.SaveChanges();
             }
 
             return entity;
+        }
+
+        private static void SetOriginalRowVersion(BankAContext ctx, dynamic entity)
+        {
+            entity.RowVersion = ctx.Entry(entity).Property("RowVersion").OriginalValue;
         }
 
         //public TEntity Update(TEntity entity)
