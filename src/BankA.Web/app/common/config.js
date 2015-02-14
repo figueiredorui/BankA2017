@@ -4,8 +4,8 @@
 //     CONSTANTS
 //-------------------------------------------------------------
 app.constant('AppSettings', {
-    //UrlBase: 'http://localhost/banka.api/',
-    UrlBase: 'http://apibanka.apphb.com/',
+    UrlBase: 'http://localhost/banka.api/',
+    //UrlBase: 'http://apibanka.apphb.com/',
 });
 
 //-------------------------------------------------------------
@@ -14,6 +14,10 @@ app.constant('AppSettings', {
 app.config(function ($httpProvider) {
     $httpProvider.interceptors.push('authInterceptor');
     $httpProvider.defaults.cache = false;
+});
+
+app.config(function (cfpLoadingBarProvider) {
+    cfpLoadingBarProvider.includeBar = false;
 });
 
 //-------------------------------------------------------------

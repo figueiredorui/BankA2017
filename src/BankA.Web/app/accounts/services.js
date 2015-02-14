@@ -12,6 +12,10 @@ app.service("BankAccountService", function ($http, AppSettings) {
         return $http.get(urlBase + '/' + id);
     }
 
+    this.getBanks = function () {
+        return $http.get(urlBase + '/Banks');
+    }
+
     this.add = function (account) {
         return $http.post(urlBase, account);
     }
