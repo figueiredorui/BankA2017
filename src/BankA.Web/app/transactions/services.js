@@ -4,8 +4,22 @@ app.service("TransactionsService", function ($http, AppSettings) {
 
     var urlBase = AppSettings.UrlBase + 'Transactions';
 
-    this.getAll = function () {
-        return $http.get(urlBase + '');
+    this.uploadUrl = function () {
+        return urlBase + '/upload';
+    }
+
+    this.getAll = function (accountID, startDate, endDate, tag) {
+
+        var search = {
+            AccountID: accountID,
+            StartDate: startDate,
+            EndDate: endDate,
+            Tag: tag
+        }
+
+        return $http.get(urlBase + '/Search', {
+            params: search
+        });
     }
 
     this.get = function (id) {
@@ -24,5 +38,8 @@ app.service("TransactionsService", function ($http, AppSettings) {
         return $http.delete(urlBase + '/' + id);
     }
 
-    
+    this.getTags = function () {
+        return $http.get(urlBase + '/Tags');
+    }
+
 });

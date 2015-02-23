@@ -11,17 +11,14 @@
             url: "/dashboard",
             templateUrl: "app/home/views/dashboard.html",
             controller: 'HomeCtrl',
-        })
-        .state('home.dashboard1', {
-            url: "/home/dashboard1",
-            templateUrl: "app/home/views/home.dashboard1.html",
-            controller: 'HomeCtrl',
+            data: { pageTitle: 'Dashboard' }
         })
         .state('transactions', {
             abstract: true,
             url: "/transactions",
             templateUrl: "app/common/views/master.html",
             controller: 'MasterCtrl',
+            data: { pageTitle: 'Transactions' }
         })
         .state('transactions.list', {
             url: "/list",
@@ -33,6 +30,7 @@
             url: "/accounts",
             templateUrl: "app/common/views/master.html",
             controller: 'MasterCtrl',
+            data: { pageTitle: 'Accounts' }
         })
         .state('accounts.list', {
             url: "/list",

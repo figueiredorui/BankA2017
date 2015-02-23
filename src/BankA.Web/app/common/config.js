@@ -4,8 +4,8 @@
 //     CONSTANTS
 //-------------------------------------------------------------
 app.constant('AppSettings', {
-    UrlBase: 'http://localhost/banka.api/',
-    //UrlBase: 'http://apibanka.apphb.com/',
+    //UrlBase: 'http://localhost/banka.api/',
+    UrlBase: 'http://apibanka.apphb.com/',
 });
 
 //-------------------------------------------------------------
@@ -70,3 +70,7 @@ app.directive('onlyDecimal', function () {
         }
     };
 });
+
+//-------------------------------------------------------------
+//     FILTERS
+//-------------------------------------------------------------

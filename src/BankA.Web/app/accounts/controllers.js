@@ -2,6 +2,7 @@
 
 app.controller('AccountsListCtrl', function ($scope, $state, $modal, BankAccountService) {
 
+    $scope.pageTitle = 'Accounts';
     $scope.accountList = [];
 
     $scope.editAccount = editAccount;
@@ -67,7 +68,6 @@ app.controller('AccountsListCtrl', function ($scope, $state, $modal, BankAccount
             // $log.info('Modal dismissed at: ' + new Date());
         });
     }
-
 })
 
 // Please note that $modalInstance represents a modal window (instance) dependency.
@@ -100,8 +100,7 @@ app.controller('AccountsModalCtrl', function ($scope, $modalInstance, BankAccoun
         }
     }
 
-    function getBanksLookUp()
-    {
+    function getBanksLookUp() {
         BankAccountService.getBanks()
                 .success(function (response) {
                     $scope.Banks = response;
