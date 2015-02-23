@@ -111,11 +111,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Services\AccountService.cs" />
-    <Compile Include="Mappers\AccountMapper.cs" />
-    <Compile Include="Mappers\TransactionMapper.cs" />
+    <Compile Include="Transactions\ImportFileService.cs" />
+    <Compile Include="Transactions\StatementFileMapper.cs" />
+    <Compile Include="Accounts\AccountService.cs" />
+    <Compile Include="Accounts\AccountMapper.cs" />
+    <Compile Include="Transactions\TransactionExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\TransactionService.cs" />
+    <Compile Include="Transactions\TransactionService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BankA.Data\BankA.Data.csproj">

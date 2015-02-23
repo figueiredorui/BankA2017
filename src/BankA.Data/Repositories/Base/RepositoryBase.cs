@@ -14,74 +14,86 @@ namespace BankA.Data.Repositories
 {
     public abstract class RepositoryBase<TEntity> where TEntity : class, new()
     {
-        public TEntity Get(Expression<Func<TEntity, bool>> where)
+        BankAContext ctx = new BankAContext();
+        private IDbSet<TEntity> _entities;
+        public IQueryable<TEntity> Table
         {
-            TEntity entity = default(TEntity);
-            using (var ctx = new BankAContext())
+            get
             {
-                entity = ctx.Set<TEntity>().Where(where).FirstOrDefault();
+                if (_entities == null)
+                    _entities = ctx.Set<TEntity>();
+                return _entities;
             }
-
-            return entity;
         }
 
-        public TEntity Get(Expression<Func<TEntity, bool>> where, params Expression<Func<TEntity, object>>[] includes)
-        {
-            TEntity entity = default(TEntity);
-            using (var ctx = new BankAContext())
-            {
-                var entities = ctx.Set<TEntity>().Where(where);
+        //public TEntity Get(Expression<Func<TEntity, bool>> where)
+        //{
+        //    TEntity entity = default(TEntity);
+        //    using (var ctx = new BankAContext())
+        //    {
+        //        entity = ctx.Set<TEntity>().Where(where).FirstOrDefault();
+        //    }
 
-                if (includes != null)
-                {
-                    entities = ApplyIncludesToQuery<TEntity>(entities, includes);
-                }
+        //    return entity;
+        //}
 
-                entity = entities.FirstOrDefault();
+        //public TEntity Get(Expression<Func<TEntity, bool>> where, params Expression<Func<TEntity, object>>[] includes)
+        //{
+        //    TEntity entity = default(TEntity);
+        //    using (var ctx = new BankAContext())
+        //    {
+        //        var entities = ctx.Set<TEntity>().Where(where);
 
-            }
+        //        if (includes != null)
+        //        {
+        //            entities = ApplyIncludesToQuery<TEntity>(entities, includes);
+        //        }
 
-            return entity;
-        }
+        //        entity = entities.FirstOrDefault();
 
-        public List<TEntity> GetList()
-        {
-            List<TEntity> entity = new List<TEntity>();
-            using (var ctx = new BankAContext())
-            {
-                entity = ctx.Set<TEntity>().ToList();
-            }
+        //    }
 
-            return entity;
-        }
+        //    return entity;
+        //}
 
-        public List<TEntity> GetList(Expression<Func<TEntity, bool>> where)
-        {
-            List<TEntity> entities = null;
-            using (var ctx = new BankAContext())
-            {
-                entities = ctx.Set<TEntity>().Where(where).ToList();
-            }
-            return entities;
-        }
+        //public List<TEntity> GetList()
+        //{
+        //    List<TEntity> entity = new List<TEntity>();
+        //    using (var ctx = new BankAContext())
+        //    {
+        //        entity = ctx.Set<TEntity>().ToList();
+        //    }
 
-        public List<TEntity> GetList(Expression<Func<TEntity, bool>> where, params Expression<Func<TEntity, object>>[] includes)
-        {
-            List<TEntity> entities = null;
-            using (var ctx = new BankAContext())
-            {
-                var result = ctx.Set<TEntity>().Where(where);
+        //    return entity;
+        //}
 
-                if (includes != null)
-                {
-                    result = ApplyIncludesToQuery<TEntity>(result, includes);
-                }
+        //public List<TEntity> GetList(Expression<Func<TEntity, bool>> where)
+        //{
+        //    List<TEntity> entities = null;
+        //    using (var ctx = new BankAContext())
+        //    {
+        //        entities = ctx.Set<TEntity>().Where(where).ToList();
+        //    }
+        //    return entities;
+        //}
 
-                entities = result.ToList();
-            }
+        //public List<TEntity> GetList(Expression<Func<TEntity, bool>> where, params Expression<Func<TEntity, object>>[] includes)
+        //{
+        //    List<TEntity> entities = null;
+        //    using (var ctx = new BankAContext())
+        //    {
+        //        var result = ctx.Set<TEntity>().Where(where);
 
-            return entities;
-        }
+        //        if (includes != null)
+        //        {
+        //            result = ApplyIncludesToQuery<TEntity>(result, includes);
+        //        }
+
+        //        entities = result.ToList();
+        //    }
+
+        //    return entities;
+        //}
 
         public TEntity Find(params object[] keyValues)
         {

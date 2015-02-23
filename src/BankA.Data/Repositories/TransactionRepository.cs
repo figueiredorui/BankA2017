@@ -17,7 +17,7 @@ namespace BankA.Data.Repositories
             {
                 foreach (var trans in transactionLst)
                 {
-                    var accountTrans = ctx.Transactions.SingleOrDefault(q => q.TransationDate == trans.TransationDate
+                    var accountTrans = ctx.Transactions.SingleOrDefault(q => q.TransactionDate == trans.TransactionDate
                                                                                        && q.Description == trans.Description
                                                                                        && q.DebitAmount == trans.DebitAmount
                                                                                        && q.CreditAmount == trans.CreditAmount);
@@ -26,6 +26,14 @@ namespace BankA.Data.Repositories
                 }
                 
                 ctx.SaveChanges();
+            }
+        }
+
+        public List<string> GetTags()
+        {
+            using (var ctx = new BankAContext())
+            {
+                return ctx.Transactions.Select(o => o.Tag).Distinct().ToList();
             }
         }
     }

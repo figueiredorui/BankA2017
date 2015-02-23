@@ -23,12 +23,21 @@ namespace BankA.Api
             // Web API routes
             config.MapHttpAttributeRoutes();
 
+           
+
+           // config.Routes.MapHttpRoute(
+           //    name: "DefaultApiExt",
+           //    routeTemplate: "{controller}/{action}/{id}",
+           //    defaults: new { controller = "Home", id = RouteParameter.Optional }
+           //);
+
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 //routeTemplate: "api/{controller}/{id}",
                 routeTemplate: "{controller}/{id}",
                 defaults: new { controller = "Home", id = RouteParameter.Optional }
             );
+
 
             var appXmlType = config.Formatters.XmlFormatter.SupportedMediaTypes.FirstOrDefault(t => t.MediaType == "application/xml");
             config.Formatters.XmlFormatter.SupportedMediaTypes.Remove(appXmlType);

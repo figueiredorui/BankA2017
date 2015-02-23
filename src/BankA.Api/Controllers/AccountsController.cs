@@ -11,6 +11,7 @@ using System.Web.Http.Description;
 using BankA.Models;
 using BankA.Services;
 using BankA.Models.Enums;
+using BankA.Services.Accounts;
 
 namespace BankA.Api.Controllers
 {
@@ -54,7 +55,15 @@ namespace BankA.Api.Controllers
             return Ok();
         }
 
-        // GET: api/Accounts
+        // GET: api/Accounts/Summary
+        [Route("Accounts/Summary")]
+        public IHttpActionResult GetAccountSummary()
+        {
+            var lst = svc.GetAccountSummary();
+            return Ok(lst);
+        }
+
+        // GET: api/Accounts/Banks
         [Route("Accounts/Banks")]
         public IHttpActionResult GetBanks()
         {

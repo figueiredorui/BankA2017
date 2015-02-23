@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BankA.Services.Mappers
+namespace BankA.Services.Accounts
 {
     public class AccountMapper
     {

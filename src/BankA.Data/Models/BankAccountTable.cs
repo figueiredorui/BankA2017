@@ -14,5 +14,13 @@ namespace BankA.Data.Models
         public Nullable<System.DateTime> ChangedOn { get; set; }
         public string ChangedBy { get; set; }
         public byte[] RowVersion { get; set; }
+
+        private ICollection<BankTransactionTable> _Transactions;
+        public virtual ICollection<BankTransactionTable> Transactions
+        {
+            get { return _Transactions ?? (_Transactions = new List<BankTransactionTable>()); }
+            protected set { _Transactions = value; }
+        }
+
     }
 }

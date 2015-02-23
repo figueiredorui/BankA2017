@@ -63,6 +63,7 @@
   <ItemGroup>
     <Build Include="dbo\Tables\BankTransaction.sql" />
     <Build Include="dbo\Tables\BankAccount.sql" />
+    <Build Include="dbo\Tables\StatementFile.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment1.sql" />

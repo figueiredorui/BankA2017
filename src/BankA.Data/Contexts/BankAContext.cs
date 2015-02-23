@@ -51,11 +51,13 @@ namespace BankA.Data.Contexts
 
         public DbSet<BankAccountTable> Accounts { get; set; }
         public DbSet<BankTransactionTable> Transactions { get; set; }
+        public DbSet<StatementFileTable> StatementFiles { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new BankAccountMap());
             modelBuilder.Configurations.Add(new BankTransactionMap());
+            modelBuilder.Configurations.Add(new StatementFileMap());
         }
 
         

@@ -3,19 +3,23 @@ using System.Data.Entity.ModelConfiguration;
 
 namespace BankA.Data.Models.Mapping
 {
-    public class BankTransactionMap : EntityTypeConfiguration<BankTransactionTable>
+    public class StatementFileMap : EntityTypeConfiguration<StatementFileTable>
     {
-        public BankTransactionMap()
+        public StatementFileMap()
         {
             // Primary Key
-            this.HasKey(t => t.ID);
+            this.HasKey(t => t.FileID);
 
             // Properties
-            this.Property(t => t.Description)
-                .HasMaxLength(500);
-
-            this.Property(t => t.Tag)
+            this.Property(t => t.FileName)
+                .IsRequired()
                 .HasMaxLength(50);
+
+            this.Property(t => t.FileContent)
+                .IsRequired();
+
+            this.Property(t => t.ContentType)
+                .IsRequired();
 
             this.Property(t => t.CreatedBy)
                 .HasMaxLength(50);
@@ -31,24 +35,16 @@ namespace BankA.Data.Models.Mapping
             //    .IsRowVersion();
 
             // Table & Column Mappings
-            this.ToTable("BankTransaction");
-            this.Property(t => t.ID).HasColumnName("ID");
-            this.Property(t => t.AccountID).HasColumnName("AccountID");
-            this.Property(t => t.TransactionDate).HasColumnName("TransactionDate");
-            this.Property(t => t.Description).HasColumnName("Description");
-            this.Property(t => t.DebitAmount).HasColumnName("DebitAmount");
-            this.Property(t => t.CreditAmount).HasColumnName("CreditAmount");
-            this.Property(t => t.Tag).HasColumnName("Tag");
+            this.ToTable("StatementFile");
+            this.Property(t => t.FileID).HasColumnName("FileID");
+            this.Property(t => t.FileName).HasColumnName("FileName");
+            this.Property(t => t.FileContent).HasColumnName("FileContent");
+            this.Property(t => t.ContentType).HasColumnName("ContentType");
             this.Property(t => t.CreatedOn).HasColumnName("CreatedOn");
             this.Property(t => t.CreatedBy).HasColumnName("CreatedBy");
             this.Property(t => t.ChangedOn).HasColumnName("ChangedOn");
             this.Property(t => t.ChangedBy).HasColumnName("ChangedBy");
             //this.Property(t => t.RowVersion).HasColumnName("RowVersion");
-
-
-            this.HasRequired(t => t.Account)
-                .WithMany(o => o.Transactions)
-                .HasForeignKey(t => t.AccountID);
         }
     }
 }
