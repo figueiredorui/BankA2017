@@ -1,40 +1,26 @@
 ﻿app.config(function ($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.otherwise("/home/dashboard");
+    $urlRouterProvider.otherwise("/dashboard");
     $stateProvider
-        .state('home', {
+        .state('app', {
             abstract: true,
-            url: "/home",
-            templateUrl: "app/common/views/master.html",
-            controller: 'MasterCtrl',
+            url: "",
+            templateUrl: "app/views/layout.html",
+            controller: 'LayoutCtrl',
         })
-        .state('home.dashboard', {
+        .state('app.dashboard', {
             url: "/dashboard",
-            templateUrl: "app/home/views/dashboard.html",
-            controller: 'HomeCtrl',
+            templateUrl: "app/views/dashboard.html",
+            controller: 'DashboardCtrl',
             data: { pageTitle: 'Dashboard' }
         })
-        .state('transactions', {
-            abstract: true,
+        .state('app.transactions', {
             url: "/transactions",
-            templateUrl: "app/common/views/master.html",
-            controller: 'MasterCtrl',
-            data: { pageTitle: 'Transactions' }
-        })
-        .state('transactions.list', {
-            url: "/list",
-            templateUrl: "app/transactions/views/list.html",
+            templateUrl: "app/views/transactions.html",
             controller: 'TransactionsListCtrl',
         })
-        .state('accounts', {
-            abstract: true,
+        .state('app.accounts', {
             url: "/accounts",
-            templateUrl: "app/common/views/master.html",
-            controller: 'MasterCtrl',
-            data: { pageTitle: 'Accounts' }
-        })
-        .state('accounts.list', {
-            url: "/list",
-            templateUrl: "app/accounts/views/list.html",
+            templateUrl: "app/views/accounts.html",
             controller: 'AccountsListCtrl',
         })
 });

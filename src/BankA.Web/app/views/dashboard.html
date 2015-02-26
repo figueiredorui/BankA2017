@@ -1,0 +1,30 @@
+﻿
+<div class="row">
+    <div class="col-lg-3" ng-repeat="account in Accounts">
+
+
+        <div class=" widget">
+            <div class="widget-body">
+                <div class="widget-content">
+
+                    <div class="widget-icon green pull-left ng-scope"><i class="fa fa-gbp"></i></div>
+                    <div class="comment ng-scope">{{account.Description}}</div>
+                    <div class="title ng-scope">{{account.Balance | number : 2}}</div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+
+        <h4 class="font-thin m-t-none m-b text-muted">Last 12 Months</h4>
+        <canvas id="line" class="chart chart-line" data="data"
+                labels="labels" legend="true" series="series" colours="Red" height="100"
+                click="onClick">
+        </canvas> 
+    </div>
+</div>

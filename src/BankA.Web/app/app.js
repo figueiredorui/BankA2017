@@ -1,6 +1,13 @@
 'use strict';
 
-var app = angular.module('BankA', ['ui.router', 'ngCookies', 'ui.bootstrap', 'angular-loading-bar', 'daterangepicker', 'angularFileUpload']);
+var app = angular.module('BankA', ['ui.router',
+                                   'ngCookies',
+                                   'ui.bootstrap',
+                                   'angular-loading-bar',
+                                   'daterangepicker',
+                                   'angularFileUpload',
+                                   'chart.js',
+                                    'toastr']);
 
 
 

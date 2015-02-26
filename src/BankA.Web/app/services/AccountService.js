@@ -1,6 +1,6 @@
 ﻿'use strict';
 
-app.service("BankAccountService", function ($http, AppSettings) {
+app.service("AccountService", function ($http, AppSettings) {
 
     var urlBase = AppSettings.UrlBase + 'Accounts';
 

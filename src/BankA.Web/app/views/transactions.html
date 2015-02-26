@@ -13,20 +13,20 @@
 
                     <div class="list-group">
 
-                        <a class="list-group-item" style="cursor:pointer" ng-click="selectAccount()" ng-class="{active: account.AccountID==selectedAccount }">
+                        <a class="list-group-item" style="cursor:pointer" ng-click="selectAccount()" ng-class="{active: account.AccountID==selectedAccountID }">
                             <!--<span class=" badge">
                             <!--<span class="badge">10000</span>-->
                             <span class="block text-ellipsis"><strong>All Accounts</strong></span>
                             <br />
                             <small class="text">Show all transactions</small>
                         </a>
-                        <a class="list-group-item" style="cursor:pointer" ng-repeat="account in tFilter.Accounts | orderBy:'AccountID'" ng-click="selectAccount(account.AccountID)" ng-class="{active: account.AccountID==selectedAccount }">
+                        <a class="list-group-item" style="cursor:pointer" ng-repeat="account in tFilter.Accounts | orderBy:'AccountID'" ng-click="selectAccount(account.AccountID)" ng-class="{active: account.AccountID==selectedAccountID }">
                             <span class=" badge">
                                 {{account.Balance | currency}}
                             </span>
                             <span class="block text-ellipsis"><strong>{{account.Description}}</strong></span>
                             <br />
-                            <small class="text">Last transaction {{account.LastTransactionDate}}</small>
+                            <small class="text">Last transaction {{account.LastTransactionDate | date}}</small>
                         </a>
 
                     </div>
@@ -42,25 +42,20 @@
             <div class="widget-header ">
 
                 <form class="form-inline">
-
                     <div class="form-group">
                         <label for="dateRangeText" class="control-label">Date Range</label>
                         <div class="input-group" id="dateRangeText">
                             <input date-range-picker class="form-control input-sm date-picker" type="text"
-                                   ng-model="tFilter.DateRange" options="tFilter.dateRangeOpts" required />
+                                   ng-model="tFilter.DateRange" options="tFilter.dateRangeOpts" ng-change="Search()" required />
                             <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label class="control-label">Tag</label>
-                        <select class="form-control input-sm" ng-model="tFilter.Tag">
+                        <select class="form-control input-sm" ng-model="tFilter.Tag" ng-change="Search()">
+                            <option selected="selected" value="">ALL</option>
                             <option ng-repeat="item in tFilter.Tags" value="{{item}}">{{item}}</option>
                         </select>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">&nbsp; </label>
-                        <button class="btn btn-default form-control input-sm" ng-click="Search()">Search</button>
                     </div>
                 </form>
 

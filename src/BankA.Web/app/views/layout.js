@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('MasterCtrl', function ($scope, $cookieStore)
+app.controller('LayoutCtrl', function ($scope, $cookieStore)
 {
     /**
      * Sidebar Toggle & Cookie Control

@@ -10,6 +10,9 @@
     <link rel="stylesheet" type="text/css" href="css/daterangepicker-bs3.css">
     <link rel="stylesheet" type="text/css" href="css/rdash.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/angular-chart.css">
+    <link rel="stylesheet" type="text/css" href="css/angular-toastr.css" />
+    
    
 </head>
 <body >
@@ -31,20 +34,26 @@
     <script type="text/javascript" src="scripts/datarangepicker/angular-daterangepicker.min.js"></script>
     <script type="text/javascript" src="scripts/bootstrap-filestyle.min.js"></script>
 
+    <script type="text/javascript" src="scripts/charts/Chart.min.js"></script>
+    <script type="text/javascript" src="scripts/charts/angular-chart.min.js"></script>
+
+    <script type="text/javascript" src="scripts/linq.min.js"></script>
+
+    <script type="text/javascript" src="scripts/angular-toastr.js"></script>
+
     <script src="app/app.js"></script>
     <script src="app/common/routes.js"></script>
     <script src="app/common/config.js"></script>
-    <script src="app/common/services.js"></script>
+    <script src="app/common/common.js"></script>
 
-    <script src="app/common/views/masterCtrl.js"></script>
+    <script src="app/services/AccountService.js"></script>
+    <script src="app/services/TransactionsService.js"></script>
+    <script src="app/services/ReportsService.js"></script>
 
-    <script src="app/home/controllers.js"></script>
-
-    <script src="app/transactions/controllers.js"></script>
-    <script src="app/transactions/services.js"></script>
-
-    <script src="app/accounts/controllers.js"></script>
-    <script src="app/accounts/services.js"></script>
+    <script src="app/views/layout.js"></script>
+    <script src="app/views/dashboard.js"></script>
+    <script src="app/views/accounts.js"></script>
+    <script src="app/views/transactions.js"></script>
 
 </body>
 </html>

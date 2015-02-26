@@ -1,0 +1,10 @@
+{
+  "name": "BankA",
+  "main": "index.html",  
+  "window": {
+    "icon": "app.ico",
+	"width" 	: 1000,
+	"height"	: 800,
+	"toolbar"	: false
+  }
+}

@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('AccountsListCtrl', function ($scope, $state, $modal, BankAccountService) {
+app.controller('AccountsListCtrl', function ($scope, $state, $modal, AccountService) {
 
     $scope.pageTitle = 'Accounts';
     $scope.accountList = [];
@@ -16,7 +16,7 @@ app.controller('AccountsListCtrl', function ($scope, $state, $modal, BankAccount
 
     function loadAccounts() {
 
-        BankAccountService.getAll()
+        AccountService.getAll()
             .success(function (response) {
                 $scope.accountList = response;
             })
@@ -72,7 +72,7 @@ app.controller('AccountsListCtrl', function ($scope, $state, $modal, BankAccount
 
 // Please note that $modalInstance represents a modal window (instance) dependency.
 // It is not the same as the $modal service used above.
-app.controller('AccountsModalCtrl', function ($scope, $modalInstance, BankAccountService, accountID) {
+app.controller('AccountsModalCtrl', function ($scope, $modalInstance, AccountService, accountID, toastr) {
 
     $scope.saveAccount = saveAccount;
     $scope.deleteAccount = deleteAccount;
@@ -87,7 +87,7 @@ app.controller('AccountsModalCtrl', function ($scope, $modalInstance, BankAccoun
             $scope.account = { AccountID: 0, Description: '', BankName: '' };
         }
         else {
-            BankAccountService.get(accountID)
+            AccountService.get(accountID)
                     .success(function (response) {
                         $scope.account = response;
                     })
@@ -101,7 +101,7 @@ app.controller('AccountsModalCtrl', function ($scope, $modalInstance, BankAccoun
     }
 
     function getBanksLookUp() {
-        BankAccountService.getBanks()
+        AccountService.getBanks()
                 .success(function (response) {
                     $scope.Banks = response;
                 })
@@ -115,9 +115,10 @@ app.controller('AccountsModalCtrl', function ($scope, $modalInstance, BankAccoun
 
     function saveAccount() {
         if ($scope.account.AccountID == 0)
-            BankAccountService.add($scope.account)
+            AccountService.add($scope.account)
                 .success(function (response) {
                     $modalInstance.close();
+                    toastr.success('success!');
                 })
                 .error(function (error) {
                     $scope.errorMsg = error.Message;
@@ -126,9 +127,10 @@ app.controller('AccountsModalCtrl', function ($scope, $modalInstance, BankAccoun
 
                 });
         else
-            BankAccountService.update($scope.account)
+            AccountService.update($scope.account)
                 .success(function (response) {
                     $modalInstance.close();
+                    toastr.success('success!');
                 })
                 .error(function (error) {
                     $scope.errorMsg = error.Message;
@@ -142,7 +144,7 @@ app.controller('AccountsModalCtrl', function ($scope, $modalInstance, BankAccoun
     };
 
     function deleteAccount() {
-        BankAccountService.delete($scope.account.AccountID)
+        AccountService.delete($scope.account.AccountID)
             .success(function (response) {
                 $modalInstance.close();
             })

@@ -4,8 +4,8 @@
 //     CONSTANTS
 //-------------------------------------------------------------
 app.constant('AppSettings', {
-    //UrlBase: 'http://localhost/banka.api/',
-    UrlBase: 'http://apibanka.apphb.com/',
+    UrlBase: 'http://localhost/banka.api/',
+    //UrlBase: 'http://apibanka.apphb.com/',
 });
 
 //-------------------------------------------------------------
@@ -18,6 +18,34 @@ app.config(function ($httpProvider) {
 
 app.config(function (cfpLoadingBarProvider) {
     cfpLoadingBarProvider.includeBar = false;
+    
+});
+
+app.config(function (toastrConfig) {
+    angular.extend(toastrConfig, {
+        allowHtml: false,
+        closeButton: true,
+        closeHtml: '<button>&times;</button>',
+        containerId: 'toast-container',
+        extendedTimeOut: 1000,
+        iconClasses: {
+            error: 'toast-error',
+            info: 'toast-info',
+            success: 'toast-success',
+            warning: 'toast-warning'
+        },
+        maxOpened: 0,
+        messageClass: 'toast-message',
+        newestOnTop: true,
+        onHidden: null,
+        onShown: null,
+        positionClass: 'toast-top-right',
+        tapToDismiss: true,
+        target: 'body',
+        timeOut: 3000,
+        titleClass: 'toast-title',
+        toastClass: 'toast'
+    });
 });
 
 //-------------------------------------------------------------

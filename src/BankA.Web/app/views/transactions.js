@@ -1,12 +1,12 @@
 ﻿'use strict';
 
-app.controller('TransactionsListCtrl', function ($scope, $location, $stateParams, $modal, TransactionsService, BankAccountService) {
+app.controller('TransactionsListCtrl', function ($scope, $location, $stateParams, $modal, TransactionsService, AccountService) {
 
     $scope.tFilter = {};
 
     $scope.transactionList = [];
     $scope.transaction = null;
-    $scope.selectedAccount = null;
+    $scope.selectedAccountID = null;
 
 
     $scope.Search = Search;
@@ -15,7 +15,7 @@ app.controller('TransactionsListCtrl', function ($scope, $location, $stateParams
 
     $scope.selectAccount = selectAccount;
     $scope.updateTransaction = updateTransaction;
-    
+
 
     init();
 
@@ -26,17 +26,17 @@ app.controller('TransactionsListCtrl', function ($scope, $location, $stateParams
     };
 
     function Search() {
-        loadTransactions();
+        loadTransactions($scope.selectedAccountID);
     };
 
     function loadFilters() {
-        $scope.tFilter.DateRange = {
-            startDate: moment().subtract(3, "months"),
-            endDate: moment(),
-        };
+        $scope.tFilter.DateRange = {};
+        $scope.tFilter.DateRange.startDate = moment().subtract(1, "months").toDate();
+        $scope.tFilter.DateRange.endDate = moment().toDate();
+
         $scope.tFilter.dateRangeOpts = {
             ranges: {
-                'Last Month': [moment().subtract(30, 'days'), moment()],
+                'Last Month': [moment().subtract(1, 'months'), moment()],
                 'Current Year': [moment().subtract(moment().dayOfYear() - 1, 'days'), moment()],
                 'Last Year': [moment().subtract(1, 'year'), moment()],
                 'Last two Years': [moment().subtract(2, 'year'), moment()]
@@ -57,7 +57,7 @@ app.controller('TransactionsListCtrl', function ($scope, $location, $stateParams
     }
 
     function loadAccounts() {
-        BankAccountService.getSummary()
+        AccountService.getSummary()
             .success(function (response) {
                 $scope.tFilter.Accounts = response;
             })
@@ -101,7 +101,7 @@ app.controller('TransactionsListCtrl', function ($scope, $location, $stateParams
 
     function selectAccount(accountID) {
 
-        $scope.selectedAccount = accountID;
+        $scope.selectedAccountID = accountID;
 
         loadTransactions(accountID);
 
@@ -113,7 +113,7 @@ app.controller('TransactionsListCtrl', function ($scope, $location, $stateParams
             controller: 'UploadFileModalCtrl',
             backdrop: false,
             resolve: {
-
+                accountID: function () { return $scope.selectedAccountID }
             }
         })
 
@@ -153,7 +153,7 @@ app.controller('TransactionsListCtrl', function ($scope, $location, $stateParams
 
 // Please note that $modalInstance represents a modal window (instance) dependency.
 // It is not the same as the $modal service used above.
-app.controller('UploadFileModalCtrl', function ($scope, $modalInstance, $timeout, $upload, BankAccountService, TransactionsService) {
+app.controller('UploadFileModalCtrl', function ($scope, $modalInstance, $timeout, $upload, accountID, AccountService, TransactionsService) {
 
     $scope.submitFile = submitFile;
     $scope.cancel = cancel;
@@ -161,9 +161,10 @@ app.controller('UploadFileModalCtrl', function ($scope, $modalInstance, $timeout
     getAccountsLookUp();
 
     function getAccountsLookUp() {
-        BankAccountService.getAll()
+        AccountService.getAll()
                 .success(function (response) {
                     $scope.Accounts = response;
+                    $scope.AccountID = accountID;
                 })
                 .error(function (error) {
                     $scope.errorMsg = error.Message;
@@ -215,15 +216,13 @@ app.controller('UploadFileModalCtrl', function ($scope, $modalInstance, $timeout
 
     };
 
-
-
     function cancel() {
         $modalInstance.dismiss('cancel');
     };
 });
 
 
-app.controller('TransactionsModalCtrl', function ($scope, $modalInstance, TransactionsService, BankAccountService, transactionID) {
+app.controller('TransactionsModalCtrl', function ($scope, $modalInstance, TransactionsService, AccountService, transactionID) {
 
     $scope.saveTransaction = saveTransaction;
     $scope.deleteTransaction = deleteTransaction;
@@ -253,7 +252,7 @@ app.controller('TransactionsModalCtrl', function ($scope, $modalInstance, Transa
     }
 
     function getAccountsLookUp() {
-        BankAccountService.getAll()
+        AccountService.getAll()
                 .success(function (response) {
                     $scope.Accounts = response;
                 })

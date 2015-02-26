@@ -42,4 +42,8 @@ app.service("TransactionsService", function ($http, AppSettings) {
         return $http.get(urlBase + '/Tags');
     }
 
+    this.getChart = function () {
+        return $http.get(urlBase + '/Chart');
+    }
+
 });
