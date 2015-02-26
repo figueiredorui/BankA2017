@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace BankA.Api.Models
+namespace BankA.Models.Transactions
 {
     public class TransactionSearch
     {

@@ -1,7 +1,8 @@
+using BankA.Models.Enums;
 using System;
 using System.Collections.Generic;
 
-namespace BankA.Data.Models
+namespace BankA.Models.Transactions
 {
     public partial class StatementFile
     {
@@ -9,5 +10,6 @@ namespace BankA.Data.Models
         public string FileName { get; set; }
         public byte[] FileContent { get; set; }
         public string ContentType { get; set; }
+        public int AccountID { get; set; }
     }
 }

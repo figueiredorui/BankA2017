@@ -17,10 +17,12 @@ namespace BankA.Services.Transactions
     public class StatementFileService
     {
         private readonly TransactionRepository transactionRepository;
+        private readonly AccountRepository accountRepository;
 
         public StatementFileService()
         {
             transactionRepository = new TransactionRepository();
+            accountRepository = new AccountRepository();
         }
 
         public void Import(BankEnum bank, int accountID, string path)
@@ -36,6 +38,25 @@ namespace BankA.Services.Transactions
             {
                 var engine = new FileHelperEngine(typeof(FileLLOYDS));
                 var lst = engine.ReadFile(path) as FileLLOYDS[];
+                ImportFile(accountID, lst);
+            }
+        }
+
+        public void Import(int accountID, TextReader path)
+        {
+            var account = accountRepository.Find(accountID);
+
+            if (account.BankName == BankEnum.HSBC.ToString())
+            {
+                var engine = new FileHelperEngine(typeof(FileHSBC));
+                var lst = engine.ReadStream(path) as FileHSBC[];
+                ImportFile(accountID, lst);
+            }
+
+            if (account.BankName == BankEnum.LLOYDS.ToString())
+            {
+                var engine = new FileHelperEngine(typeof(FileLLOYDS));
+                var lst = engine.ReadStream(path) as FileLLOYDS[];
                 ImportFile(accountID, lst);
             }
         }

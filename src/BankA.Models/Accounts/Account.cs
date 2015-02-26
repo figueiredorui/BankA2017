@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BankA.Models
+namespace BankA.Models.Accounts
 {
     public class Account
     {

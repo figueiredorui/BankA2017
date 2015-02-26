@@ -15,9 +15,8 @@ using System.Threading.Tasks;
 using System.Threading;
 using System.IO;
 using System.Net.Http.Headers;
-using BankA.Data.Models;
 using BankA.Services.Transactions;
-using BankA.Api.Models;
+using BankA.Models.Transactions;
 
 namespace BankA.Api.Controllers
 {
@@ -35,7 +34,7 @@ namespace BankA.Api.Controllers
             if (search == null)
                 return BadRequest();
 
-            var lst = svc.GetTransactions(search.AccountID, search.StartDate, search.EndDate);
+            var lst = svc.GetTransactions(search.AccountID, search.StartDate, search.EndDate, search.Tag);
             return Ok(lst);
         }
 
@@ -87,14 +86,15 @@ namespace BankA.Api.Controllers
                 await Request.Content.ReadAsMultipartAsync(provider);
 
                 var file = provider.FileData[0];
-                var accountID = provider.FormData["AccountID"];
+                var accountID = Convert.ToInt32(provider.FormData["AccountID"]);
                 var fileContent = System.IO.File.ReadAllBytes(file.LocalFileName);
 
                 svc.Upload(new StatementFile()
                             {
                                 FileName = file.Headers.ContentDisposition.FileName.Trim('"'),
                                 FileContent = fileContent,
-                                ContentType = file.Headers.ContentType.MediaType
+                                ContentType = file.Headers.ContentType.MediaType,
+                                AccountID = accountID
                             });
 
                 return Ok();
@@ -105,6 +105,8 @@ namespace BankA.Api.Controllers
             }
 
         }
+
+        
     }
 
 

@@ -111,6 +111,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Reports\ReportService.cs" />
     <Compile Include="Transactions\ImportFileService.cs" />
     <Compile Include="Transactions\StatementFileMapper.cs" />
     <Compile Include="Accounts\AccountService.cs" />

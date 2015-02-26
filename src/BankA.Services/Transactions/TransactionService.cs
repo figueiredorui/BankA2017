@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using BankA.Data.Models;
 using BankA.Data.Repositories;
 using BankA.Models;
+using System.IO;
+using BankA.Models.Transactions;
 
 namespace BankA.Services.Transactions
 {
@@ -27,10 +29,11 @@ namespace BankA.Services.Transactions
             return transaction.ToModel();
         }
 
-        public List<Transaction> GetTransactions(int? accountID, DateTime startDate, DateTime endDate)
+        public List<Transaction> GetTransactions(int? accountID, DateTime startDate, DateTime endDate, string tag)
         {
             var transactionLst = transactionRepository.Table.Where(q => 
-                                q.AccountID == (accountID ?? q.AccountID) && 
+                                q.AccountID == (accountID ?? q.AccountID) &&
+                                q.Tag == (tag ?? q.Tag) && 
                                 q.TransactionDate >= startDate && 
                                 q.TransactionDate <= endDate).OrderByDescending(o=>o.TransactionDate).ToList();
 
@@ -57,6 +60,12 @@ namespace BankA.Services.Transactions
         {
             var statement = StatementFileMapper.Map(statementFile);
             statementFileRepository.Add(statement);
+
+            Stream stream = new MemoryStream(statement.FileContent);
+            TextReader  r = new StreamReader(stream);
+
+
+            new StatementFileService().Import(statementFile.AccountID, r );
         }
         
         public void Add(Transaction model)
@@ -67,5 +76,7 @@ namespace BankA.Services.Transactions
 
             transactionRepository.Add(transaction);
         }
+
+       
     }
 }

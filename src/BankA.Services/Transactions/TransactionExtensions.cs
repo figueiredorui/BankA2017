@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BankA.Data.Models;
 using BankA.Models;
+using BankA.Models.Transactions;
 using System;
 using System.Collections.Generic;
 using System.Linq;

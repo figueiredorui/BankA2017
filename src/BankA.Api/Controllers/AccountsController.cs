@@ -12,6 +12,7 @@ using BankA.Models;
 using BankA.Services;
 using BankA.Models.Enums;
 using BankA.Services.Accounts;
+using BankA.Models.Accounts;
 
 namespace BankA.Api.Controllers
 {
@@ -62,6 +63,8 @@ namespace BankA.Api.Controllers
             var lst = svc.GetAccountSummary();
             return Ok(lst);
         }
+
+        
 
         // GET: api/Accounts/Banks
         [Route("Accounts/Banks")]
