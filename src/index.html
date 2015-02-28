@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en" ng-app="BankA">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>banka app v1</title>
+
+    <link rel="stylesheet" type="text/css" href="css/daterangepicker-bs3.css">
+    <link rel="stylesheet" type="text/css" href="css/rdash.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+
+   <!-- bower:css -->
+   <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.css" />
+   <link rel="stylesheet" href="vendor/angular-loading-bar/build/loading-bar.css" />
+   <link rel="stylesheet" href="vendor/angular-chart.js/dist/angular-chart.css" />
+   <link rel="stylesheet" href="vendor/angular-toastr/dist/angular-toastr.css" />
+   <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.css" />
+   <!-- endbower -->
+
+   <!-- bower:js -->
+   <script src="vendor/jquery/dist/jquery.js"></script>
+   <script src="vendor/bootstrap/dist/js/bootstrap.js"></script>
+   <script src="vendor/angular/angular.js"></script>
+   <script src="vendor/angular-cookies/angular-cookies.js"></script>
+   <script src="vendor/angular-ui-router/release/angular-ui-router.js"></script>
+   <script src="vendor/angular-loading-bar/build/loading-bar.js"></script>
+   <script src="vendor/moment/moment.js"></script>
+   <script src="vendor/ng-file-upload/angular-file-upload.js"></script>
+   <script src="vendor/Chart.js/Chart.min.js"></script>
+   <script src="vendor/angular-chart.js/dist/angular-chart.js"></script>
+   <script src="vendor/angular-toastr/dist/angular-toastr.tpls.js"></script>
+   <!-- endbower -->
+
+</head>
+<body >
+    <div ui-view></div>
+
+    <script type="text/javascript" src="scripts/angular-locale_en-gb.js"></script>
+    <script type="text/javascript" src="scripts/angular-ui/ui-bootstrap.min.js"></script>
+    <script type="text/javascript" src="scripts/angular-ui/ui-bootstrap-tpls.min.js"></script>
+
+    <script type="text/javascript" src="scripts/datarangepicker/daterangepicker.js"></script>
+    <script type="text/javascript" src="scripts/datarangepicker/angular-daterangepicker.min.js"></script>
+
+    <script type="text/javascript" src="scripts/linq.min.js"></script>
+
+
+    <script src="app/app.js"></script>
+    <script src="app/common/routes.js"></script>
+    <script src="app/common/config.js"></script>
+    <script src="app/common/common.js"></script>
+
+    <script src="app/services/AccountService.js"></script>
+    <script src="app/services/TransactionsService.js"></script>
+    <script src="app/services/ReportsService.js"></script>
+
+    <script src="app/views/layout.js"></script>
+    <script src="app/views/dashboard.js"></script>
+    <script src="app/views/accounts.js"></script>
+    <script src="app/views/transactions.js"></script>
+
+</body>
+</html>
