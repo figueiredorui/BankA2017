@@ -26,12 +26,12 @@ app.service("TransactionsService", function ($http, AppSettings) {
         return $http.get(urlBase + '/' + id);
     }
 
-    this.add = function (expense) {
-        return $http.post(urlBase, expense);
+    this.add = function (transaction) {
+        return $http.post(urlBase, transaction);
     }
 
-    this.update = function (expense) {
-        return $http.put(urlBase, expense);
+    this.update = function (transaction) {
+        return $http.put(urlBase + '/' + transaction.ID, transaction);
     }
 
     this.delete = function (id) {

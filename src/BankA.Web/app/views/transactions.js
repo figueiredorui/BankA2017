@@ -12,6 +12,7 @@ app.controller('TransactionsListCtrl', function ($scope, $location, $stateParams
     $scope.Search = Search;
     $scope.uploadFile = uploadFile;
     $scope.addTransaction = addTransaction;
+    $scope.editTransaction = editTransaction;
 
     $scope.selectAccount = selectAccount;
     $scope.updateTransaction = updateTransaction;
@@ -141,19 +142,28 @@ app.controller('TransactionsListCtrl', function ($scope, $location, $stateParams
         });
     };
 
-    $scope.getClass = function (path) {
-        if ($location.path().substr($location.path().length - path.length, $location.path().length) == path) {
-            return "active"
-        } else {
-            return ""
-        }
-    }
+    function editTransaction(id) {
 
+        var modalInstance = $modal.open({
+            templateUrl: 'EditTransactionModal.html',
+            controller: 'TransactionsModalCtrl',
+            backdrop: false,
+            resolve: {
+                transactionID: function () { return id; }
+            }
+        })
+
+        modalInstance.result.then(function () {
+            loadAccounts();
+        }, function () {
+            // $log.info('Modal dismissed at: ' + new Date());
+        });
+    }
 })
 
 // Please note that $modalInstance represents a modal window (instance) dependency.
 // It is not the same as the $modal service used above.
-app.controller('UploadFileModalCtrl', function ($scope, $modalInstance, $timeout, $upload, accountID, AccountService, TransactionsService) {
+app.controller('UploadFileModalCtrl', function ($scope, $modalInstance, $timeout, $upload, toastr, accountID, AccountService, TransactionsService) {
 
     $scope.submitFile = submitFile;
     $scope.cancel = cancel;
@@ -196,6 +206,7 @@ app.controller('UploadFileModalCtrl', function ($scope, $modalInstance, $timeout
                 $timeout(function () {
                     file.result = response.data;
                     $modalInstance.close();
+                    toastr.success('success!');
                 });
             }, function (response) {
                 if (response.status > 0)
