@@ -23,11 +23,9 @@ app.controller('DashboardCtrl', function ($scope, $state, AccountService, Report
         ReportsService.getMonthlyBalance()
             .success(function (response) {
 
-                //F7464A 46BFBD
-
-                var months = Enumerable.From(response).Select(function (x) { return x.Month }).ToArray();
-                var debit = Enumerable.From(response).Select(function (x) { return x.DebitAmount }).ToArray();
-                var credit = Enumerable.From(response).Select(function (x) { return x.CreditAmount }).ToArray();
+                var months = Enumerable.from(response).select(function (x) { return x.Month }).toArray();
+                var debit = Enumerable.from(response).select(function (x) { return x.DebitAmount }).toArray();
+                var credit = Enumerable.from(response).select(function (x) { return x.CreditAmount }).toArray();
 
                 $scope.labels = months;
                 $scope.series = ['Income', 'Expenses'];
