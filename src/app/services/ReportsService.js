@@ -4,8 +4,12 @@ app.service("ReportsService", function ($http, AppSettings) {
 
     var urlBase = AppSettings.UrlBase + 'Reports';
 
-    this.getMonthlyBalance = function () {
-        return $http.get(urlBase + '/MonthlyBalance');
+    this.getMonthlyDebitCredit = function () {
+        return $http.get(urlBase + '/MonthlyDebitCredit');
+    }
+
+    this.getRunningBalance = function () {
+        return $http.get(urlBase + '/RunningBalance');
     }
 
 });

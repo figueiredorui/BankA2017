@@ -10,6 +10,7 @@ app.controller('TransactionsListCtrl', function ($scope, $location, $stateParams
 
 
     $scope.Search = Search;
+    $scope.refresh = refresh;
     $scope.uploadFile = uploadFile;
     $scope.addTransaction = addTransaction;
     $scope.editTransaction = editTransaction;
@@ -26,8 +27,13 @@ app.controller('TransactionsListCtrl', function ($scope, $location, $stateParams
         loadTransactions();
     };
 
+    function refresh() {
+        loadAccounts();
+        loadTransactions();
+    };
+
     function Search() {
-        loadTransactions($scope.selectedAccountID);
+        loadTransactions();
     };
 
     function loadFilters() {
@@ -70,7 +76,9 @@ app.controller('TransactionsListCtrl', function ($scope, $location, $stateParams
             });
     }
 
-    function loadTransactions(accountID) {
+    function loadTransactions() {
+
+        var accountID = $scope.selectedAccountID
 
         TransactionsService.getAll(accountID, $scope.tFilter.DateRange.startDate, $scope.tFilter.DateRange.endDate, $scope.tFilter.Tag)
             .success(function (response) {
@@ -104,7 +112,7 @@ app.controller('TransactionsListCtrl', function ($scope, $location, $stateParams
 
         $scope.selectedAccountID = accountID;
 
-        loadTransactions(accountID);
+        loadTransactions();
 
     };
 
@@ -131,7 +139,8 @@ app.controller('TransactionsListCtrl', function ($scope, $location, $stateParams
             controller: 'TransactionsModalCtrl',
             backdrop: false,
             resolve: {
-                transactionID: function () { return 0; }
+                transactionID: function () { return 0; },
+                accountID: function () { return $scope.selectedAccountID }
             }
         })
 
@@ -149,7 +158,8 @@ app.controller('TransactionsListCtrl', function ($scope, $location, $stateParams
             controller: 'TransactionsModalCtrl',
             backdrop: false,
             resolve: {
-                transactionID: function () { return id; }
+                transactionID: function () { return id; },
+                accountID: function () { return 0; }
             }
         })
 
@@ -233,7 +243,7 @@ app.controller('UploadFileModalCtrl', function ($scope, $modalInstance, $timeout
 });
 
 
-app.controller('TransactionsModalCtrl', function ($scope, $modalInstance, TransactionsService, AccountService, transactionID) {
+app.controller('TransactionsModalCtrl', function ($scope, $modalInstance, TransactionsService, AccountService, accountID, transactionID) {
 
     $scope.saveTransaction = saveTransaction;
     $scope.deleteTransaction = deleteTransaction;
@@ -246,7 +256,7 @@ app.controller('TransactionsModalCtrl', function ($scope, $modalInstance, Transa
     function getTransaction() {
 
         if (transactionID == 0) {
-            $scope.transaction = { ID: 0, AccountID: null, TransactionDate: null, Description: '', Amount: '' };
+            $scope.transaction = { ID: 0, AccountID: accountID, TransactionDate: null, Description: '', Amount: '' };
         }
         else {
             TransactionsService.get(transactionID)

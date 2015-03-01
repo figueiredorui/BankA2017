@@ -20,16 +20,20 @@ app.controller('DashboardCtrl', function ($scope, $state, AccountService, Report
 
     function loadChart() {
 
-        ReportsService.getMonthlyBalance()
+
+        ReportsService.getMonthlyDebitCredit()
             .success(function (response) {
 
                 var months = Enumerable.from(response).select(function (x) { return x.Month }).toArray();
                 var debit = Enumerable.from(response).select(function (x) { return x.DebitAmount }).toArray();
                 var credit = Enumerable.from(response).select(function (x) { return x.CreditAmount }).toArray();
 
-                $scope.labels = months;
-                $scope.series = ['Income', 'Expenses'];
-                $scope.data = [credit,debit];
+                var monthlyDebitCredit = {};
+                monthlyDebitCredit.labels = months;
+                monthlyDebitCredit.series = ['Income', 'Expenses'];
+                monthlyDebitCredit.data = [credit,debit];
+
+                $scope.monthlyDebitCredit= monthlyDebitCredit;
 
             })
             .error(function (error) {
@@ -38,6 +42,29 @@ app.controller('DashboardCtrl', function ($scope, $state, AccountService, Report
             .finally(function () {
 
             });
+
+
+        ReportsService.getRunningBalance()
+            .success(function (response) {
+
+            var months = Enumerable.from(response).select(function (x) { return x.Month }).toArray();
+            var runningAmount = Enumerable.from(response).select(function (x) { return x.RunningAmount }).toArray();
+
+                var runningBalance = {};
+                runningBalance.labels = months;
+                runningBalance.series = 'RunningAmount';
+                runningBalance.data = [runningAmount];
+
+                $scope.runningBalance= runningBalance;
+
+            })
+            .error(function (error) {
+                $scope.errorMsg = error.Message;
+            })
+            .finally(function () {
+
+            });
+
 
     }
 })
