@@ -41,12 +41,14 @@ namespace BankA.Api.Controllers
         // GET: api/Transactions/5
         public IHttpActionResult Get(int id)
         {
-            return Ok();
+            var result = svc.Find(id);
+            return Ok(result);
         }
 
         // PUT: api/Transactions/5
         public IHttpActionResult Put(int id, Transaction transaction)
         {
+            svc.Update(transaction);
             return Ok();
         }
 

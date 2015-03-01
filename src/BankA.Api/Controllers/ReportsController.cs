@@ -27,11 +27,24 @@ namespace BankA.Api.Controllers
 
 
         // GET: api/Reports/Chart
-        [Route("Reports/MonthlyBalance")]
-        public IHttpActionResult GetChart()
+        [Route("Reports/MonthlyDebitCredit")]
+        public IHttpActionResult GetMonthlyDebitCredit()
         {
-            var lst = svc.GetMonthlyBalance(DateTime.Now.Date.AddMonths(-12), DateTime.Now.Date);
+            var lst = svc.GetMonthlyDebitCredit(DateTime.Now.Date.AddMonths(-12), DateTime.Now.Date);
             return Ok(lst);
+        }
+
+        // GET: api/Reports/RunningBalance
+        [Route("Reports/RunningBalance")]
+        public IHttpActionResult GetRunningBalance()
+        {
+            var lst = svc.GetRunningBalance(null, DateTime.Now.Date.AddMonths(-24), DateTime.Now.Date);
+            return Ok(lst);
+        }
+
+        private DateTime LastDayOfMonth(DateTime date)
+        {
+            return date.AddDays(1 - (date.Day)).AddMonths(1).AddDays(-1);
         }
     }
 

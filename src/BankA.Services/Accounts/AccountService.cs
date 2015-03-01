@@ -63,7 +63,11 @@ namespace BankA.Services.Accounts
                               LastTransactionDate = grp.Max(o => o.TransactionDate),
                           }).ToList();
 
-            return result;
+            var total = new AccountSummary() { AccountID = 0, Description = "All Accounts", Balance = result.Sum(q => q.Balance) };
+
+            result.Add(total);
+
+            return result.OrderBy(o => o.AccountID).ToList();
         }
 
         

@@ -39,6 +39,8 @@ namespace BankA.Data.Models.Mapping
             this.Property(t => t.DebitAmount).HasColumnName("DebitAmount");
             this.Property(t => t.CreditAmount).HasColumnName("CreditAmount");
             this.Property(t => t.Tag).HasColumnName("Tag");
+            this.Property(t => t.IsTransfer).HasColumnName("IsTransfer");
+            this.Property(t => t.FileID).HasColumnName("FileID");
             this.Property(t => t.CreatedOn).HasColumnName("CreatedOn");
             this.Property(t => t.CreatedBy).HasColumnName("CreatedBy");
             this.Property(t => t.ChangedOn).HasColumnName("ChangedOn");

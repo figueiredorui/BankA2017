@@ -25,6 +25,7 @@ namespace BankA.Services.Transactions
                 DebitAmount = table.DebitAmount,
                 CreditAmount = table.CreditAmount,
                 Amount = table.CreditAmount - table.DebitAmount,
+                IsTransfer = table.IsTransfer,
                 Tag = table.Tag
             };
         }
@@ -46,6 +47,7 @@ namespace BankA.Services.Transactions
                 Description = model.Description,
                 DebitAmount = model.Amount < 0 ? -model.Amount : 0,
                 CreditAmount = model.Amount > 0 ? model.Amount : 0,
+                IsTransfer = model.IsTransfer,
                 Tag = model.Tag
             };
         }

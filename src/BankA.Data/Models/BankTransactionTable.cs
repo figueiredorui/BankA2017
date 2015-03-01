@@ -12,6 +12,8 @@ namespace BankA.Data.Models
         public decimal DebitAmount { get; set; }
         public decimal CreditAmount { get; set; }
         public string Tag { get; set; }
+        public bool IsTransfer { get; set; }
+        public int? FileID { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> ChangedOn { get; set; }
@@ -19,5 +21,6 @@ namespace BankA.Data.Models
         public byte[] RowVersion { get; set; }
 
         public virtual BankAccountTable Account { get; set; }
+
     }
 }

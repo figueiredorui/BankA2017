@@ -111,8 +111,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Import\LevenshteinDistance.cs" />
+    <Compile Include="Import\BankFile.cs" />
     <Compile Include="Reports\ReportService.cs" />
-    <Compile Include="Transactions\ImportFileService.cs" />
+    <Compile Include="Import\ImportStatementService.cs" />
     <Compile Include="Transactions\StatementFileMapper.cs" />
     <Compile Include="Accounts\AccountService.cs" />
     <Compile Include="Accounts\AccountMapper.cs" />

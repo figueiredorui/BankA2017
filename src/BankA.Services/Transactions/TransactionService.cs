@@ -31,6 +31,9 @@ namespace BankA.Services.Transactions
 
         public List<Transaction> GetTransactions(int? accountID, DateTime startDate, DateTime endDate, string tag)
         {
+            if (accountID.HasValue && accountID.Value == 0)
+                accountID = null;
+
             var transactionLst = transactionRepository.Table.Where(q => 
                                 q.AccountID == (accountID ?? q.AccountID) &&
                                 q.Tag == (tag ?? q.Tag) && 
@@ -61,11 +64,7 @@ namespace BankA.Services.Transactions
             var statement = StatementFileMapper.Map(statementFile);
             statementFileRepository.Add(statement);
 
-            Stream stream = new MemoryStream(statement.FileContent);
-            TextReader  r = new StreamReader(stream);
-
-
-            new StatementFileService().Import(statementFile.AccountID, r );
+            new ImportStatementService().Import(statementFile);
         }
         
         public void Add(Transaction model)
