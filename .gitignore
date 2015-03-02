@@ -1,6 +1,8 @@
 node_modules
 bower_components
-vendor/
+
+src/vendor/
+!dist/vendor/
 
 
 ## Ignore Visual Studio temporary files, build results, and
