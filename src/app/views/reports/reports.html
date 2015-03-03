@@ -1,0 +1,40 @@
+<div class="row nopadding">
+    <div class="col-lg-3" style="padding-right:0">
+
+        <div class="widget">
+            <div class="widget-header">
+
+                Menu
+                <button ng-click="refresh()" class="btn btn-default btn-sm pull-right"><span class="fa fa-refresh" aria-hidden="true"></span></button>
+
+            </div>
+            <div class="widget-body">
+                <div class="widget-content">
+
+                    <div class="list-group">
+
+                        <a class="list-group-item" style="cursor:pointer" ui-sref="app.reports.tag-analysis" ui-sref-active="active">
+
+                            <span class="block text-ellipsis"><strong>Tag Analysis</strong></span>
+                            <br />
+                            <small class="text"></small>
+                        </a>
+
+                    </div>
+                </div>
+                <!--<div class="widget-footer">
+                </div>-->
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-9" style="padding-left:0">
+
+        <div ui-view></div>
+
+
+    </div>
+</div>
+
+
+
+

@@ -17,10 +17,24 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             url: "/transactions",
             templateUrl: "app/views/transactions.html",
             controller: 'TransactionsListCtrl',
+            data: { pageTitle: 'Transactions' }
         })
         .state('app.accounts', {
             url: "/accounts",
             templateUrl: "app/views/accounts.html",
             controller: 'AccountsListCtrl',
+            data: { pageTitle: 'Accounts' }
+        })
+        .state('app.reports', {
+            url: "/reports",
+            templateUrl: "app/views/reports/reports.html",
+            controller: 'ReportsCtrl',
+            data: { pageTitle: 'Reports' }
+        })
+        .state('app.reports.tag-analysis', {
+            url: "/tag-analysis",
+            templateUrl: "app/views/reports/tag-analysis.html",
+            controller: 'ReportsCtrl',
+            data: { pageTitle: 'Reports' }
         })
 });
