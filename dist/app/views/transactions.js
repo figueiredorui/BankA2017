@@ -16,7 +16,8 @@ app.controller('TransactionsListCtrl', function ($scope, $location, $stateParams
     $scope.editTransaction = editTransaction;
 
     $scope.selectAccount = selectAccount;
-    $scope.updateTransaction = updateTransaction;
+    $scope.updateTag = updateTag;
+    $scope.originalTag = originalTag;
 
 
     init();
@@ -93,7 +94,15 @@ app.controller('TransactionsListCtrl', function ($scope, $location, $stateParams
 
     };
 
-    function updateTransaction(transaction) {
+    var oldTag= '';
+    function originalTag(tag) {
+        oldTag = tag;
+    }
+
+    function updateTag(transaction) {
+
+        if (oldTag != transaction.Tag)
+        {
 
         TransactionsService.update(transaction)
             .success(function (response) {
@@ -105,6 +114,7 @@ app.controller('TransactionsListCtrl', function ($scope, $location, $stateParams
             .finally(function () {
 
             });
+        }
 
     };
 
