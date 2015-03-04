@@ -31,9 +31,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             controller: 'ReportsCtrl',
             data: { pageTitle: 'Reports' }
         })
-        .state('app.reports.tag-analysis', {
-            url: "/tag-analysis",
-            templateUrl: "app/views/reports/tag-analysis.html",
+        .state('app.reports.expenses-analysis', {
+            url: "/expenses-analysis",
+            templateUrl: "app/views/reports/expense-analysis.html",
             controller: 'ReportsCtrl',
             data: { pageTitle: 'Reports' }
         })

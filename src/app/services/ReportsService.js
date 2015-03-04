@@ -12,4 +12,8 @@ app.service("ReportsService", function ($http, AppSettings) {
         return $http.get(urlBase + '/RunningBalance');
     }
 
+    this.getDebitReport = function () {
+        return $http.get(urlBase + '/DebitReport');
+    }
+
 });

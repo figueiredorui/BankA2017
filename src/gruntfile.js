@@ -4,6 +4,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-wiredep');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-string-replace');
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
@@ -27,15 +28,34 @@ module.exports = function(grunt) {
         },
         clean: {
             build: {
-                src: [ '../dist/**' ]
+                src: [ '../dist/**']
             },
+            afterbuild:{
+                src: [ '../dist/vendor/jqueryui/**', '../dist/vendor/angular-i18n/*', '!../dist/vendor/angular-i18n/angular-locale_en-gb.js']
+            }
         },
+        'string-replace': {
+            build: {
+                files: {
+                    'dest/': '../dist/**/config.js',
+                },
+                options: {
+                    replacements: [
+                        // place files inline example
+                        {
+                            pattern: 'http://localhost/banka.api/',
+                            replacement: 'https://apibanka.apphb.com/'
+                        }
+                    ]
+                }
+            }
+        }
     });
 
     grunt.registerTask(
-  'build',
-  'Compiles all of the assets and copies the files to the dist directory.',
-  [ 'clean', 'copy' ]
-);
+        'build',
+        'Compiles all of the assets and copies the files to the dist directory.',
+        [ 'clean:build', 'copy','string-replace', 'clean:afterbuild' ]
+    );
 
 };

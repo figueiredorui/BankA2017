@@ -4,7 +4,7 @@
 //     CONSTANTS
 //-------------------------------------------------------------
 app.constant('AppSettings', {
-    UrlBase: 'http://localhost/banka.api/',
+    UrlBase: 'https://apibanka.apphb.com/',
     //UrlBase: 'https://apibanka.apphb.com/',
 });
 
