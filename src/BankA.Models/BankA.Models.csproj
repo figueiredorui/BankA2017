@@ -53,6 +53,8 @@
     <Compile Include="Accounts\Account.cs" />
     <Compile Include="Enums\BankEnum.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\DebitReport.cs" />
+    <Compile Include="Reports\RunningBalance.cs" />
     <Compile Include="Transactions\StatementFile.cs" />
     <Compile Include="Reports\MonthlyBalance.cs" />
     <Compile Include="Transactions\Transaction.cs" />

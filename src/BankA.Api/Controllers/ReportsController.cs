@@ -17,14 +17,13 @@ using System.IO;
 using System.Net.Http.Headers;
 using BankA.Services.Transactions;
 using BankA.Services.Reports;
+using BankA.Models.Reports;
 
 namespace BankA.Api.Controllers
 {
     public class ReportsController : ApiController
     {
         ReportService svc = new ReportService();
-
-
 
         // GET: api/Reports/Chart
         [Route("Reports/MonthlyDebitCredit")]
@@ -39,6 +38,13 @@ namespace BankA.Api.Controllers
         public IHttpActionResult GetRunningBalance()
         {
             var lst = svc.GetRunningBalance(null, DateTime.Now.Date.AddMonths(-24), DateTime.Now.Date);
+            return Ok(lst);
+        }
+
+        [Route("Reports/DebitReport")]
+        public IHttpActionResult GetDebitReport()
+        {
+            var lst = svc.GetDebitReport(null, DateTime.Now.Date.AddMonths(-12), DateTime.Now.Date);
             return Ok(lst);
         }
 

@@ -41,6 +41,8 @@ namespace BankA.Services.Reports
                        }).ToList();
 
             return lst;
+        
+        
         }
 
         public List<RunningBalance> GetRunningBalance(int? accountID, DateTime startDate, DateTime endDate)
@@ -80,6 +82,33 @@ namespace BankA.Services.Reports
             }
 
             return result.OrderBy(o=>o.TransactionDate).ToList();
+        }
+
+        public List<DebitReport> GetDebitReport(int? accountID, DateTime startDate, DateTime endDate)
+        {
+            var transactionsLst = transactionRepository.Table
+                                                        .Where(q => q.AccountID == (accountID ?? q.AccountID)
+                                                            && q.IsTransfer == false
+                                                            && q.TransactionDate >= startDate
+                                                            && q.TransactionDate <= endDate 
+                                                            && q.DebitAmount > 0);
+
+            var lst = (from trans in transactionsLst
+                       group trans by new
+                       {
+                           Tag = trans.Tag,
+                           Month = trans.TransactionDate.Month,
+                           Year = trans.TransactionDate.Year
+                       } into grp
+                       select new DebitReport()
+                       {
+                           Tag = grp.Key.Tag,
+                           Year = grp.Key.Year,
+                           Month = grp.Key.Month,
+                           Amount = grp.Sum(o => o.DebitAmount),
+                       }).ToList();
+
+            return lst;
         }
     }
 }
