@@ -40,7 +40,7 @@ module.exports = function(grunt) {
         'string-replace': {
             build: {
                 files: {
-                    'dist': 'app/common/config.js',
+                    'dist/': 'app/common/config.js',
                 },
                 options: {
                     replacements: [
