@@ -17,27 +17,30 @@ module.exports = function(grunt) {
         copy: {
             build: {
                 files: [
-                    {cwd: '../src', src: [ 'app/**' ], dest: '../dist', expand: true},
-                    {cwd: '../src', src: [ 'css/**' ], dest: '../dist', expand: true},
-                    {cwd: '../src', src: [ 'img/**' ], dest: '../dist', expand: true},
-                    {cwd: '../src', src: [ 'vendor/**' ], dest: '../dist', expand: true},
-                    {cwd: '../src', src: [ 'index.html' ], dest: '../dist', expand: true},
+                    {cwd: 'src', src: [ 'app/**' ], dest: 'dist', expand: true},
+                    {cwd: 'src', src: [ 'css/**' ], dest: 'dist', expand: true},
+                    {cwd: 'src', src: [ 'img/**' ], dest: 'dist', expand: true},
+                    {cwd: 'src', src: [ 'vendor/**' ], dest: 'dist', expand: true},
+                    {cwd: 'src', src: [ 'index.html' ], dest: 'dist', expand: true},
                 ],
 
             },
         },
         clean: {
             build: {
-                src: [ '../dist/**']
+                src: [ 'dist/*']
             },
             afterbuild:{
-                src: [ '../dist/vendor/jqueryui/**', '../dist/vendor/angular-i18n/*', '!../dist/vendor/angular-i18n/angular-locale_en-gb.js']
+                src: [ 'dist/vendor/jqueryui/themes/**', 
+					   'dist/vendor/jqueryui/ui/**', 
+					   'dist/vendor/angular-i18n/*', 
+					   '!dist/vendor/angular-i18n/angular-locale_en-gb.js']
             }
         },
         'string-replace': {
             build: {
                 files: {
-                    'dest/': '../dist/**/config.js',
+                    'dist': 'app/common/config.js',
                 },
                 options: {
                     replacements: [

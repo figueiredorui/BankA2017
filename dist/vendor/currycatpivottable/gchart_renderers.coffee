@@ -28,14 +28,14 @@ makeGoogleChart = (chartType, extraOptions) -> (pivotData, opts) ->
 			else row.push null
 		dataArray.push row
 
-	title = vAxisTitle = pivotData.aggregatorName+
+	title = vAxisTitle = pivotData.aggregatorName+ 
 		if pivotData.valAttrs.length then "(#{pivotData.valAttrs.join(", ")})" else ""
 	hAxisTitle = pivotData.colAttrs.join("-")
 	title += " #{opts.localeStrings.vs} #{hAxisTitle}" if hAxisTitle != ""
 	groupByTitle = pivotData.rowAttrs.join("-")
 	title += " #{opts.localeStrings.by} #{groupByTitle}" if groupByTitle != ""
 
-	options =
+	options = 
 		width: $(window).width() / 1.4
 		height: $(window).height() / 1.4
 		title: title
@@ -51,15 +51,15 @@ makeGoogleChart = (chartType, extraOptions) -> (pivotData, opts) ->
 
 	result = $("<div style='width: 100%; height: 100%;'>")
 	wrapper = new google.visualization.ChartWrapper {dataTable, chartType, options}
-	wrapper.draw(result[0])
-	result.bind "dblclick", ->
+	wrapper.draw(result[0])	
+	result.bind "dblclick", -> 
 		editor = new google.visualization.ChartEditor()
-		google.visualization.events.addListener editor, 'ok', ->
+		google.visualization.events.addListener editor, 'ok', -> 
 			editor.getChartWrapper().draw(result[0])
 		editor.openDialog(wrapper)
 	return result
 
-$.pivotUtilities.gchart_renderers =
+$.pivotUtilities.gchart_renderers = 
 	"Line Chart": makeGoogleChart("LineChart")
 	"Bar Chart": makeGoogleChart("ColumnChart")
 	"Stacked Bar Chart": makeGoogleChart("ColumnChart", isStacked: true)

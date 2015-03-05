@@ -57,8 +57,8 @@ $.pivotUtilities.d3_renderers = Treemap: (pivotData, opts) ->
                     .style("width", (d) -> Math.max(0, d.dx - 1)+"px" )
                     .style("height",(d) -> Math.max(0, d.dy - 1)+"px" )
                 return
-
+    
     return result
-
+    
 
 

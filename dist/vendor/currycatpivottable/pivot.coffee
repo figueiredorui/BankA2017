@@ -14,8 +14,8 @@ addSeparators = (nStr, thousandsSep, decimalSep) ->
     return x1 + x2
 
 numberFormat = (opts) ->
-    defaults =
-        digitsAfterDecimal: 2, scaler: 1,
+    defaults = 
+        digitsAfterDecimal: 2, scaler: 1, 
         thousandsSep: ",", decimalSep: "."
         prefix: "", suffix: ""
         showZero: false
@@ -103,7 +103,7 @@ aggregatorTemplates =
         numInputs: wrapped(x...)().numInputs
 
 #default aggregators & renderers use US naming and number formatting
-aggregators = do (tpl = aggregatorTemplates) ->
+aggregators = do (tpl = aggregatorTemplates) -> 
     "Count":                tpl.count(usFmtInt)
     "Count Unique Values":  tpl.countUnique(usFmtInt)
     "List Unique Values":   tpl.listUnique(", ")
@@ -127,11 +127,11 @@ renderers =
     "Row Heatmap":    (pvtData, opts) -> $(pivotTableRenderer(pvtData, opts)).heatmap("rowheatmap")
     "Col Heatmap":    (pvtData, opts) -> $(pivotTableRenderer(pvtData, opts)).heatmap("colheatmap")
 
-locales =
-    en:
+locales = 
+    en: 
         aggregators: aggregators
         renderers: renderers
-        localeStrings:
+        localeStrings: 
             renderError: "An error occurred rendering the PivotTable results."
             computeError: "An error occurred computing the PivotTable results."
             uiRenderError: "An error occurred rendering the PivotTable UI."
@@ -223,7 +223,7 @@ class PivotData
         if $.isEmptyObject derivedAttributes
             addRecord = f
         else
-            addRecord = (record) ->
+            addRecord = (record) -> 
                 record[k] = v(record) ? record[k] for k, v of derivedAttributes
                 f(record)
 
@@ -275,7 +275,7 @@ class PivotData
     processRecord: (record) -> #this code is called in a tight loop
         colKey = []
         rowKey = []
-        colKey.push record[x] ? "null" for x in @colAttrs
+        colKey.push record[x] ? "null" for x in @colAttrs 
         rowKey.push record[x] ? "null" for x in @rowAttrs
         flatRowKey = rowKey.join(String.fromCharCode(0))
         flatColKey = colKey.join(String.fromCharCode(0))
@@ -390,7 +390,7 @@ pivotTableRenderer = (pivotData, opts) ->
             th = document.createElement("th")
             th.className = "pvtAxisLabel"
             th.textContent = r
-            tr.appendChild th
+            tr.appendChild th 
         th = document.createElement("th")
         if colAttrs.length ==0
             th.className = "pvtTotalLabel"
@@ -490,7 +490,7 @@ $.fn.pivot = (input, opts) ->
     catch e
         console.error(e.stack) if console?
         result = $("<span>").html opts.localeStrings.computeError
-
+    
     x = this[0]
     x.removeChild(x.lastChild) while x.hasChildNodes()
     return @append result
