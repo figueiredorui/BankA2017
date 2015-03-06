@@ -77,7 +77,7 @@ module.exports = function(grunt) {
     grunt.registerTask(
         'build',
         'Compiles all of the assets and copies the files to the dist directory.',
-        [ 'clean:build', 'copy','string-replace', 'clean:afterbuild' ]
+        [ 'clean:build', 'copy','string-replace', 'clean:afterbuild', 'buildcontrol' ]
     );
 
 };
