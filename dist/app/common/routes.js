@@ -43,5 +43,5 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             controller: 'ExpensebyTagCtrl',
             data: { pageTitle: 'Reports' }
         })
-
+    
 });
