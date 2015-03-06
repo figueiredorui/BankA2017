@@ -110,5 +110,28 @@ namespace BankA.Services.Reports
 
             return lst;
         }
+
+        public List<ExpensesByTag> GetExpensesByTag(int? accountID, DateTime startDate, DateTime endDate)
+        {
+            var transactionsLst = transactionRepository.Table
+                                                        .Where(q => q.AccountID == (accountID ?? q.AccountID)
+                                                            && q.IsTransfer == false
+                                                            && q.TransactionDate >= startDate
+                                                            && q.TransactionDate <= endDate
+                                                            && q.DebitAmount > 0);
+
+            var lst = (from trans in transactionsLst
+                       group trans by new
+                       {
+                           Tag = trans.Tag,
+                       } into grp
+                       select new ExpensesByTag()
+                       {
+                           Tag = grp.Key.Tag,
+                           Amount = grp.Sum(o => o.DebitAmount),
+                       }).OrderByDescending(o => o.Amount).ToList();
+
+            return lst;
+        }
     }
 }

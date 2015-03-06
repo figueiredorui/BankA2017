@@ -6,15 +6,9 @@ using System.Threading.Tasks;
 
 namespace BankA.Models.Reports
 {
-    public partial class DebitReport
+    public partial class ExpensesByTag
     {
-        public int Year { get; set; }
-        public int Month { get; set; }
         public string Tag { get; set; }
         public decimal Amount { get; set; }
     }
-
-    
-
-    
 }

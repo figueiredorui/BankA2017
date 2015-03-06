@@ -48,6 +48,13 @@ namespace BankA.Api.Controllers
             return Ok(lst);
         }
 
+        [Route("Reports/ExpensesByTag")]
+        public IHttpActionResult GetExpensesByTag()
+        {
+            var lst = svc.GetExpensesByTag(null, DateTime.Now.Date.AddMonths(-12), DateTime.Now.Date);
+            return Ok(lst);
+        }
+
         private DateTime LastDayOfMonth(DateTime date)
         {
             return date.AddDays(1 - (date.Day)).AddMonths(1).AddDays(-1);
