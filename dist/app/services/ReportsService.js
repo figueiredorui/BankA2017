@@ -16,4 +16,8 @@ app.service("ReportsService", function ($http, AppSettings) {
         return $http.get(urlBase + '/DebitReport');
     }
 
+    this.getExpensesByTag = function () {
+        return $http.get(urlBase + '/ExpensesByTag');
+    }
+
 });

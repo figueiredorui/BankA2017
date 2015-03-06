@@ -28,7 +28,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         .state('app.reports', {
             url: "/reports",
             templateUrl: "app/views/reports/reports.html",
-            controller: 'ReportsCtrl',
+            //controller: 'ReportsCtrl',
             data: { pageTitle: 'Reports' }
         })
         .state('app.reports.expenses-analysis', {
@@ -39,8 +39,8 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         })
     .state('app.reports.expenses-pie', {
             url: "/expenses-pie",
-            templateUrl: "app/views/reports/expense-pie-chart.html",
-            controller: 'ExpensePieChartCtrl',
+            templateUrl: "app/views/reports/expense-byTag.html",
+            controller: 'ExpensebyTagCtrl',
             data: { pageTitle: 'Reports' }
         })
     
