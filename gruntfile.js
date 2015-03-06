@@ -5,6 +5,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-string-replace');
+     grunt.loadNpmTasks('grunt-build-control');
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
@@ -39,9 +40,10 @@ module.exports = function(grunt) {
         },
         'string-replace': {
             build: {
-                files: {
-                    'dist/': 'app/common/config.js',
-                },
+                files: [{
+             expand: true, flatten: true, 
+             src: 'src/app/common/config.js', dest: 'dist/app/common/'
+            }],
                 options: {
                     replacements: [
                         // place files inline example
@@ -52,7 +54,24 @@ module.exports = function(grunt) {
                     ]
                 }
             }
-        }
+        },
+        buildcontrol: {
+    options: {
+      dir: 'dist',
+      commit: true,
+      push: false,
+      message: 'Built %sourceName% from commit %sourceCommit% on branch %sourceBranch%'
+    },
+    
+    production: {
+      options: {
+        remote: 'git@5apps.com:figueiredorui_banka.git',
+        branch: 'master'
+      }
+    },
+    
+  }
+     
     });
 
     grunt.registerTask(
