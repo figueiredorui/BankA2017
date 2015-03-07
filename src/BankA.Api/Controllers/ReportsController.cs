@@ -53,7 +53,6 @@ namespace BankA.Api.Controllers
         {
             var lst = svc.GetExpensesByTag(null, DateTime.Now.Date.AddMonths(-12), DateTime.Now.Date);
             return Ok(lst);
-
         }
 
         private DateTime LastDayOfMonth(DateTime date)
