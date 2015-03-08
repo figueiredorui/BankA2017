@@ -14,7 +14,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             data: { pageTitle: 'Dashboard' }
         })
         .state('app.transactions', {
-            url: "/transactions",
+            url: "/transactions/:accountID",
             templateUrl: "app/views/transactions.html",
             controller: 'TransactionsListCtrl',
             data: { pageTitle: 'Transactions' }
@@ -26,9 +26,16 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             data: { pageTitle: 'Accounts' }
         })
         .state('app.reports', {
+            abstract: true,
             url: "/reports",
             templateUrl: "app/views/reports/reports.html",
             //controller: 'ReportsCtrl',
+            data: { pageTitle: 'Reports' }
+        })
+    .state('app.reports.menu', {
+            url: "/",
+            templateUrl: "app/views/reports/menu.html",
+            //controller: 'ExpenseAnalysisCtrl',
             data: { pageTitle: 'Reports' }
         })
         .state('app.reports.expenses-analysis', {
@@ -37,8 +44,8 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             controller: 'ExpenseAnalysisCtrl',
             data: { pageTitle: 'Reports' }
         })
-    .state('app.reports.expenses-pie', {
-            url: "/expenses-pie",
+    .state('app.reports.expenses-byTag', {
+            url: "/expenses-byTag",
             templateUrl: "app/views/reports/expense-byTag.html",
             controller: 'ExpensebyTagCtrl',
             data: { pageTitle: 'Reports' }

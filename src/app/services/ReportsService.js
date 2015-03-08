@@ -13,7 +13,7 @@ app.service("ReportsService", function ($http, AppSettings) {
     }
 
     this.getDebitReport = function () {
-        return $http.get(urlBase + '/DebitReport');
+        return $http.get(urlBase + '/Expenses');
     }
 
     this.getExpensesByTag = function () {

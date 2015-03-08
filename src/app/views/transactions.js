@@ -6,7 +6,10 @@ app.controller('TransactionsListCtrl', function ($scope, $location, $stateParams
 
     $scope.transactionList = [];
     $scope.transaction = null;
-    $scope.selectedAccountID = null;
+    
+    $scope.selectedAccountID = 0;
+    if ($stateParams.accountID != "")
+        $scope.selectedAccountID = $stateParams.accountID;
 
 
     $scope.Search = Search;
@@ -15,7 +18,10 @@ app.controller('TransactionsListCtrl', function ($scope, $location, $stateParams
     $scope.addTransaction = addTransaction;
     $scope.editTransaction = editTransaction;
 
+    $scope.newAccount = newAccount;
+    $scope.editAccount = editAccount;
     $scope.selectAccount = selectAccount;
+    
     $scope.updateTag = updateTag;
     $scope.originalTag = originalTag;
 
@@ -170,6 +176,46 @@ app.controller('TransactionsListCtrl', function ($scope, $location, $stateParams
             resolve: {
                 transactionID: function () { return id; },
                 accountID: function () { return 0; }
+            }
+        })
+
+        modalInstance.result.then(function () {
+            loadAccounts();
+        }, function () {
+            // $log.info('Modal dismissed at: ' + new Date());
+        });
+    }
+    
+    function newAccount() {
+
+        var modalInstance = $modal.open({
+            templateUrl: 'EditAccountModal.html',
+            controller: 'AccountsModalCtrl',
+            backdrop: false,
+            resolve: {
+                accountID: function () {
+                    return 0;
+                }
+            }
+        })
+
+        modalInstance.result.then(function () {
+            loadAccounts();
+        }, function () {
+            // $log.info('Modal dismissed at: ' + new Date());
+        });
+    }
+    
+    function editAccount(id) {
+
+        var modalInstance = $modal.open({
+            templateUrl: 'EditAccountModal.html',
+            controller: 'AccountsModalCtrl',
+            backdrop: false,
+            resolve: {
+                accountID: function () {
+                    return id;
+                }
             }
         })
 
