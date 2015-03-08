@@ -84,7 +84,7 @@ namespace BankA.Services.Reports
             return result.OrderBy(o=>o.TransactionDate).ToList();
         }
 
-        public List<DebitReport> GetDebitReport(int? accountID, DateTime startDate, DateTime endDate)
+        public List<DebitReport> GetExpenses(int? accountID, DateTime startDate, DateTime endDate)
         {
             var transactionsLst = transactionRepository.Table
                                                         .Where(q => q.AccountID == (accountID ?? q.AccountID)

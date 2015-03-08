@@ -41,10 +41,10 @@ namespace BankA.Api.Controllers
             return Ok(lst);
         }
 
-        [Route("Reports/DebitReport")]
-        public IHttpActionResult GetDebitReport()
+        [Route("Reports/Expenses")]
+        public IHttpActionResult GetExpenses()
         {
-            var lst = svc.GetDebitReport(null, DateTime.Now.Date.AddMonths(-12), DateTime.Now.Date);
+            var lst = svc.GetExpenses(null, DateTime.Now.Date.AddMonths(-12), DateTime.Now.Date);
             return Ok(lst);
         }
 

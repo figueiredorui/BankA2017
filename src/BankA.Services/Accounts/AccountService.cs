@@ -53,24 +53,20 @@ namespace BankA.Services.Accounts
 
         public List<AccountSummary> GetAccountSummary()
         {
-            var result = (from transaction in transactionRepository.Table
-                          group transaction by new { transaction.AccountID, transaction.Account.Description } into grp
+            var accountLst = (from account in accountRepository.Table
                           select new AccountSummary()
                           {
-                              AccountID = grp.Key.AccountID,
-                              Description = grp.Key.Description,
-                              Balance = grp.Sum(o => o.CreditAmount - o.DebitAmount),
-                              LastTransactionDate = grp.Max(o => o.TransactionDate),
+                              AccountID = account.AccountID,
+                              Description = account.Description,
+                              Balance = (decimal?)account.Transactions.Sum(o => o.CreditAmount - o.DebitAmount) ?? 0,
+                              LastTransactionDate = (DateTime?)account.Transactions.Max(o => o.TransactionDate)?? null
                           }).ToList();
 
-            var total = new AccountSummary() { AccountID = 0, Description = "All Accounts", Balance = result.Sum(q => q.Balance) };
+            var total = new AccountSummary() { AccountID = 0, Description = "All Accounts", Balance = accountLst.Sum(q => q.Balance), LastTransactionDate = null };
 
-            result.Add(total);
+            accountLst.Add(total);
 
-            return result.OrderBy(o => o.AccountID).ToList();
+            return accountLst.OrderBy(o => o.AccountID).ToList();
         }
-
-        
-
     }
 }
