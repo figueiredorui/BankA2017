@@ -5,9 +5,10 @@
             <div class="widget-header">
 
                 <button ng-click="uploadFile()" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Upload File</button>
-                <button ng-click="addTransaction()" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add </button>
-                <button ng-click="refresh()" class="btn btn-default btn-sm pull-right"><span class="fa fa-refresh" aria-hidden="true"></span></button>
+                <button ng-click="addTransaction()" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Transaction </button>
 
+
+                <div style="height:1px;"></div>
             </div>
             <div class="widget-body">
                 <div class="widget-content">
@@ -15,15 +16,19 @@
                     <div class="list-group">
 
                         <a class="list-group-item" style="cursor:pointer" ng-repeat="account in tFilter.Accounts | orderBy:'AccountID'" ng-click="selectAccount(account.AccountID)" ng-class="{active: account.AccountID==selectedAccountID }">
+
+                            <button ng-click="editAccount(account.AccountID)" ng-show="account.AccountID > 0" class="btn btn-link btn-xs delete-btn-hover pull-left" style="padding-left:0px"><span class="fa fa-pencil"></span></button>
+                            <span class="block text-ellipsis"><small ng-show="account.AccountID > 0" class="text"> ({{account.AccountID}})</small> <strong>{{account.Description}}</strong></span>
                             <span class="badge badge-info">
                                 {{account.Balance | currency}}
                             </span>
-                            <span class="block text-ellipsis"><small ng-show="account.AccountID > 0" class="text"> ({{account.AccountID}})</small> <strong>{{account.Description}}</strong></span>
                             <br />
-                            <small ng-show="account.AccountID > 0" class="text">Last transaction {{account.LastTransactionDate | date}}</small>
+                            <small ng-show="account.LastTransactionDate !=null" class="text">Last transaction {{account.LastTransactionDate | date}}</small>
                         </a>
 
+
                     </div>
+                    <button ng-click="newAccount()" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Account </button>
                 </div>
                 <!--<div class="widget-footer">
                 </div>-->
@@ -48,6 +53,8 @@
                         <label class="control-label">Search</label>
                         <input  class="form-control input-sm" ng-model="tFilter.Description" ></input>
                     </div>
+
+                    <button ng-click="refresh()" class="btn btn-primary pull-right"><span class="fa fa-refresh" aria-hidden="true"></span></button>
                 </form>
 
             </div>
@@ -67,7 +74,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="transaction in transactionList  | filter:tFilter.Description">
+                            <tr ng-repeat="transaction in transactionList  | filter:tFilter.Description" style="vertical-align: center">
                                 <td class="text-center">{{transaction.AccountID}} </td>
                                 <td>{{transaction.TransactionDate | date}}</td>
                                 <td>{{transaction.Description | limitTo : 30}}</td>
@@ -204,6 +211,42 @@
     <div class="modal-footer">
         <button class="btn btn-danger pull-left" ng-click="deleteTransaction()">Delete</button>
         <button class="btn btn-success" ng-click="saveTransaction()">Save</button>
+        <button class="btn btn-default" ng-click="cancel()">Cancel</button>
+    </div>
+</script>
+
+<script type="text/ng-template" id="EditAccountModal.html">
+    <div class="modal-header">
+        <h3 class="modal-title">Account</h3>
+    </div>
+    <div class="modal-body">
+        <alert type="danger" close="errorMsg=null" ng-show="errorMsg">{{errorMsg}}</alert>
+        <form class="bs-example form-horizontal ng-pristine ng-valid">
+            <div class="form-group">
+                <label class="col-lg-3 control-label">Description</label>
+                <div class="col-lg-9">
+                    <input type="text" class="form-control" ng-model="account.Description" placeholder="Description">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-3 control-label">Bank</label>
+                <div class="col-lg-9">
+                    <select class="form-control" ng-model="account.BankName">
+                        <option ng-repeat="item in Banks" value="{{item}}">{{item}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-3 control-label">Savings Account</label>
+                <div class="col-lg-9">
+                    <input type="checkbox" class="form-control1" ng-model="account.IsSavingsAccount" />
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-danger pull-left" ng-click="deleteAccount()">Delete</button>
+        <button class="btn btn-success" ng-click="saveAccount()">Save</button>
         <button class="btn btn-default" ng-click="cancel()">Cancel</button>
     </div>
 </script>

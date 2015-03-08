@@ -56,7 +56,8 @@
  */
 .row.header {
   height: 60px;
-  background: #fff;
+  background: #2D3E63;
+    color: #fff;
   margin-bottom: 15px;
 }
 .row.header > div:last-child {
@@ -317,7 +318,7 @@ ul.sidebar .sidebar-list a:hover {
 ul.sidebar .sidebar-list .active {
   color: #fff;
   border-left: 3px solid #e99d1a;
-  text-indent: 22px;
+  text-indent: 25px;
 }
 
 ul.sidebar .sidebar-list a:hover .menu-icon {
@@ -331,6 +332,8 @@ ul.sidebar .sidebar-list .menu-icon {
   line-height: 40px;
   width: 70px;
 }
+
+
 #page-wrapper:not(.open) ul.sidebar {
   bottom: 0;
 }
@@ -345,9 +348,16 @@ ul.sidebar .sidebar-list .menu-icon {
   margin: 13px 0;
 }
 #page-wrapper:not(.open) ul.sidebar .sidebar-list a:hover span {
-  border-left: 3px solid #e99d1a;
-  text-indent: 22px;
+
+  text-indent: 25px;
 }
+
+#page-wrapper:not(.open) ul.sidebar .sidebar-list .active {
+  color: #fff;
+  border-right : 3px solid #e99d1a;
+  text-indent: 25px;
+}
+
 #page-wrapper:not(.open) .sidebar-footer {
   display: none;
 }

@@ -4,14 +4,14 @@ app.controller('ExpensebyTagCtrl', function($scope, $state, AccountService, Repo
 
     function loadExpensesByTag() {
         ReportsService.getExpensesByTag().success(function(response) {
-            showPieChart(response);
+            showChart(response);
         }).error(function(error) {
             $scope.errorMsg = error.Message;
         }).
         finally(function() {});
     }
 
-    function showPieChart(data) {
+    function showChart(data) {
 
         var tags = Enumerable.from(data).select(function(x) {return x.Tag}).take(10).toArray();
         var amount = Enumerable.from(data).select(function(x) {return x.Amount}).take(10).toArray();
