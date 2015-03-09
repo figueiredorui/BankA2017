@@ -12,12 +12,16 @@ app.service("ReportsService", function ($http, AppSettings) {
         return $http.get(urlBase + '/RunningBalance');
     }
 
-    this.getDebitReport = function () {
+    this.getExpenses = function () {
         return $http.get(urlBase + '/Expenses');
     }
 
     this.getExpensesByTag = function () {
         return $http.get(urlBase + '/ExpensesByTag');
+    }
+
+    this.getIncome = function () {
+        return $http.get(urlBase + '/Income');
     }
 
 });

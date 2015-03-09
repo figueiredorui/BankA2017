@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('TransactionsListCtrl', function ($scope, $location, $stateParams, $modal, TransactionsService, AccountService) {
+app.controller('TransactionsListCtrl', function ($scope, $rootScope, $location, $stateParams, $modal, TransactionsService, AccountService) {
 
     $scope.tFilter = {};
 
@@ -8,8 +8,8 @@ app.controller('TransactionsListCtrl', function ($scope, $location, $stateParams
     $scope.transaction = null;
 
     $scope.selectedAccountID = 0;
-    if ($stateParams.accountID != "")
-        $scope.selectedAccountID = $stateParams.accountID;
+    if ($rootScope.accountID != "")
+        $scope.selectedAccountID = $rootScope.accountID;
 
 
     $scope.Search = Search;

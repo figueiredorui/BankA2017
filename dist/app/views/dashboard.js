@@ -1,9 +1,17 @@
 'use strict';
 
-app.controller('DashboardCtrl', function ($scope, $state, AccountService, ReportsService) {
+app.controller('DashboardCtrl', function ($scope, $rootScope, $state, AccountService, ReportsService) {
+
+
+    $scope.showTransaction= showTransaction;
 
     loadAccounts();
     loadChart();
+
+    function showTransaction(accountID) {
+        $rootScope.accountID = accountID;
+        $state.go('app.transactions');
+    }
 
     function loadAccounts() {
         AccountService.getSummary()
