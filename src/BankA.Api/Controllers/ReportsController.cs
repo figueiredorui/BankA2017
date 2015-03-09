@@ -29,7 +29,8 @@ namespace BankA.Api.Controllers
         [Route("Reports/MonthlyDebitCredit")]
         public IHttpActionResult GetMonthlyDebitCredit()
         {
-            var lst = svc.GetMonthlyDebitCredit(DateTime.Now.Date.AddMonths(-12), DateTime.Now.Date);
+            var dates = CalculateBetweenDate.Calc(12);
+            var lst = svc.GetMonthlyDebitCredit(dates.StartDate, dates.EndDate);
             return Ok(lst);
         }
 
@@ -37,29 +38,61 @@ namespace BankA.Api.Controllers
         [Route("Reports/RunningBalance")]
         public IHttpActionResult GetRunningBalance()
         {
-            var lst = svc.GetRunningBalance(null, DateTime.Now.Date.AddMonths(-24), DateTime.Now.Date);
+            var dates = CalculateBetweenDate.Calc(24);
+            var lst = svc.GetRunningBalance(null, dates.StartDate, dates.EndDate);
             return Ok(lst);
         }
 
         [Route("Reports/Expenses")]
         public IHttpActionResult GetExpenses()
         {
-            var lst = svc.GetExpenses(null, DateTime.Now.Date.AddMonths(-12), DateTime.Now.Date);
+            var dates = CalculateBetweenDate.Calc(12);
+            var lst = svc.GetExpenses(null, dates.StartDate, dates.EndDate);
             return Ok(lst);
         }
 
         [Route("Reports/ExpensesByTag")]
         public IHttpActionResult GetExpensesByTag()
         {
-            var lst = svc.GetExpensesByTag(null, DateTime.Now.Date.AddMonths(-12), DateTime.Now.Date);
+            var dates = CalculateBetweenDate.Calc(12);
+            var lst = svc.GetExpensesByTag(null, dates.StartDate, dates.EndDate);
             return Ok(lst);
         }
 
-        private DateTime LastDayOfMonth(DateTime date)
+        [Route("Reports/Income")]
+        public IHttpActionResult GetIncome()
         {
-            return date.AddDays(1 - (date.Day)).AddMonths(1).AddDays(-1);
+            var dates = CalculateBetweenDate.Calc(12);
+            var lst = svc.GetIncome(null, dates.StartDate, dates.EndDate);
+            return Ok(lst);
         }
+
+        
     }
 
+
+    
+
+
+    public class CalculateBetweenDate
+    {
+        public static BetweenDates Calc(int months)
+        {
+            return new BetweenDates()
+            {
+                 StartDate = new DateTime(DateTime.Now.Date.AddMonths(-months).Year, DateTime.Now.Date.AddMonths(-months).Month, 1),
+                 EndDate = DateTime.Now.Date
+            };
+        }
+
+        public class BetweenDates
+        {
+
+            public DateTime StartDate { get; set; }
+            public DateTime EndDate { get; set; }
+
+        }
+
+    }
 
 }

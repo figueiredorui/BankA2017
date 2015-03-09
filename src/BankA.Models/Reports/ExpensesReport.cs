@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BankA.Models.Reports
 {
-    public partial class DebitReport
+    public partial class ExpensesReport
     {
         public int Year { get; set; }
         public int Month { get; set; }

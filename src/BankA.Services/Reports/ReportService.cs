@@ -84,7 +84,7 @@ namespace BankA.Services.Reports
             return result.OrderBy(o=>o.TransactionDate).ToList();
         }
 
-        public List<DebitReport> GetExpenses(int? accountID, DateTime startDate, DateTime endDate)
+        public List<ExpensesReport> GetExpenses(int? accountID, DateTime startDate, DateTime endDate)
         {
             var transactionsLst = transactionRepository.Table
                                                         .Where(q => q.AccountID == (accountID ?? q.AccountID)
@@ -100,7 +100,7 @@ namespace BankA.Services.Reports
                            Month = trans.TransactionDate.Month,
                            Year = trans.TransactionDate.Year
                        } into grp
-                       select new DebitReport()
+                       select new ExpensesReport()
                        {
                            Tag = grp.Key.Tag,
                            Year = grp.Key.Year,
@@ -129,7 +129,34 @@ namespace BankA.Services.Reports
                        {
                            Tag = grp.Key.Tag,
                            Amount = grp.Sum(o => o.DebitAmount),
-                       }).OrderByDescending(o => o.Amount).ToList();
+                       }).OrderByDescending(o => o.Amount).Take(10).ToList();
+
+            return lst;
+        }
+
+        public List<IncomeReport> GetIncome(int? accountID, DateTime startDate, DateTime endDate)
+        {
+            var transactionsLst = transactionRepository.Table
+                                                        .Where(q => q.AccountID == (accountID ?? q.AccountID)
+                                                            && q.IsTransfer == false
+                                                            && q.TransactionDate >= startDate
+                                                            && q.TransactionDate <= endDate
+                                                            && q.CreditAmount > 0);
+
+            var lst = (from trans in transactionsLst
+                       group trans by new
+                       {
+                           Tag = trans.Tag,
+                           Month = trans.TransactionDate.Month,
+                           Year = trans.TransactionDate.Year
+                       } into grp
+                       select new IncomeReport()
+                       {
+                           Tag = grp.Key.Tag,
+                           Year = grp.Key.Year,
+                           Month = grp.Key.Month,
+                           Amount = grp.Sum(o => o.CreditAmount),
+                       }).ToList();
 
             return lst;
         }
