@@ -14,7 +14,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             data: { pageTitle: 'Dashboard' }
         })
         .state('app.transactions', {
-            url: "/transactions/:accountID",
+            url: "/transactions",
             templateUrl: "app/views/transactions.html",
             controller: 'TransactionsListCtrl',
             data: { pageTitle: 'Transactions' }
@@ -48,6 +48,12 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             url: "/expenses-byTag",
             templateUrl: "app/views/reports/expense-byTag.html",
             controller: 'ExpensebyTagCtrl',
+            data: { pageTitle: 'Reports' }
+        })
+    .state('app.reports.income-analysis', {
+            url: "/income-analysis",
+            templateUrl: "app/views/reports/income-analysis.html",
+            controller: 'IncomeAnalysisCtrl',
             data: { pageTitle: 'Reports' }
         })
     

@@ -1,9 +1,9 @@
 'use strict';
-app.controller('ExpenseAnalysisCtrl', function($scope, $state, AccountService, ReportsService) {
-    loadExpensesReport();
+app.controller('IncomeAnalysisCtrl', function($scope, $state, AccountService, ReportsService) {
+    loadIncomeReport();
 
-    function loadExpensesReport() {
-        ReportsService.getExpenses().success(function(response) {
+    function loadIncomeReport() {
+        ReportsService.getIncome().success(function(response) {
             showPivot(response);
         }).error(function(error) {
             $scope.errorMsg = error.Message;

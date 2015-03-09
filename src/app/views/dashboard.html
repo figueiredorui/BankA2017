@@ -11,7 +11,7 @@
                     </div>
                     <div class="title">{{account.Balance | number : 2}}</div>
                     <div ng-show="account.AccountID > 0" class="comment  pull-left">
-                       <a ui-sref="app.transactions({accountID : account.AccountID})"><small>Last Transaction: {{account.LastTransactionDate | date}}</small></a> 
+                       <a ng-click="showTransaction(account.AccountID)" style="cursor: pointer"><small>Last Transaction: {{account.LastTransactionDate | date}}</small></a>
                     </div>
                     <div class="comment">&nbsp;</div>
                 </div>
