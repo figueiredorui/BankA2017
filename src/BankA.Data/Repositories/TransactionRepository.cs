@@ -10,6 +10,8 @@ namespace BankA.Data.Repositories
 {
     public class TransactionRepository : RepositoryBase<BankTransactionTable>
     {
+       
+
         public void AddBatch(List<BankTransactionTable> transactionLst)
         {
             using (var ctx = new BankAContext())

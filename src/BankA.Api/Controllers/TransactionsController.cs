@@ -17,13 +17,13 @@ using System.IO;
 using System.Net.Http.Headers;
 using BankA.Services.Transactions;
 using BankA.Models.Transactions;
+using BankA.Services.StatementFiles;
 
 namespace BankA.Api.Controllers
 {
     public class TransactionsController : ApiController
     {
         TransactionService svc = new TransactionService();
-
 
         // GET: api/Transactions/Search
         [Route("Transactions/Search")]
@@ -91,7 +91,8 @@ namespace BankA.Api.Controllers
                 var accountID = Convert.ToInt32(provider.FormData["AccountID"]);
                 var fileContent = System.IO.File.ReadAllBytes(file.LocalFileName);
 
-                svc.Upload(new StatementFile()
+
+                new StatementFileService().Import(new StatementFile()
                             {
                                 FileName = file.Headers.ContentDisposition.FileName.Trim('"'),
                                 FileContent = fileContent,
@@ -108,8 +109,5 @@ namespace BankA.Api.Controllers
 
         }
 
-        
     }
-
-
 }

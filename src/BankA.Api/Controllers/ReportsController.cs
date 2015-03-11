@@ -29,7 +29,7 @@ namespace BankA.Api.Controllers
         [Route("Reports/MonthlyDebitCredit")]
         public IHttpActionResult GetMonthlyDebitCredit()
         {
-            var dates = CalculateBetweenDate.Calc(12);
+            var dates = DateFilterHelper.Calc(12);
             var lst = svc.GetMonthlyDebitCredit(dates.StartDate, dates.EndDate);
             return Ok(lst);
         }
@@ -38,7 +38,7 @@ namespace BankA.Api.Controllers
         [Route("Reports/RunningBalance")]
         public IHttpActionResult GetRunningBalance()
         {
-            var dates = CalculateBetweenDate.Calc(24);
+            var dates = DateFilterHelper.Calc(24);
             var lst = svc.GetRunningBalance(null, dates.StartDate, dates.EndDate);
             return Ok(lst);
         }
@@ -46,7 +46,7 @@ namespace BankA.Api.Controllers
         [Route("Reports/Expenses")]
         public IHttpActionResult GetExpenses()
         {
-            var dates = CalculateBetweenDate.Calc(12);
+            var dates = DateFilterHelper.Calc(12);
             var lst = svc.GetExpenses(null, dates.StartDate, dates.EndDate);
             return Ok(lst);
         }
@@ -54,7 +54,7 @@ namespace BankA.Api.Controllers
         [Route("Reports/ExpensesByTag")]
         public IHttpActionResult GetExpensesByTag()
         {
-            var dates = CalculateBetweenDate.Calc(12);
+            var dates = DateFilterHelper.Calc(12);
             var lst = svc.GetExpensesByTag(null, dates.StartDate, dates.EndDate);
             return Ok(lst);
         }
@@ -62,19 +62,13 @@ namespace BankA.Api.Controllers
         [Route("Reports/Income")]
         public IHttpActionResult GetIncome()
         {
-            var dates = CalculateBetweenDate.Calc(12);
+            var dates = DateFilterHelper.Calc(12);
             var lst = svc.GetIncome(null, dates.StartDate, dates.EndDate);
             return Ok(lst);
         }
-
-        
     }
 
-
-    
-
-
-    public class CalculateBetweenDate
+    public class DateFilterHelper
     {
         public static BetweenDates Calc(int months)
         {
@@ -87,7 +81,6 @@ namespace BankA.Api.Controllers
 
         public class BetweenDates
         {
-
             public DateTime StartDate { get; set; }
             public DateTime EndDate { get; set; }
 

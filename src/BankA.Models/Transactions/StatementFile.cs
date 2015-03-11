@@ -11,5 +11,7 @@ namespace BankA.Models.Transactions
         public byte[] FileContent { get; set; }
         public string ContentType { get; set; }
         public int AccountID { get; set; }
+
+        public List<StatementRow> Rows { get; set; }
     }
 }

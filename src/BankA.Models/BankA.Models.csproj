@@ -59,6 +59,7 @@
     <Compile Include="Reports\RunningBalance.cs" />
     <Compile Include="Transactions\StatementFile.cs" />
     <Compile Include="Reports\MonthlyBalance.cs" />
+    <Compile Include="Transactions\StatementRow.cs" />
     <Compile Include="Transactions\Transaction.cs" />
     <Compile Include="Transactions\TransactionSearch.cs" />
     <Compile Include="Users\User.cs" />

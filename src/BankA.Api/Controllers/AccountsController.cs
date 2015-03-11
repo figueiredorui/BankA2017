@@ -64,8 +64,6 @@ namespace BankA.Api.Controllers
             return Ok(lst);
         }
 
-        
-
         // GET: api/Accounts/Banks
         [Route("Accounts/Banks")]
         public IHttpActionResult GetBanks()

@@ -12,8 +12,6 @@ namespace BankA.Services.Transactions
 {
     public static class TransactionExtensions
     {
-        
-
         public static Transaction ToModel(this BankTransactionTable table)
         {
             return new Transaction()
@@ -51,6 +49,5 @@ namespace BankA.Services.Transactions
                 Tag = model.Tag
             };
         }
-
     }
 }
