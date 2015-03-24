@@ -9,6 +9,7 @@ namespace BankA.Data.Repositories
 {
     public class AccountRepository : RepositoryBase<BankAccountTable>
     {
-        
+     
+   
     }
 }

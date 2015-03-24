@@ -1,4 +1,6 @@
-﻿using BankA.Models.Transactions;
+﻿using BankA.Models.Enums;
+using BankA.Models.Transactions;
+using BankA.Services.StatementFiles.Maps;
 using CsvHelper.Configuration;
 using System;
 using System.Collections.Generic;
@@ -8,18 +10,16 @@ using System.Threading.Tasks;
 
 namespace BankA.Services.StatementFiles
 {
-    //[BankNameAttribute()]
-    public sealed class HsbcStatementMap : CsvClassMap<StatementRow>
+    [BankNameAttribute(BankEnum.HSBC)]
+    public class HsbcStatementMap : IStatementMap
     {
         public HsbcStatementMap()
         {
             Map(m => m.TransactionDate).Index(0);
             //Map(m => m.Type);
             Map(m => m.Description).Index(1);
-            Map(m => m.DebitAmount).ConvertUsing(row => row.GetField<decimal>(2) < 0 ? row.GetField<decimal>(2) : 0);
-            Map(m => m.CreditAmount).ConvertUsing(row => row.GetField<decimal>(2) > 0 ? row.GetField<decimal>(2) : 0);
+            Map(m => m.DebitAmount).ConvertUsing(row => row.GetField<decimal>(2) < 0 ? Math.Abs(row.GetField<decimal>(2)) : 0);
+            Map(m => m.CreditAmount).ConvertUsing(row => row.GetField<decimal>(2) > 0 ? Math.Abs(row.GetField<decimal>(2)) : 0);
         }
     }
-
-   
 }

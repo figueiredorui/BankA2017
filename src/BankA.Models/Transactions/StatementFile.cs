@@ -12,6 +12,6 @@ namespace BankA.Models.Transactions
         public string ContentType { get; set; }
         public int AccountID { get; set; }
 
-        public List<StatementRow> Rows { get; set; }
+        //public List<StatementRow> Rows { get; set; }
     }
 }

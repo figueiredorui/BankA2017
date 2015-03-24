@@ -5,12 +5,15 @@ using BankA.Models.Enums;
 using BankA.Models.Transactions;
 using BankA.Services.Import;
 using BankA.Services.StatementFiles;
+using BankA.Services.StatementFiles.Maps;
 using CsvHelper;
+using CsvHelper.TypeConversion;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -29,37 +32,50 @@ namespace BankA.Services.StatementFiles
 
         public void Import(StatementFile statement)
         {
-            ReadStatementFile(statement);
-            if (statement.Rows.Any())
-                ImportFile(statement);
+            var statementRows = ReadStatementFile(statement);
+            if (statementRows.Any())
+                ImportFile(statement, statementRows);
         }
 
-        private void ReadStatementFile(StatementFile statement)
+        private List<StatementRow> ReadStatementFile(StatementFile statement)
         {
-            //var account = accountRepository.Find(statement.AccountID);
-            //statement.Rows = new List<StatementRow>();
-            Stream stream = new MemoryStream(statement.FileContent);
-            using (var reader = new CsvReader(new StreamReader(stream)))
+            try
             {
-                reader.Configuration.RegisterClassMap<HsbcStatementMap>();
-                statement.Rows = reader.GetRecords<StatementRow>().ToList();
+                var statementRows = new List<StatementRow>();
+                Stream stream = new MemoryStream(statement.FileContent);
+                using (var reader = new CsvReader(new StreamReader(stream)))
+                {
+                    Type statementMap = GetStatementMap(statement.AccountID);
+                    reader.Configuration.RegisterClassMap(statementMap);
+                    statementRows = reader.GetRecords<StatementRow>().ToList();
+                }
+                return statementRows;
+            }
+            catch (CsvTypeConverterException ex)
+            {
+                var msg = ex.Data["CsvHelper"];
+                throw new Exception(msg.ToString(), ex);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
 
-        private void ImportFile(StatementFile statementFile)
+        private void ImportFile(StatementFile statementFile, List<StatementRow> statementRows)
         {
             var transactionLst = new List<BankTransactionTable>();
             var historyLst = GetTagHistory();
 
-            foreach (var row in statementFile.Rows)
+            foreach (var row in statementRows)
             {
-                transactionLst.Add(MapColumns(statementFile, row, historyLst));
+                transactionLst.Add(CreateTransaction(statementFile, row, historyLst));
             }
 
             transactionRepository.AddBatch(transactionLst);
         }
 
-        private BankTransactionTable MapColumns(StatementFile file, StatementRow row, List<BankTransactionTable> historyLst)
+        private BankTransactionTable CreateTransaction(StatementFile file, StatementRow row, List<BankTransactionTable> historyLst)
         {
             var trans = new BankTransactionTable();
 
@@ -80,7 +96,7 @@ namespace BankA.Services.StatementFiles
         {
             string tag = "NA";
 
-            Dictionary<BankTransactionTable, int> matchLst = new Dictionary<BankTransactionTable, int>();
+            var matchLst = new Dictionary<BankTransactionTable, int>();
             foreach (var item in historyLst)
             {
                 int compareDistance = Convert.ToInt32((decimal)description.Length / 2);
@@ -103,12 +119,36 @@ namespace BankA.Services.StatementFiles
             return transactionRepository.Table.ToList();
         }
 
+        public Type GetStatementMap(int accountID)
+        {
+            try
+            {
+                var account = accountRepository.Find(accountID);
+                var bank = (BankEnum)Enum.Parse(typeof(BankEnum), account.BankName);
+
+                return FindMap(bank);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        private Type FindMap(BankEnum bank)
+        {
+            Type typeFound = null;
+            Assembly a = Assembly.GetExecutingAssembly();
+            var types = a.GetTypes().Where(t => typeof(IStatementMap).IsAssignableFrom(t));
+            foreach (var type in types)
+            {
+                var att1 = type.GetCustomAttributes<BankNameAttribute>(false).Any(q => q.BankName == bank);
+                if (att1)
+                {
+                    typeFound = type;
+                    break;
+                }
+            }
+            return typeFound;
+        }
     }
-
-   
-
-    
-
-    
-
 }

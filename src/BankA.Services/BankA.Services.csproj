@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="StatementFiles\Helpers\BankNameAttribute.cs" />
+    <Compile Include="StatementFiles\Helpers\IStatementMap.cs" />
     <Compile Include="StatementFiles\Maps\LloydsStatementMap.cs" />
     <Compile Include="StatementFiles\Maps\HsbcStatementMap.cs" />
     <Compile Include="StatementFiles\StatementFileService.cs" />
