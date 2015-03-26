@@ -17,13 +17,20 @@ using System.IO;
 using System.Net.Http.Headers;
 using BankA.Services.Transactions;
 using BankA.Models.Transactions;
-using BankA.Services.StatementFiles;
+using BankA.Services.Statements;
 
 namespace BankA.Api.Controllers
 {
     public class TransactionsController : ApiController
     {
-        TransactionService svc = new TransactionService();
+        private readonly ITransactionService transactionSvc;
+        private readonly IStatementService statementSvc;
+
+        public TransactionsController(ITransactionService transactionSvc, IStatementService statementSvc)
+        {
+            this.transactionSvc = transactionSvc;
+            this.statementSvc = statementSvc;
+        }
 
         // GET: api/Transactions/Search
         [Route("Transactions/Search")]
@@ -34,28 +41,28 @@ namespace BankA.Api.Controllers
             if (search == null)
                 return BadRequest();
 
-            var lst = svc.GetTransactions(search.AccountID, search.StartDate, search.EndDate, search.Tag);
+            var lst = transactionSvc.GetTransactions(search.AccountID, search.StartDate, search.EndDate, search.Tag);
             return Ok(lst);
         }
 
         // GET: api/Transactions/5
         public IHttpActionResult Get(int id)
         {
-            var result = svc.Find(id);
+            var result = transactionSvc.Find(id);
             return Ok(result);
         }
 
         // PUT: api/Transactions/5
         public IHttpActionResult Put(int id, Transaction transaction)
         {
-            svc.Update(transaction);
+            transactionSvc.Update(transaction);
             return Ok();
         }
 
         // POST: api/Transactions
         public IHttpActionResult Post(Transaction transaction)
         {
-            svc.Add(transaction);
+            transactionSvc.Add(transaction);
             return Ok();
         }
 
@@ -69,7 +76,7 @@ namespace BankA.Api.Controllers
         [Route("Transactions/Tags")]
         public IHttpActionResult GetTags()
         {
-            var lst = svc.GetTags();
+            var lst = transactionSvc.GetTags();
             return Ok(lst);
         }
 
@@ -92,7 +99,7 @@ namespace BankA.Api.Controllers
                 var fileContent = System.IO.File.ReadAllBytes(file.LocalFileName);
 
 
-                new StatementFileService().Import(new StatementFile()
+                new StatementService().ImportFile(new StatementFile()
                             {
                                 FileName = file.Headers.ContentDisposition.FileName.Trim('"'),
                                 FileContent = fileContent,

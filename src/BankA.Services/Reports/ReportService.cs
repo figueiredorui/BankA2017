@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BankA.Services.Reports
 {
-    public class ReportService
+    public class ReportService : BankA.Services.Reports.IReportService
     {
         TransactionRepository transactionRepository = null;
 

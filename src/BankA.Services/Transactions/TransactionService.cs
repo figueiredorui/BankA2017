@@ -8,11 +8,11 @@ using BankA.Data.Repositories;
 using BankA.Models;
 using System.IO;
 using BankA.Models.Transactions;
-using BankA.Services.StatementFiles;
+using BankA.Services.Statements;
 
 namespace BankA.Services.Transactions
 {
-    public class TransactionService
+    public class TransactionService : BankA.Services.Transactions.ITransactionService
     {
         TransactionRepository transactionRepository = null;
         

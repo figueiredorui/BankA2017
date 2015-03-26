@@ -15,6 +15,7 @@ namespace BankA.Api
         {
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
+            UnityConfig.RegisterComponents();
         }
     }
 }

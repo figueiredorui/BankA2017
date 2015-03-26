@@ -71,7 +71,7 @@
     <Compile Include="Models\StatementFileTable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\StatementFileRepository.cs" />
-    <Compile Include="Repositories\Base\RepositoryBase.cs" />
+    <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\TransactionRepository.cs" />
     <Compile Include="Repositories\AccountRepository.cs" />
   </ItemGroup>

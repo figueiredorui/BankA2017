@@ -1,6 +1,6 @@
 ﻿using BankA.Models.Enums;
 using BankA.Models.Transactions;
-using BankA.Services.StatementFiles.Maps;
+using BankA.Services.Statements.Maps;
 using CsvHelper.Configuration;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BankA.Services.StatementFiles
+namespace BankA.Services.Statements
 {
     [BankNameAttribute(BankEnum.HSBC)]
     public class HsbcStatementMap : IStatementMap

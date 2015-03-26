@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace BankA.Services.StatementFiles
+namespace BankA.Services.Statements
 {
     [AttributeUsage(AttributeTargets.Class)]
     class BankNameAttribute : Attribute

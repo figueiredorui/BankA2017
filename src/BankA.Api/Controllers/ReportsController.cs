@@ -23,7 +23,12 @@ namespace BankA.Api.Controllers
 {
     public class ReportsController : ApiController
     {
-        ReportService svc = new ReportService();
+        private readonly IReportService svc;
+
+        public ReportsController(IReportService svc)
+        {
+            this.svc = svc;
+        }
 
         // GET: api/Reports/Chart
         [Route("Reports/MonthlyDebitCredit")]

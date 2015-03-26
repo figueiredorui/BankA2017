@@ -4,8 +4,8 @@ using BankA.Models;
 using BankA.Models.Enums;
 using BankA.Models.Transactions;
 using BankA.Services.Import;
-using BankA.Services.StatementFiles;
-using BankA.Services.StatementFiles.Maps;
+using BankA.Services.Statements;
+using BankA.Services.Statements.Maps;
 using CsvHelper;
 using CsvHelper.TypeConversion;
 using System;
@@ -17,20 +17,20 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BankA.Services.StatementFiles
+namespace BankA.Services.Statements
 {
-    public class StatementFileService
+    public class StatementService : BankA.Services.Statements.IStatementService
     {
         private readonly TransactionRepository transactionRepository;
         private readonly AccountRepository accountRepository;
 
-        public StatementFileService()
+        public StatementService()
         {
             transactionRepository = new TransactionRepository();
             accountRepository = new AccountRepository();
         }
 
-        public void Import(StatementFile statement)
+        public void ImportFile(StatementFile statement)
         {
             var statementRows = ReadStatementFile(statement);
             if (statementRows.Any())
@@ -119,7 +119,7 @@ namespace BankA.Services.StatementFiles
             return transactionRepository.Table.ToList();
         }
 
-        public Type GetStatementMap(int accountID)
+        private Type GetStatementMap(int accountID)
         {
             try
             {

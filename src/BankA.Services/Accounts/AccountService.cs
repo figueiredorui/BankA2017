@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace BankA.Services.Accounts
 {
-    public class AccountService
+    public class AccountService : IAccountService
     {
         AccountRepository accountRepository = null;
         TransactionRepository transactionRepository = null;

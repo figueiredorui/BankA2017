@@ -18,7 +18,12 @@ namespace BankA.Api.Controllers
 {
     public class AccountsController : ApiController
     {
-        AccountService svc = new AccountService();
+        private readonly IAccountService svc;
+
+        public AccountsController(IAccountService svc)
+        {
+            this.svc = svc;
+        }
 
         // GET: api/Accounts
         public IHttpActionResult Get()
