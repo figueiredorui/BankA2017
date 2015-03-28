@@ -1,11 +1,13 @@
 'use strict';
 
-app.controller('LayoutCtrl', function ($scope, $cookieStore, $http, AppSettings)
-{
-    ApiVersion()
+app.controller('LayoutCtrl', function ($rootScope, $scope, $cookieStore, $http, AppSettings)
+               {
+    AppInfo()
 
-    function ApiVersion()
+    function AppInfo()
     {
+        $rootScope.AppName = AppSettings.AppName;
+
         $http.get(AppSettings.ApiUrl).success(function (response) {
             $scope.ApiVersion = response.Version;
             $scope.ApiUrl = response.GitHub;
