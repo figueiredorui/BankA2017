@@ -8,7 +8,7 @@ namespace BankA.Services.Reports
         List<ExpensesReport> GetExpenses(int? accountID, DateTime startDate, DateTime endDate);
         List<ExpensesByTag> GetExpensesByTag(int? accountID, DateTime startDate, DateTime endDate);
         List<IncomeReport> GetIncome(int? accountID, DateTime startDate, DateTime endDate);
-        List<MonthlyDebitCredit> GetMonthlyDebitCredit(int accountID, DateTime startDate, DateTime endDate);
+        List<MonthlyCashFlow> GetMonthlyCashFlow(int accountID, DateTime startDate, DateTime endDate);
         List<RunningBalance> GetRunningBalance(int accountID, DateTime startDate, DateTime endDate);
     }
 }

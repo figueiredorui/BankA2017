@@ -7,9 +7,11 @@ using System.Threading.Tasks;
 
 namespace BankA.Models.Reports
 {
-    public partial class MonthlyDebitCredit
+    public partial class MonthlyCashFlow
     {
-        public string Month { get; set; }
+        public int Year { get; set; }
+        public int Month { get; set; }
+        public string MonthYear { get { return String.Format("{0}/{1}", Month, Year); } }
         public decimal DebitAmount { get; set; }
         public decimal CreditAmount { get; set; }
     }

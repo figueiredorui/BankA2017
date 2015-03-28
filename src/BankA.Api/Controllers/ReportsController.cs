@@ -35,7 +35,7 @@ namespace BankA.Api.Controllers
         public IHttpActionResult GetMonthlyCashFlow(int accountID)
         {
             var dates = DateFilterHelper.Calc(12);
-            var lst = svc.GetMonthlyDebitCredit(accountID, dates.StartDate, dates.EndDate);
+            var lst = svc.GetMonthlyCashFlow(accountID, dates.StartDate, dates.EndDate);
             return Ok(lst);
         }
 

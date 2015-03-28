@@ -18,7 +18,7 @@ namespace BankA.Services.Reports
             transactionRepository = new TransactionRepository();
         }
 
-        public List<MonthlyDebitCredit> GetMonthlyDebitCredit(int accountID, DateTime startDate, DateTime endDate)
+        public List<MonthlyCashFlow> GetMonthlyCashFlow(int accountID, DateTime startDate, DateTime endDate)
         {
             var transactionsLst = transactionRepository.Table
                                                         .Where(q => q.IsTransfer == false
@@ -34,56 +34,63 @@ namespace BankA.Services.Reports
                            Year = item.TransactionDate.Year
                        } into grp
                        orderby grp.Key.Year, grp.Key.Month
-                       select new MonthlyDebitCredit()
+                       select new MonthlyCashFlow()
                        {
-                           Month = (grp.Key.Month + "/" + grp.Key.Year).ToString(),
+                           Month = grp.Key.Month,
+                           Year= grp.Key.Year,
                            CreditAmount = grp.Sum(o => o.CreditAmount),
                            DebitAmount = grp.Sum(o => o.DebitAmount),
                        }).ToList();
 
-            return lst;
+
         
-        
+            while(startDate < endDate)
+            {
+                if (!lst.Any(q => q.Month == startDate.Month && q.Year == startDate.Year))
+                    lst.Add(new MonthlyCashFlow() { Month = startDate.Month, Year = startDate.Year });
+
+                startDate = startDate.AddMonths(1);
+            };
+
+            return lst = lst.OrderBy(o => o.Year).ThenBy(o => o.Month).ToList();
         }
 
         public List<RunningBalance> GetRunningBalance(int accountID, DateTime startDate, DateTime endDate)
         {
             var transactionsLst = transactionRepository.Table
-                                                       .Where(q=> q.AccountID == (accountID == 0 ? q.AccountID : accountID))
-                                                       .OrderBy(o=>o.TransactionDate)
+                                                       .Where(q => q.AccountID == (accountID == 0 ? q.AccountID : accountID))
+                                                       .OrderBy(o => o.TransactionDate)
                                                        .ToList();
 
             decimal balance = 0;
             var statement = transactionsLst.Select(transaction =>
-                                            {
-                                                balance += transaction.CreditAmount - transaction.DebitAmount;
+            {
+                balance += transaction.CreditAmount - transaction.DebitAmount;
 
-                                                return new RunningBalance()
-                                                {
-                                                    TransactionDate = transaction.TransactionDate,
-                                                    CreditAmount = transaction.CreditAmount,
-                                                    DebitAmount = transaction.DebitAmount,
-                                                    RunningAmount = balance
-                                                };
-                                            }).Where(q => q.TransactionDate >= startDate && q.TransactionDate <= endDate).ToList();
+                return new RunningBalance()
+                {
+                    TransactionDate = transaction.TransactionDate,
+                    RunningAmount = balance
+                };
+            }).Where(q => q.TransactionDate >= startDate && q.TransactionDate <= endDate).ToList();
 
             var result = new List<RunningBalance>();
-            var date = new DateTime(endDate.Year, endDate.Month, 2);
+            var date = endDate;// new DateTime(endDate.Year, endDate.Month, 2);
 
             while (date > startDate)
             {
                 result.Add(new RunningBalance()
-                    {
-                        Month = date.ToShortDateString(),//(date.Month + "/" + date.Year).ToString(),
-                        TransactionDate = date,
-                        RunningAmount = statement.Where(q => q.TransactionDate <= date).Select(o=>o.RunningAmount).LastOrDefault()
-                    });
+                {
+                    TransactionDate = date,
+                    RunningAmount = statement.Where(q => q.TransactionDate <= date).Select(o => o.RunningAmount).LastOrDefault()
+                });
 
                 date = date.AddMonths(-1);
             }
 
-            return result.OrderBy(o=>o.TransactionDate).ToList();
+            return result.OrderBy(o => o.TransactionDate).ToList();
         }
+
 
         public List<ExpensesReport> GetExpenses(int? accountID, DateTime startDate, DateTime endDate)
         {
