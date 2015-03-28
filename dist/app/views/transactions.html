@@ -6,7 +6,7 @@
 
                 <button ng-click="uploadFile()" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Upload File</button>
                 <button ng-click="addTransaction()" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Transaction </button>
-
+                
 
                 <div style="height:1px;"></div>
             </div>
@@ -16,7 +16,7 @@
                     <div class="list-group">
 
                         <a class="list-group-item" style="cursor:pointer" ng-repeat="account in tFilter.Accounts | orderBy:'AccountID'" ng-click="selectAccount(account.AccountID)" ng-class="{active: account.AccountID==selectedAccountID }">
-
+                            
                             <button ng-click="editAccount(account.AccountID)" ng-show="account.AccountID > 0" class="btn btn-link btn-xs delete-btn-hover pull-left" style="padding-left:0px"><span class="fa fa-pencil"></span></button>
                             <span class="block text-ellipsis"><small ng-show="account.AccountID > 0" class="text"> ({{account.AccountID}})</small> <strong>{{account.Description}}</strong></span>
                             <span class="badge badge-info">
@@ -25,7 +25,7 @@
                             <br />
                             <small ng-show="account.LastTransactionDate !=null" class="text">Last transaction {{account.LastTransactionDate | date}}</small>
                         </a>
-
+                        
 
                     </div>
                     <button ng-click="newAccount()" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Account </button>
@@ -53,7 +53,7 @@
                         <label class="control-label">Search</label>
                         <input  class="form-control input-sm" ng-model="tFilter.Description" ></input>
                     </div>
-
+                
                     <button ng-click="refresh()" class="btn btn-primary pull-right"><span class="fa fa-refresh" aria-hidden="true"></span></button>
                 </form>
 

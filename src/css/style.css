@@ -86,6 +86,19 @@ inputs-moz-placeholder {
   z-index: 1;
 }
 
+.hv.active {
+ 
+  -webkit-transform: scale(1.05);
+      -ms-transform: scale(1.05);
+          transform: scale(1.05);
+  -webkit-transition-property: -webkit-transform,background;
+          transition-property: transform,background;
+  -webkit-transition-duration: .3s;
+          transition-duration: .3s;
+  position: relative;
+  z-index: 1;
+}
+
  a .delete-btn-hover { opacity:0; float:right }
       a:hover .delete-btn-hover { opacity:1 }
 

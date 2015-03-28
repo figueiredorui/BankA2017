@@ -6,7 +6,7 @@ app.controller('LayoutCtrl', function ($scope, $cookieStore)
      * Sidebar Toggle & Cookie Control
      */
     var mobileView = 1400;
-
+    
    // $scope.toggle = true;
 
     $scope.getWidth = function () {

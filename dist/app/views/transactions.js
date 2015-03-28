@@ -6,7 +6,7 @@ app.controller('TransactionsListCtrl', function ($scope, $rootScope, $location, 
 
     $scope.transactionList = [];
     $scope.transaction = null;
-
+    
     $scope.selectedAccountID = 0;
     if ($rootScope.accountID != "")
         $scope.selectedAccountID = $rootScope.accountID;
@@ -21,7 +21,7 @@ app.controller('TransactionsListCtrl', function ($scope, $rootScope, $location, 
     $scope.newAccount = newAccount;
     $scope.editAccount = editAccount;
     $scope.selectAccount = selectAccount;
-
+    
     $scope.updateTag = updateTag;
     $scope.originalTag = originalTag;
 
@@ -143,6 +143,7 @@ app.controller('TransactionsListCtrl', function ($scope, $rootScope, $location, 
         })
 
         modalInstance.result.then(function () {
+            loadAccounts();
             loadTransactions();
         }, function () {
             // $log.info('Modal dismissed at: ' + new Date());
@@ -185,7 +186,7 @@ app.controller('TransactionsListCtrl', function ($scope, $rootScope, $location, 
             // $log.info('Modal dismissed at: ' + new Date());
         });
     }
-
+    
     function newAccount() {
 
         var modalInstance = $modal.open({
@@ -205,7 +206,7 @@ app.controller('TransactionsListCtrl', function ($scope, $rootScope, $location, 
             // $log.info('Modal dismissed at: ' + new Date());
         });
     }
-
+    
     function editAccount(id) {
 
         var modalInstance = $modal.open({
@@ -276,7 +277,7 @@ app.controller('UploadFileModalCtrl', function ($scope, $modalInstance, $timeout
                 });
             }, function (response) {
                 if (response.status > 0)
-                    $scope.errorMsg = response.status + ': ' + response.data;
+                    $scope.errorMsg = response.status + ': ' + response.data.ExceptionMessage;
             });
 
             file.upload.progress(function (evt) {
