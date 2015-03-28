@@ -9,3 +9,25 @@ Post-Deployment Script Template
                SELECT * FROM [$(TableName)]					
 --------------------------------------------------------------------------------------
 */
+
+declare @today datetime =  GETDATE();
+declare @lastTDate datetime;
+declare @days int;
+declare @cDate datetime;
+select top 1 @lastTDate = TransactionDate from BankTransaction order by TransactionDate DESC
+
+Set @days = DATEDIFF(day, @lastTDate,@today)
+
+WHILE(@today > @lastTDate)
+BEGIN
+
+
+SET @lastTDate = DATEADD(Day, 1, @lastTDate);
+
+INSERT INTO BankTransaction(AccountID, TransactionDate, Description, DebitAmount, CreditAmount, Tag, IsTransfer)
+SELECT top 5 AccountID, @lastTDate, Description, DebitAmount, CreditAmount, Tag, IsTransfer
+FROM BankTransaction order by newid()
+
+END
+
+select *  from BankTransaction order by  TransactionDate Desc

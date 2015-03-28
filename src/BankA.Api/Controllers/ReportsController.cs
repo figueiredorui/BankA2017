@@ -31,20 +31,20 @@ namespace BankA.Api.Controllers
         }
 
         // GET: api/Reports/Chart
-        [Route("Reports/MonthlyDebitCredit")]
-        public IHttpActionResult GetMonthlyDebitCredit()
+        [Route("Reports/MonthlyCashFlow/{accountID}")]
+        public IHttpActionResult GetMonthlyCashFlow(int accountID)
         {
             var dates = DateFilterHelper.Calc(12);
-            var lst = svc.GetMonthlyDebitCredit(dates.StartDate, dates.EndDate);
+            var lst = svc.GetMonthlyDebitCredit(accountID, dates.StartDate, dates.EndDate);
             return Ok(lst);
         }
 
         // GET: api/Reports/RunningBalance
-        [Route("Reports/RunningBalance")]
-        public IHttpActionResult GetRunningBalance()
+        [Route("Reports/RunningBalance/{accountID}")]
+        public IHttpActionResult GetRunningBalance(int accountID)
         {
             var dates = DateFilterHelper.Calc(24);
-            var lst = svc.GetRunningBalance(null, dates.StartDate, dates.EndDate);
+            var lst = svc.GetRunningBalance(accountID, dates.StartDate, dates.EndDate);
             return Ok(lst);
         }
 

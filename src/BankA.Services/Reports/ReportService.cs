@@ -18,10 +18,11 @@ namespace BankA.Services.Reports
             transactionRepository = new TransactionRepository();
         }
 
-        public List<MonthlyDebitCredit> GetMonthlyDebitCredit(DateTime startDate, DateTime endDate)
+        public List<MonthlyDebitCredit> GetMonthlyDebitCredit(int accountID, DateTime startDate, DateTime endDate)
         {
             var transactionsLst = transactionRepository.Table
-                                                        .Where(q => q.IsTransfer == false 
+                                                        .Where(q => q.IsTransfer == false
+                                                            && q.AccountID == (accountID == 0 ? q.AccountID : accountID)
                                                         && q.TransactionDate >= startDate 
                                                         && q.TransactionDate <= endDate)
                                                         .ToList();
@@ -45,10 +46,10 @@ namespace BankA.Services.Reports
         
         }
 
-        public List<RunningBalance> GetRunningBalance(int? accountID, DateTime startDate, DateTime endDate)
+        public List<RunningBalance> GetRunningBalance(int accountID, DateTime startDate, DateTime endDate)
         {
             var transactionsLst = transactionRepository.Table
-                                                       .Where(q=>q.AccountID == (accountID ?? q.AccountID))
+                                                       .Where(q=> q.AccountID == (accountID == 0 ? q.AccountID : accountID))
                                                        .OrderBy(o=>o.TransactionDate)
                                                        .ToList();
 
