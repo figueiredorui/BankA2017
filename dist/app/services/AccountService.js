@@ -2,7 +2,7 @@
 
 app.service("AccountService", function ($http, AppSettings) {
 
-    var urlBase = AppSettings.UrlBase + 'Accounts';
+    var urlBase = AppSettings.ApiUrl + 'Accounts';
 
     this.getAll = function () {
         return $http.get(urlBase + '');

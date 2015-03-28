@@ -1,13 +1,20 @@
 'use strict';
 
-app.controller('LayoutCtrl', function ($scope, $cookieStore)
+app.controller('LayoutCtrl', function ($scope, $cookieStore, $http, AppSettings)
 {
-    /**
-     * Sidebar Toggle & Cookie Control
-     */
+    ApiVersion()
+
+    function ApiVersion()
+    {
+        $http.get(AppSettings.ApiUrl).success(function (response) {
+            $scope.ApiVersion = response.Version;
+            $scope.ApiUrl = response.GitHub;
+        });
+    }
+
+
+    /************ Sidebar Toggle & Cookie Control *****************/
     var mobileView = 1400;
-    
-   // $scope.toggle = true;
 
     $scope.getWidth = function () {
         return window.innerWidth;
