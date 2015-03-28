@@ -2,7 +2,7 @@
 
 app.service("TransactionsService", function ($http, AppSettings) {
 
-    var urlBase = AppSettings.UrlBase + 'Transactions';
+    var urlBase = AppSettings.ApiUrl + 'Transactions';
 
     this.uploadUrl = function () {
         return urlBase + '/upload';

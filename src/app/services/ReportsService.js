@@ -2,7 +2,7 @@
 
 app.service("ReportsService", function ($http, AppSettings) {
 
-    var urlBase = AppSettings.UrlBase + 'Reports';
+    var urlBase = AppSettings.ApiUrl + 'Reports';
 
     this.getGetMonthlyCashFlow = function (accountID) {
         return $http.get(urlBase + '/MonthlyCashFlow/' + accountID);

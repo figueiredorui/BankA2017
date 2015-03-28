@@ -40,7 +40,7 @@ app.controller('DashboardCtrl', function ($scope, $rootScope, $state, AccountSer
         ReportsService.getGetMonthlyCashFlow($rootScope.accountID)
             .success(function (response) {
 
-            var months = Enumerable.from(response).select(function (x) { return x.Month }).toArray();
+            var months = Enumerable.from(response).select(function (x) { return x.MonthYear }).toArray();
             var debit = Enumerable.from(response).select(function (x) { return x.DebitAmount }).toArray();
             var credit = Enumerable.from(response).select(function (x) { return x.CreditAmount }).toArray();
 
@@ -55,7 +55,12 @@ app.controller('DashboardCtrl', function ($scope, $rootScope, $state, AccountSer
             }
             else
             {
-                $scope.monthlyCashFlow= null;
+                var monthlyCashFlow = {};
+                monthlyCashFlow.labels = [];
+                monthlyCashFlow.series = [];
+                monthlyCashFlow.data = [];
+
+                $scope.monthlyCashFlow= monthlyCashFlow;
             }
 
         })
@@ -70,7 +75,7 @@ app.controller('DashboardCtrl', function ($scope, $rootScope, $state, AccountSer
         ReportsService.getRunningBalance($rootScope.accountID)
             .success(function (response) {
 
-            var months = Enumerable.from(response).select(function (x) { return x.Month }).toArray();
+            var months = Enumerable.from(response).select(function (x) { return x.MonthYear }).toArray();
             var runningAmount = Enumerable.from(response).select(function (x) { return x.RunningAmount }).toArray();
 
             var runningBalance = {};
