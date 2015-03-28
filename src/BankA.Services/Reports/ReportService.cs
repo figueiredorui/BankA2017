@@ -75,7 +75,8 @@ namespace BankA.Services.Reports
             }).Where(q => q.TransactionDate >= startDate && q.TransactionDate <= endDate).ToList();
 
             var result = new List<RunningBalance>();
-            var date = endDate;// new DateTime(endDate.Year, endDate.Month, 2);
+            var date = new DateTime(endDate.Year, endDate.Month, 5);
+            //var date = endDate;
 
             while (date > startDate)
             {
