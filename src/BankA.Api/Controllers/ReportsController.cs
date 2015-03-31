@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -21,9 +19,16 @@ using BankA.Models.Reports;
 
 namespace BankA.Api.Controllers
 {
+    [RoutePrefix("api")]
     public class ReportsController : ApiController
     {
         private readonly IReportService svc;
+
+        public ReportsController()
+        {
+            this.svc = new ReportService();
+        }
+
 
         public ReportsController(IReportService svc)
         {

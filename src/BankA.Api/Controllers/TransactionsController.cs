@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -21,10 +19,17 @@ using BankA.Services.Statements;
 
 namespace BankA.Api.Controllers
 {
+    [RoutePrefix("api")]
     public class TransactionsController : ApiController
     {
         private readonly ITransactionService transactionSvc;
         private readonly IStatementService statementSvc;
+
+        public TransactionsController()
+        {
+            this.transactionSvc = new TransactionService();
+            this.statementSvc = new StatementService();
+        }
 
         public TransactionsController(ITransactionService transactionSvc, IStatementService statementSvc)
         {
