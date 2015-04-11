@@ -1,0 +1,734 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\CefSharp.Wpf.37.0.0\build\CefSharp.Wpf.props" Condition="Exists('..\packages\CefSharp.Wpf.37.0.0\build\CefSharp.Wpf.props')" />
+  <Import Project="..\packages\CefSharp.Common.37.0.0\build\CefSharp.Common.props" Condition="Exists('..\packages\CefSharp.Common.37.0.0\build\CefSharp.Common.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{97B8E041-18F6-4DA0-B711-BE0085862593}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BankA.SelfHost</RootNamespace>
+    <AssemblyName>BankA.SelfHost</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <NuGetPackageImportStamp>eb411845</NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.FileSystems">
+      <HintPath>..\packages\Microsoft.Owin.FileSystems.3.0.1\lib\net45\Microsoft.Owin.FileSystems.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.HttpListener">
+      <HintPath>..\packages\Microsoft.Owin.Host.HttpListener.2.0.2\lib\net45\Microsoft.Owin.Host.HttpListener.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Hosting">
+      <HintPath>..\packages\Microsoft.Owin.Hosting.2.0.2\lib\net45\Microsoft.Owin.Hosting.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.StaticFiles">
+      <HintPath>..\packages\Microsoft.Owin.StaticFiles.3.0.1\lib\net45\Microsoft.Owin.StaticFiles.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Cors">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.3\lib\net45\System.Web.Cors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.Cors">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Cors.5.2.3\lib\net45\System.Web.Http.Cors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Owin.5.2.3\lib\net45\System.Web.Http.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Config\HostConfig.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="bin\x86\Debug\html\img\Thumbs.db" />
+    <None Include="bin\x86\Debug\html\vendor\angular-bootstrap\bower.json" />
+    <None Include="bin\x86\Debug\html\vendor\angular-chart.js\angular-chart.less" />
+    <None Include="bin\x86\Debug\html\vendor\angular-chart.js\bower.json" />
+    <None Include="bin\x86\Debug\html\vendor\angular-chart.js\dist\angular-chart.css.map" />
+    <None Include="bin\x86\Debug\html\vendor\angular-chart.js\dist\angular-chart.js.tar.gz" />
+    <None Include="bin\x86\Debug\html\vendor\angular-chart.js\dist\angular-chart.min.js.map" />
+    <None Include="bin\x86\Debug\html\vendor\angular-chart.js\LICENSE" />
+    <None Include="bin\x86\Debug\html\vendor\angular-chart.js\package.json" />
+    <None Include="bin\x86\Debug\html\vendor\angular-chart.js\README.md" />
+    <None Include="bin\x86\Debug\html\vendor\angular-cookies\angular-cookies.min.js.map" />
+    <None Include="bin\x86\Debug\html\vendor\angular-cookies\bower.json" />
+    <None Include="bin\x86\Debug\html\vendor\angular-cookies\package.json" />
+    <None Include="bin\x86\Debug\html\vendor\angular-cookies\README.md" />
+    <None Include="bin\x86\Debug\html\vendor\angular-daterangepicker\bower.json" />
+    <None Include="bin\x86\Debug\html\vendor\angular-daterangepicker\coffee\angular-daterangepicker.coffee" />
+    <None Include="bin\x86\Debug\html\vendor\angular-daterangepicker\Gruntfile.coffee" />
+    <None Include="bin\x86\Debug\html\vendor\angular-daterangepicker\js\angular-daterangepicker.min.map" />
+    <None Include="bin\x86\Debug\html\vendor\angular-daterangepicker\package.json" />
+    <None Include="bin\x86\Debug\html\vendor\angular-daterangepicker\README.md" />
+    <None Include="bin\x86\Debug\html\vendor\angular-loading-bar\bower.json" />
+    <None Include="bin\x86\Debug\html\vendor\angular-loading-bar\CHANGELOG.md" />
+    <None Include="bin\x86\Debug\html\vendor\angular-loading-bar\LICENSE" />
+    <None Include="bin\x86\Debug\html\vendor\angular-loading-bar\package.json" />
+    <None Include="bin\x86\Debug\html\vendor\angular-loading-bar\README.md" />
+    <None Include="bin\x86\Debug\html\vendor\angular-toastr\bower.json" />
+    <None Include="bin\x86\Debug\html\vendor\angular-toastr\README.md" />
+    <None Include="bin\x86\Debug\html\vendor\angular-ui-router\bower.json" />
+    <None Include="bin\x86\Debug\html\vendor\angular-ui-router\CHANGELOG.md" />
+    <None Include="bin\x86\Debug\html\vendor\angular-ui-router\CONTRIBUTING.md" />
+    <None Include="bin\x86\Debug\html\vendor\angular-ui-router\LICENSE" />
+    <None Include="bin\x86\Debug\html\vendor\angular-ui-router\README.md" />
+    <None Include="bin\x86\Debug\html\vendor\angular\angular.min.js.gzip" />
+    <None Include="bin\x86\Debug\html\vendor\angular\angular.min.js.map" />
+    <None Include="bin\x86\Debug\html\vendor\angular\bower.json" />
+    <None Include="bin\x86\Debug\html\vendor\angular\package.json" />
+    <None Include="bin\x86\Debug\html\vendor\angular\README.md" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap-daterangepicker\bower.json" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap-daterangepicker\package.json" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap-daterangepicker\README.md" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\bower.json" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\dist\css\bootstrap-theme.css.map" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\dist\css\bootstrap.css.map" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\dist\fonts\glyphicons-halflings-regular.eot" />
+    <Resource Include="bin\x86\Debug\html\vendor\bootstrap\dist\fonts\glyphicons-halflings-regular.ttf" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\dist\fonts\glyphicons-halflings-regular.woff" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\dist\fonts\glyphicons-halflings-regular.woff2" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Resource Include="bin\x86\Debug\html\vendor\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\grunt\configBridge.json" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\grunt\sauce_browsers.yml" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\alerts.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\badges.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\bootstrap.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\breadcrumbs.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\button-groups.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\buttons.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\carousel.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\close.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\code.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\component-animations.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\dropdowns.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\forms.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\glyphicons.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\grid.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\input-groups.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\jumbotron.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\labels.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\list-group.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\media.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\mixins.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\mixins\alerts.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\mixins\background-variant.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\mixins\border-radius.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\mixins\buttons.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\mixins\center-block.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\mixins\clearfix.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\mixins\forms.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\mixins\gradients.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\mixins\grid-framework.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\mixins\grid.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\mixins\hide-text.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\mixins\image.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\mixins\labels.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\mixins\list-group.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\mixins\nav-divider.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\mixins\nav-vertical-align.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\mixins\opacity.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\mixins\pagination.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\mixins\panels.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\mixins\progress-bar.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\mixins\reset-filter.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\mixins\resize.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\mixins\responsive-visibility.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\mixins\size.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\mixins\tab-focus.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\mixins\table-row.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\mixins\text-emphasis.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\mixins\text-overflow.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\mixins\vendor-prefixes.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\modals.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\navbar.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\navs.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\normalize.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\pager.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\pagination.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\panels.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\popovers.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\print.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\progress-bars.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\responsive-embed.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\responsive-utilities.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\scaffolding.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\tables.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\theme.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\thumbnails.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\tooltip.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\type.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\utilities.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\variables.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\less\wells.less" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\LICENSE" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\package.json" />
+    <None Include="bin\x86\Debug\html\vendor\bootstrap\README.md" />
+    <None Include="bin\x86\Debug\html\vendor\Chart.js\bower.json" />
+    <None Include="bin\x86\Debug\html\vendor\Chart.js\CONTRIBUTING.md" />
+    <None Include="bin\x86\Debug\html\vendor\Chart.js\docs\00-Getting-Started.md" />
+    <None Include="bin\x86\Debug\html\vendor\Chart.js\docs\01-Line-Chart.md" />
+    <None Include="bin\x86\Debug\html\vendor\Chart.js\docs\02-Bar-Chart.md" />
+    <None Include="bin\x86\Debug\html\vendor\Chart.js\docs\03-Radar-Chart.md" />
+    <None Include="bin\x86\Debug\html\vendor\Chart.js\docs\04-Polar-Area-Chart.md" />
+    <None Include="bin\x86\Debug\html\vendor\Chart.js\docs\05-Pie-Doughnut-Chart.md" />
+    <None Include="bin\x86\Debug\html\vendor\Chart.js\docs\06-Advanced.md" />
+    <None Include="bin\x86\Debug\html\vendor\Chart.js\docs\07-Notes.md" />
+    <None Include="bin\x86\Debug\html\vendor\Chart.js\LICENSE.md" />
+    <None Include="bin\x86\Debug\html\vendor\Chart.js\package.json" />
+    <None Include="bin\x86\Debug\html\vendor\Chart.js\README.md" />
+    <None Include="bin\x86\Debug\html\vendor\currycatpivottable\bower.json" />
+    <None Include="bin\x86\Debug\html\vendor\currycatpivottable\d3_renderers.coffee" />
+    <None Include="bin\x86\Debug\html\vendor\currycatpivottable\gchart_renderers.coffee" />
+    <None Include="bin\x86\Debug\html\vendor\currycatpivottable\pivot.coffee" />
+    <None Include="bin\x86\Debug\html\vendor\currycatpivottable\pivot.fr.coffee" />
+    <None Include="bin\x86\Debug\html\vendor\currycatpivottable\pivottable.jquery.json" />
+    <None Include="bin\x86\Debug\html\vendor\currycatpivottable\ReadMe.md" />
+    <None Include="bin\x86\Debug\html\vendor\font-awesome\bower.json" />
+    <None Include="bin\x86\Debug\html\vendor\font-awesome\css\font-awesome.css.map" />
+    <None Include="bin\x86\Debug\html\vendor\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Resource Include="bin\x86\Debug\html\vendor\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <None Include="bin\x86\Debug\html\vendor\font-awesome\fonts\fontawesome-webfont.woff" />
+    <None Include="bin\x86\Debug\html\vendor\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <Resource Include="bin\x86\Debug\html\vendor\font-awesome\fonts\FontAwesome.otf" />
+    <None Include="bin\x86\Debug\html\vendor\font-awesome\less\animated.less" />
+    <None Include="bin\x86\Debug\html\vendor\font-awesome\less\bordered-pulled.less" />
+    <None Include="bin\x86\Debug\html\vendor\font-awesome\less\core.less" />
+    <None Include="bin\x86\Debug\html\vendor\font-awesome\less\fixed-width.less" />
+    <None Include="bin\x86\Debug\html\vendor\font-awesome\less\font-awesome.less" />
+    <None Include="bin\x86\Debug\html\vendor\font-awesome\less\icons.less" />
+    <None Include="bin\x86\Debug\html\vendor\font-awesome\less\larger.less" />
+    <None Include="bin\x86\Debug\html\vendor\font-awesome\less\list.less" />
+    <None Include="bin\x86\Debug\html\vendor\font-awesome\less\mixins.less" />
+    <None Include="bin\x86\Debug\html\vendor\font-awesome\less\path.less" />
+    <None Include="bin\x86\Debug\html\vendor\font-awesome\less\rotated-flipped.less" />
+    <None Include="bin\x86\Debug\html\vendor\font-awesome\less\stacked.less" />
+    <None Include="bin\x86\Debug\html\vendor\font-awesome\less\variables.less" />
+    <None Include="bin\x86\Debug\html\vendor\font-awesome\scss\font-awesome.scss" />
+    <None Include="bin\x86\Debug\html\vendor\font-awesome\scss\_animated.scss" />
+    <None Include="bin\x86\Debug\html\vendor\font-awesome\scss\_bordered-pulled.scss" />
+    <None Include="bin\x86\Debug\html\vendor\font-awesome\scss\_core.scss" />
+    <None Include="bin\x86\Debug\html\vendor\font-awesome\scss\_fixed-width.scss" />
+    <None Include="bin\x86\Debug\html\vendor\font-awesome\scss\_icons.scss" />
+    <None Include="bin\x86\Debug\html\vendor\font-awesome\scss\_larger.scss" />
+    <None Include="bin\x86\Debug\html\vendor\font-awesome\scss\_list.scss" />
+    <None Include="bin\x86\Debug\html\vendor\font-awesome\scss\_mixins.scss" />
+    <None Include="bin\x86\Debug\html\vendor\font-awesome\scss\_path.scss" />
+    <None Include="bin\x86\Debug\html\vendor\font-awesome\scss\_rotated-flipped.scss" />
+    <None Include="bin\x86\Debug\html\vendor\font-awesome\scss\_stacked.scss" />
+    <None Include="bin\x86\Debug\html\vendor\font-awesome\scss\_variables.scss" />
+    <None Include="bin\x86\Debug\html\vendor\jqueryui\bower.json" />
+    <None Include="bin\x86\Debug\html\vendor\jqueryui\component.json" />
+    <None Include="bin\x86\Debug\html\vendor\jqueryui\composer.json" />
+    <None Include="bin\x86\Debug\html\vendor\jqueryui\package.json" />
+    <None Include="bin\x86\Debug\html\vendor\jqueryui\README.md" />
+    <None Include="bin\x86\Debug\html\vendor\jquery\bower.json" />
+    <None Include="bin\x86\Debug\html\vendor\jquery\dist\jquery.min.map" />
+    <None Include="bin\x86\Debug\html\vendor\jquery\src\sizzle\dist\sizzle.min.map" />
+    <None Include="bin\x86\Debug\html\vendor\linqjs\bower.json" />
+    <None Include="bin\x86\Debug\html\vendor\linqjs\LICENSE" />
+    <None Include="bin\x86\Debug\html\vendor\moment\bower.json" />
+    <None Include="bin\x86\Debug\html\vendor\moment\CHANGELOG.md" />
+    <None Include="bin\x86\Debug\html\vendor\moment\LICENSE" />
+    <None Include="bin\x86\Debug\html\vendor\moment\meteor\README.md" />
+    <None Include="bin\x86\Debug\html\vendor\moment\Moment.js.nuspec" />
+    <None Include="bin\x86\Debug\html\vendor\moment\README.md" />
+    <None Include="bin\x86\Debug\html\vendor\moment\scripts\npm_prepublish.sh" />
+    <None Include="bin\x86\Debug\html\vendor\ng-file-upload\bower.json" />
+    <None Include="bin\x86\Debug\html\vendor\ng-file-upload\LICENSE" />
+    <None Include="bin\x86\Debug\html\vendor\ng-file-upload\npm-debug.log" />
+    <None Include="bin\x86\Debug\html\vendor\ng-file-upload\README.md" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BankA.Api\BankA.Api.csproj">
+      <Project>{a8d81792-9be3-4691-99a4-3f067fb6abcc}</Project>
+      <Name>BankA.Api</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="bin\x86\Debug\html\app\app.js" />
+    <Content Include="bin\x86\Debug\html\app\common\common.js" />
+    <Content Include="bin\x86\Debug\html\app\common\config.js" />
+    <Content Include="bin\x86\Debug\html\app\common\routes.js" />
+    <Content Include="bin\x86\Debug\html\app\services\AccountService.js" />
+    <Content Include="bin\x86\Debug\html\app\services\ReportsService.js" />
+    <Content Include="bin\x86\Debug\html\app\services\TransactionsService.js" />
+    <Content Include="bin\x86\Debug\html\app\views\accounts.html" />
+    <Content Include="bin\x86\Debug\html\app\views\accounts.js" />
+    <Content Include="bin\x86\Debug\html\app\views\dashboard.html" />
+    <Content Include="bin\x86\Debug\html\app\views\dashboard.js" />
+    <Content Include="bin\x86\Debug\html\app\views\layout.html" />
+    <Content Include="bin\x86\Debug\html\app\views\layout.js" />
+    <Content Include="bin\x86\Debug\html\app\views\reports\expense-analysis.html" />
+    <Content Include="bin\x86\Debug\html\app\views\reports\expense-analysis.js" />
+    <Content Include="bin\x86\Debug\html\app\views\reports\expense-byTag.html" />
+    <Content Include="bin\x86\Debug\html\app\views\reports\expense-byTag.js" />
+    <Content Include="bin\x86\Debug\html\app\views\reports\income-analysis.html" />
+    <Content Include="bin\x86\Debug\html\app\views\reports\income-analysis.js" />
+    <Content Include="bin\x86\Debug\html\app\views\reports\menu.html" />
+    <Content Include="bin\x86\Debug\html\app\views\reports\reports.html" />
+    <Content Include="bin\x86\Debug\html\app\views\transactions.html" />
+    <Content Include="bin\x86\Debug\html\app\views\transactions.js" />
+    <Content Include="bin\x86\Debug\html\css\rdash.css" />
+    <Content Include="bin\x86\Debug\html\css\style.css" />
+    <Resource Include="bin\x86\Debug\html\img\avatar.jpg" />
+    <Content Include="bin\x86\Debug\html\index.html" />
+    <Content Include="bin\x86\Debug\html\vendor\angular-bootstrap\ui-bootstrap-tpls.js" />
+    <Content Include="bin\x86\Debug\html\vendor\angular-bootstrap\ui-bootstrap-tpls.min.js" />
+    <Content Include="bin\x86\Debug\html\vendor\angular-bootstrap\ui-bootstrap.js" />
+    <Content Include="bin\x86\Debug\html\vendor\angular-bootstrap\ui-bootstrap.min.js" />
+    <Content Include="bin\x86\Debug\html\vendor\angular-chart.js\angular-chart.js" />
+    <Content Include="bin\x86\Debug\html\vendor\angular-chart.js\dist\angular-chart.css" />
+    <Content Include="bin\x86\Debug\html\vendor\angular-chart.js\dist\angular-chart.js" />
+    <Content Include="bin\x86\Debug\html\vendor\angular-chart.js\dist\angular-chart.min.js" />
+    <Content Include="bin\x86\Debug\html\vendor\angular-chart.js\examples\app.css" />
+    <Content Include="bin\x86\Debug\html\vendor\angular-chart.js\examples\app.js" />
+    <Content Include="bin\x86\Debug\html\vendor\angular-chart.js\examples\bootstrap.css" />
+    <Content Include="bin\x86\Debug\html\vendor\angular-chart.js\examples\charts.html" />
+    <Content Include="bin\x86\Debug\html\vendor\angular-chart.js\examples\charts.template.html" />
+    <Content Include="bin\x86\Debug\html\vendor\angular-chart.js\examples\smoothscroll.min.js" />
+    <Content Include="bin\x86\Debug\html\vendor\angular-chart.js\examples\stacked-bars.html" />
+    <Content Include="bin\x86\Debug\html\vendor\angular-chart.js\examples\tables.html" />
+    <Content Include="bin\x86\Debug\html\vendor\angular-chart.js\examples\ticks.html" />
+    <Content Include="bin\x86\Debug\html\vendor\angular-chart.js\gulpfile.js" />
+    <Content Include="bin\x86\Debug\html\vendor\angular-cookies\angular-cookies.js" />
+    <Content Include="bin\x86\Debug\html\vendor\angular-cookies\angular-cookies.min.js" />
+    <Content Include="bin\x86\Debug\html\vendor\angular-cookies\index.js" />
+    <Content Include="bin\x86\Debug\html\vendor\angular-daterangepicker\example.html" />
+    <Content Include="bin\x86\Debug\html\vendor\angular-daterangepicker\js\angular-daterangepicker.js" />
+    <Content Include="bin\x86\Debug\html\vendor\angular-daterangepicker\js\angular-daterangepicker.min.js" />
+    <Content Include="bin\x86\Debug\html\vendor\angular-i18n\angular-locale_en-gb.js" />
+    <Content Include="bin\x86\Debug\html\vendor\angular-loading-bar\build\loading-bar.css" />
+    <Content Include="bin\x86\Debug\html\vendor\angular-loading-bar\build\loading-bar.js" />
+    <Content Include="bin\x86\Debug\html\vendor\angular-loading-bar\build\loading-bar.min.css" />
+    <Content Include="bin\x86\Debug\html\vendor\angular-loading-bar\build\loading-bar.min.js" />
+    <Content Include="bin\x86\Debug\html\vendor\angular-loading-bar\Gruntfile.js" />
+    <Content Include="bin\x86\Debug\html\vendor\angular-loading-bar\src\loading-bar.css" />
+    <Content Include="bin\x86\Debug\html\vendor\angular-loading-bar\src\loading-bar.js" />
+    <Content Include="bin\x86\Debug\html\vendor\angular-toastr\dist\angular-toastr.css" />
+    <Content Include="bin\x86\Debug\html\vendor\angular-toastr\dist\angular-toastr.js" />
+    <Content Include="bin\x86\Debug\html\vendor\angular-toastr\dist\angular-toastr.min.css" />
+    <Content Include="bin\x86\Debug\html\vendor\angular-toastr\dist\angular-toastr.min.js" />
+    <Content Include="bin\x86\Debug\html\vendor\angular-toastr\dist\angular-toastr.tpls.js" />
+    <Content Include="bin\x86\Debug\html\vendor\angular-toastr\dist\angular-toastr.tpls.min.js" />
+    <Content Include="bin\x86\Debug\html\vendor\angular-toastr\gulpfile.js" />
+    <Content Include="bin\x86\Debug\html\vendor\angular-ui-router\release\angular-ui-router.js" />
+    <Content Include="bin\x86\Debug\html\vendor\angular-ui-router\release\angular-ui-router.min.js" />
+    <Content Include="bin\x86\Debug\html\vendor\angular-ui-router\src\common.js" />
+    <Content Include="bin\x86\Debug\html\vendor\angular-ui-router\src\resolve.js" />
+    <Content Include="bin\x86\Debug\html\vendor\angular-ui-router\src\state.js" />
+    <Content Include="bin\x86\Debug\html\vendor\angular-ui-router\src\stateDirectives.js" />
+    <Content Include="bin\x86\Debug\html\vendor\angular-ui-router\src\stateFilters.js" />
+    <Content Include="bin\x86\Debug\html\vendor\angular-ui-router\src\templateFactory.js" />
+    <Content Include="bin\x86\Debug\html\vendor\angular-ui-router\src\urlMatcherFactory.js" />
+    <Content Include="bin\x86\Debug\html\vendor\angular-ui-router\src\urlRouter.js" />
+    <Content Include="bin\x86\Debug\html\vendor\angular-ui-router\src\view.js" />
+    <Content Include="bin\x86\Debug\html\vendor\angular-ui-router\src\viewDirective.js" />
+    <Content Include="bin\x86\Debug\html\vendor\angular-ui-router\src\viewScroll.js" />
+    <Content Include="bin\x86\Debug\html\vendor\angular\angular-csp.css" />
+    <Content Include="bin\x86\Debug\html\vendor\angular\angular.js" />
+    <Content Include="bin\x86\Debug\html\vendor\angular\angular.min.js" />
+    <Content Include="bin\x86\Debug\html\vendor\angular\index.js" />
+    <Content Include="bin\x86\Debug\html\vendor\bootstrap-daterangepicker\daterangepicker-bs2.css" />
+    <Content Include="bin\x86\Debug\html\vendor\bootstrap-daterangepicker\daterangepicker-bs3.css" />
+    <Content Include="bin\x86\Debug\html\vendor\bootstrap-daterangepicker\daterangepicker.js" />
+    <Content Include="bin\x86\Debug\html\vendor\bootstrap-daterangepicker\examples.html" />
+    <Content Include="bin\x86\Debug\html\vendor\bootstrap\dist\css\bootstrap-theme.css" />
+    <Content Include="bin\x86\Debug\html\vendor\bootstrap\dist\css\bootstrap-theme.min.css" />
+    <Content Include="bin\x86\Debug\html\vendor\bootstrap\dist\css\bootstrap.css" />
+    <Content Include="bin\x86\Debug\html\vendor\bootstrap\dist\css\bootstrap.min.css" />
+    <Content Include="bin\x86\Debug\html\vendor\bootstrap\dist\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="bin\x86\Debug\html\vendor\bootstrap\dist\js\bootstrap.js" />
+    <Content Include="bin\x86\Debug\html\vendor\bootstrap\dist\js\bootstrap.min.js" />
+    <Content Include="bin\x86\Debug\html\vendor\bootstrap\dist\js\npm.js" />
+    <Content Include="bin\x86\Debug\html\vendor\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="bin\x86\Debug\html\vendor\bootstrap\Gruntfile.js" />
+    <Content Include="bin\x86\Debug\html\vendor\bootstrap\grunt\bs-commonjs-generator.js" />
+    <Content Include="bin\x86\Debug\html\vendor\bootstrap\grunt\bs-glyphicons-data-generator.js" />
+    <Content Include="bin\x86\Debug\html\vendor\bootstrap\grunt\bs-lessdoc-parser.js" />
+    <Content Include="bin\x86\Debug\html\vendor\bootstrap\grunt\bs-raw-files-generator.js" />
+    <Content Include="bin\x86\Debug\html\vendor\bootstrap\js\affix.js" />
+    <Content Include="bin\x86\Debug\html\vendor\bootstrap\js\alert.js" />
+    <Content Include="bin\x86\Debug\html\vendor\bootstrap\js\button.js" />
+    <Content Include="bin\x86\Debug\html\vendor\bootstrap\js\carousel.js" />
+    <Content Include="bin\x86\Debug\html\vendor\bootstrap\js\collapse.js" />
+    <Content Include="bin\x86\Debug\html\vendor\bootstrap\js\dropdown.js" />
+    <Content Include="bin\x86\Debug\html\vendor\bootstrap\js\modal.js" />
+    <Content Include="bin\x86\Debug\html\vendor\bootstrap\js\popover.js" />
+    <Content Include="bin\x86\Debug\html\vendor\bootstrap\js\scrollspy.js" />
+    <Content Include="bin\x86\Debug\html\vendor\bootstrap\js\tab.js" />
+    <Content Include="bin\x86\Debug\html\vendor\bootstrap\js\tooltip.js" />
+    <Content Include="bin\x86\Debug\html\vendor\bootstrap\js\transition.js" />
+    <Content Include="bin\x86\Debug\html\vendor\Chart.js\Chart.js" />
+    <Content Include="bin\x86\Debug\html\vendor\Chart.js\Chart.min.js" />
+    <Content Include="bin\x86\Debug\html\vendor\Chart.js\gulpfile.js" />
+    <Content Include="bin\x86\Debug\html\vendor\Chart.js\samples\bar.html" />
+    <Content Include="bin\x86\Debug\html\vendor\Chart.js\samples\doughnut.html" />
+    <Content Include="bin\x86\Debug\html\vendor\Chart.js\samples\line-customTooltips.html" />
+    <Content Include="bin\x86\Debug\html\vendor\Chart.js\samples\line.html" />
+    <Content Include="bin\x86\Debug\html\vendor\Chart.js\samples\pie-customTooltips.html" />
+    <Content Include="bin\x86\Debug\html\vendor\Chart.js\samples\pie.html" />
+    <Content Include="bin\x86\Debug\html\vendor\Chart.js\samples\polar-area.html" />
+    <Content Include="bin\x86\Debug\html\vendor\Chart.js\samples\radar.html" />
+    <Content Include="bin\x86\Debug\html\vendor\Chart.js\src\Chart.Bar.js" />
+    <Content Include="bin\x86\Debug\html\vendor\Chart.js\src\Chart.Core.js" />
+    <Content Include="bin\x86\Debug\html\vendor\Chart.js\src\Chart.Doughnut.js" />
+    <Content Include="bin\x86\Debug\html\vendor\Chart.js\src\Chart.Line.js" />
+    <Content Include="bin\x86\Debug\html\vendor\Chart.js\src\Chart.PolarArea.js" />
+    <Content Include="bin\x86\Debug\html\vendor\Chart.js\src\Chart.Radar.js" />
+    <Content Include="bin\x86\Debug\html\vendor\currycatpivottable\dist\d3_renderers.js" />
+    <Content Include="bin\x86\Debug\html\vendor\currycatpivottable\dist\gchart_renderers.js" />
+    <Content Include="bin\x86\Debug\html\vendor\currycatpivottable\dist\pivot.css" />
+    <Content Include="bin\x86\Debug\html\vendor\currycatpivottable\dist\pivot.fr.js" />
+    <Content Include="bin\x86\Debug\html\vendor\currycatpivottable\dist\pivot.js" />
+    <Content Include="bin\x86\Debug\html\vendor\font-awesome\css\font-awesome.css" />
+    <Content Include="bin\x86\Debug\html\vendor\font-awesome\css\font-awesome.min.css" />
+    <Content Include="bin\x86\Debug\html\vendor\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Resource Include="bin\x86\Debug\html\vendor\jqueryui\AUTHORS.txt" />
+    <Content Include="bin\x86\Debug\html\vendor\jqueryui\jquery-ui.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jqueryui\jquery-ui.min.js" />
+    <Resource Include="bin\x86\Debug\html\vendor\jqueryui\LICENSE.txt" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\dist\jquery.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\dist\jquery.min.js" />
+    <Resource Include="bin\x86\Debug\html\vendor\jquery\MIT-LICENSE.txt" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\ajax.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\ajax\jsonp.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\ajax\load.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\ajax\parseJSON.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\ajax\parseXML.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\ajax\script.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\ajax\var\nonce.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\ajax\var\rquery.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\ajax\xhr.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\attributes.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\attributes\attr.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\attributes\classes.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\attributes\prop.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\attributes\support.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\attributes\val.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\callbacks.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\core.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\core\access.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\core\init.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\core\parseHTML.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\core\ready.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\core\var\rsingleTag.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\css.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\css\addGetHookIf.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\css\curCSS.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\css\defaultDisplay.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\css\hiddenVisibleSelectors.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\css\support.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\css\swap.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\css\var\cssExpand.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\css\var\getStyles.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\css\var\isHidden.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\css\var\rmargin.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\css\var\rnumnonpx.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\data.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\data\accepts.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\data\Data.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\data\var\data_priv.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\data\var\data_user.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\deferred.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\deprecated.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\dimensions.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\effects.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\effects\animatedSelector.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\effects\Tween.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\event.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\event\ajax.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\event\alias.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\event\support.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\exports\amd.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\exports\global.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\intro.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\jquery.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\manipulation.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\manipulation\support.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\manipulation\var\rcheckableType.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\manipulation\_evalUrl.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\offset.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\outro.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\queue.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\queue\delay.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\selector-native.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\selector-sizzle.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\selector.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\serialize.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\sizzle\dist\sizzle.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\sizzle\dist\sizzle.min.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\traversing.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\traversing\findFilter.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\traversing\var\rneedsContext.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\var\arr.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\var\class2type.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\var\concat.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\var\hasOwn.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\var\indexOf.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\var\pnum.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\var\push.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\var\rnotwhite.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\var\slice.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\var\strundefined.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\var\support.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\var\toString.js" />
+    <Content Include="bin\x86\Debug\html\vendor\jquery\src\wrap.js" />
+    <Content Include="bin\x86\Debug\html\vendor\linqjs\linq.js" />
+    <Content Include="bin\x86\Debug\html\vendor\linqjs\sample\tutorial.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\benchmarks\clone.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\af.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\ar-ma.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\ar-sa.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\ar-tn.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\ar.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\az.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\be.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\bg.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\bn.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\bo.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\br.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\bs.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\ca.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\cs.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\cv.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\cy.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\da.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\de-at.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\de.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\el.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\en-au.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\en-ca.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\en-gb.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\eo.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\es.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\et.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\eu.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\fa.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\fi.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\fo.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\fr-ca.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\fr.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\fy.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\gl.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\he.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\hi.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\hr.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\hu.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\hy-am.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\id.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\is.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\it.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\ja.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\ka.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\km.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\ko.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\lb.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\lt.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\lv.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\mk.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\ml.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\mr.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\ms-my.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\my.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\nb.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\ne.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\nl.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\nn.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\pl.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\pt-br.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\pt.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\ro.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\ru.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\sk.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\sl.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\sq.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\sr-cyrl.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\sr.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\sv.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\ta.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\th.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\tl-ph.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\tr.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\tzm-latn.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\tzm.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\uk.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\uz.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\vi.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\zh-cn.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\locale\zh-tw.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\meteor\export.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\meteor\test.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\min\locales.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\min\locales.min.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\min\moment-with-locales.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\min\moment-with-locales.min.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\min\moment.min.js" />
+    <Content Include="bin\x86\Debug\html\vendor\moment\moment.js" />
+    <Content Include="bin\x86\Debug\html\vendor\ng-file-upload\angular-file-upload-all.js" />
+    <Content Include="bin\x86\Debug\html\vendor\ng-file-upload\angular-file-upload-all.min.js" />
+    <Content Include="bin\x86\Debug\html\vendor\ng-file-upload\angular-file-upload-shim.js" />
+    <Content Include="bin\x86\Debug\html\vendor\ng-file-upload\angular-file-upload-shim.min.js" />
+    <Content Include="bin\x86\Debug\html\vendor\ng-file-upload\angular-file-upload.js" />
+    <Content Include="bin\x86\Debug\html\vendor\ng-file-upload\angular-file-upload.min.js" />
+    <Content Include="bin\x86\Debug\html\vendor\ng-file-upload\FileAPI.flash.swf" />
+    <Content Include="bin\x86\Debug\html\vendor\ng-file-upload\FileAPI.min.js" />
+    <Content Include="bin\x86\Debug\html\vendor\ng-file-upload\ng-file-upload-all.js" />
+    <Content Include="bin\x86\Debug\html\vendor\ng-file-upload\ng-file-upload-all.min.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="bin\x86\Debug\html\vendor\angular-ui-router\api\angular-ui-router.d.ts" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+    <Error Condition="!Exists('..\packages\cef.redist.x86.3.2062.1898\build\cef.redist.x86.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cef.redist.x86.3.2062.1898\build\cef.redist.x86.targets'))" />
+    <Error Condition="!Exists('..\packages\cef.redist.x64.3.2062.1898\build\cef.redist.x64.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cef.redist.x64.3.2062.1898\build\cef.redist.x64.targets'))" />
+    <Error Condition="!Exists('..\packages\CefSharp.Common.37.0.0\build\CefSharp.Common.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Common.37.0.0\build\CefSharp.Common.props'))" />
+    <Error Condition="!Exists('..\packages\CefSharp.Common.37.0.0\build\CefSharp.Common.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Common.37.0.0\build\CefSharp.Common.targets'))" />
+    <Error Condition="!Exists('..\packages\CefSharp.Wpf.37.0.0\build\CefSharp.Wpf.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Wpf.37.0.0\build\CefSharp.Wpf.props'))" />
+  </Target>
+  <Import Project="..\packages\cef.redist.x86.3.2062.1898\build\cef.redist.x86.targets" Condition="Exists('..\packages\cef.redist.x86.3.2062.1898\build\cef.redist.x86.targets')" />
+  <Import Project="..\packages\cef.redist.x64.3.2062.1898\build\cef.redist.x64.targets" Condition="Exists('..\packages\cef.redist.x64.3.2062.1898\build\cef.redist.x64.targets')" />
+  <Import Project="..\packages\CefSharp.Common.37.0.0\build\CefSharp.Common.targets" Condition="Exists('..\packages\CefSharp.Common.37.0.0\build\CefSharp.Common.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
