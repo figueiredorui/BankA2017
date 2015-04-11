@@ -1,0 +1,49 @@
+<div class="row">
+    <div class="col-lg-4" ng-repeat="account in Accounts">
+        <div class="widget hv" ng-class="{'active': account.AccountID == accountID}">
+            <div class="widget-body " ng-class="{'bg-success': account.AccountID == accountID}">
+                <div class="widget-content ">
+                    <a ng-click="selectAccount(account.AccountID)" class="widget-icon green pull-right" ng-class="{'blue': account.AccountID == accountID}" style="cursor: pointer">
+                        <i class="fa fa-gbp"></i>
+                    </a>
+                    <div class="comment">
+                        <strong>{{account.Description}}</strong>
+                    </div>
+                    <div class="title">{{account.Balance | number : 2}}</div>
+                    <div ng-show="account.AccountID > 0" class="comment  pull-left">
+                       <a ng-click="showTransaction(account.AccountID)" style="cursor: pointer"><small>Last Transaction: {{account.LastTransactionDate | date}}</small></a>
+                    </div>
+                    <div class="comment">&nbsp;</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class=" widget ">
+            <div class="widget-body " >
+                <div class="widget-content ">
+                    <h4 class="font-thin m-t-none m-b text-muted">Monthly Cash Flow 
+                        <small> Last 12 Months</small>
+                    </h4>
+                    <canvas id="monthlyCashFlow" chart="monthlyCashFlow" class="chart chart-line" legend="true" height="100" data="monthlyCashFlow.data" labels="monthlyCashFlow.labels" series="monthlyCashFlow.series"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class=" widget ">
+            <div class="widget-body " >
+                <div class="widget-content ">
+                    <h4 class="font-thin m-t-none m-b text-muted">Running Balance 
+                        <small>Last 24 Months</small>
+                    </h4>
+                    <canvas id="runningBalance" class="chart chart-line" legend="true" height="100" data="runningBalance.data" labels="runningBalance.labels" series="runningBalance.series"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
