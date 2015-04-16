@@ -64,7 +64,7 @@ namespace BankA.Services.Statements
 
         private void ImportFile(StatementFile statementFile, List<StatementRow> statementRows)
         {
-            var transactionLst = new List<BankTransactionTable>();
+            var transactionLst = new List<BankTransaction>();
             var historyLst = GetTagHistory();
 
             foreach (var row in statementRows)
@@ -75,9 +75,9 @@ namespace BankA.Services.Statements
             transactionRepository.AddBatch(transactionLst);
         }
 
-        private BankTransactionTable CreateTransaction(StatementFile file, StatementRow row, List<BankTransactionTable> historyLst)
+        private BankTransaction CreateTransaction(StatementFile file, StatementRow row, List<BankTransaction> historyLst)
         {
-            var trans = new BankTransactionTable();
+            var trans = new BankTransaction();
 
             trans.AccountID = file.AccountID;
             trans.FileID = file.FileID;
@@ -92,11 +92,11 @@ namespace BankA.Services.Statements
             return trans;
         }
 
-        private string GetBestTag(string description, List<BankTransactionTable> historyLst)
+        private string GetBestTag(string description, List<BankTransaction> historyLst)
         {
             string tag = "NA";
 
-            var matchLst = new Dictionary<BankTransactionTable, int>();
+            var matchLst = new Dictionary<BankTransaction, int>();
             foreach (var item in historyLst)
             {
                 int compareDistance = Convert.ToInt32((decimal)description.Length / 2);
@@ -106,7 +106,7 @@ namespace BankA.Services.Statements
             }
 
             var bestMatch = matchLst.Where(q => q.Value == matchLst.Values.Min()).FirstOrDefault();
-            var key = ((BankTransactionTable)bestMatch.Key);
+            var key = ((BankTransaction)bestMatch.Key);
 
             if (key != null)
                 tag = key.Tag;
@@ -114,7 +114,7 @@ namespace BankA.Services.Statements
             return tag;
         }
 
-        private List<BankTransactionTable> GetTagHistory()
+        private List<BankTransaction> GetTagHistory()
         {
             return transactionRepository.Table.ToList();
         }

@@ -14,24 +14,24 @@ namespace BankA.Services.Accounts
     {
         static AccountMapper()
         {
-            Mapper.CreateMap<BankAccountTable, Account>();
+            Mapper.CreateMap<BankAccount, Account>();
 
-            Mapper.CreateMap<Account, BankAccountTable>();
+            Mapper.CreateMap<Account, BankAccount>();
         }
 
-        public static Account Map(BankAccountTable entity)
+        public static Account Map(BankAccount entity)
         {
             return Mapper.Map<Account>(entity);
         }
 
-        public static List<Account> Map(List<BankAccountTable> entityLst)
+        public static List<Account> Map(List<BankAccount> entityLst)
         {
             return Mapper.Map<List<Account>>(entityLst);
         }
 
-        public static BankAccountTable Map(Account entity)
+        public static BankAccount Map(Account entity)
         {
-            return Mapper.Map<BankAccountTable>(entity);
+            return Mapper.Map<BankAccount>(entity);
         }
     }
 }

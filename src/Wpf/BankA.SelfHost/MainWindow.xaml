@@ -1,0 +1,12 @@
+﻿<Window x:Class="BankA.SelfHost.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+         xmlns:cefSharp="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf" KeyDown="Window_KeyDown"
+        Title="BankA" Height="550" Width="925" >
+    <Grid>
+        <cefSharp:ChromiumWebBrowser Grid.Row="0" x:Name="wb"
+                          Address="http://localhost:9000/html"
+                          WebBrowser="{Binding WebBrowser, Mode=OneWayToSource}"
+                          Title="{Binding Title, Mode=TwoWay}" />
+    </Grid>
+</Window>

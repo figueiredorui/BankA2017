@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BankA.Data.Repositories
 {
-    public class AccountRepository : Repository<BankAccountTable>
+    public class AccountRepository : Repository<BankAccount>
     {
      
    

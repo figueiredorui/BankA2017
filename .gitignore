@@ -1,10 +1,12 @@
 <<<<<<< HEAD
 =======
-node_modules
-bower_components
 
-src/vendor/
-!dist/vendor/
+src/node_modules
+src/bower_components
+
+!src/Web/dist/vendor/
+src/Web/Src/vendor/
+
 
 
 >>>>>>> 79d30b45ac826eb2c912b4690620db277a1e2bc6

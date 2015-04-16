@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en" ng-app="app">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>BankA</title>
+
+        <!-- bower:css -->
+        <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="vendor/angular-loading-bar/build/loading-bar.css" />
+        <link rel="stylesheet" href="vendor/angular-chart.js/dist/angular-chart.css" />
+        <link rel="stylesheet" href="vendor/angular-toastr/dist/angular-toastr.css" />
+        <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.css" />
+        <link rel="stylesheet" href="vendor/bootstrap-daterangepicker/daterangepicker-bs3.css" />
+        <!-- endbower -->
+        <link rel="stylesheet" href="vendor/currycatpivottable/dist/pivot.css"/>
+
+        <link rel="stylesheet" type="text/css" href="css/rdash.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        
+
+    </head>
+    <body >
+        <div ui-view></div>
+
+        <!-- bower:js -->
+        <script src="vendor/jquery/dist/jquery.js"></script>
+        <script src="vendor/angular/angular.js"></script>
+        <script src="vendor/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="vendor/angular-cookies/angular-cookies.js"></script>
+        <script src="vendor/angular-ui-router/release/angular-ui-router.js"></script>
+        <script src="vendor/angular-loading-bar/build/loading-bar.js"></script>
+        <script src="vendor/moment/moment.js"></script>
+        <script src="vendor/ng-file-upload/angular-file-upload.js"></script>
+        <script src="vendor/Chart.js/Chart.min.js"></script>
+        <script src="vendor/angular-chart.js/dist/angular-chart.js"></script>
+        <script src="vendor/angular-toastr/dist/angular-toastr.tpls.js"></script>
+        <script src="vendor/bootstrap-daterangepicker/daterangepicker.js"></script>
+        <script src="vendor/angular-daterangepicker/js/angular-daterangepicker.js"></script>
+        <script src="vendor/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+        <script src="vendor/linqjs/linq.js"></script>
+        <script src="vendor/jqueryui/jquery-ui.js"></script>
+        <script src="vendor/currycatpivottable/dist/pivot.js"></script>
+        <!-- endbower -->
+
+        <script src="vendor/angular-i18n/angular-locale_en-gb.js"></script>
+
+        <script src="app/app.js"></script>
+        <script src="app/common/routes.js"></script>
+        <script src="app/common/config.js"></script>
+        <script src="app/common/common.js"></script>
+
+        <script src="app/services/AccountService.js"></script>
+        <script src="app/services/TransactionsService.js"></script>
+        <script src="app/services/ReportsService.js"></script>
+
+        <script src="app/views/layout.js"></script>
+        <script src="app/views/dashboard.js"></script>
+        <script src="app/views/accounts.js"></script>
+        <script src="app/views/transactions.js"></script>
+        <script src="app/views/reports/expense-analysis.js"></script>
+        <script src="app/views/reports/expense-byTag.js"></script>
+        <script src="app/views/reports/income-analysis.js"></script>
+
+    </body>
+</html>

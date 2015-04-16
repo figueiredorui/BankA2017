@@ -14,7 +14,6 @@ using BankA.Models.Accounts;
 
 namespace BankA.Api.Controllers
 {
-    [RoutePrefix("api")]
     public class AccountsController : ApiController
     {
         private readonly IAccountService svc;
@@ -66,7 +65,7 @@ namespace BankA.Api.Controllers
         }
 
         // GET: api/Accounts/Summary
-        [Route("Accounts/Summary")]
+        [Route("api/Accounts/Summary")]
         public IHttpActionResult GetAccountSummary()
         {
             var lst = svc.GetAccountSummary();
@@ -74,7 +73,7 @@ namespace BankA.Api.Controllers
         }
 
         // GET: api/Accounts/Banks
-        [Route("Accounts/Banks")]
+        [Route("api/Accounts/Banks")]
         public IHttpActionResult GetBanks()
         {
             var lst = new string[] { BankEnum.HSBC.ToString(), BankEnum.LLOYDS.ToString() };

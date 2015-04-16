@@ -59,13 +59,20 @@
     <Folder Include="Properties" />
     <Folder Include="dbo\" />
     <Folder Include="dbo\Tables\" />
+    <Folder Include="Sqlite" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\BankTransaction.sql" />
     <Build Include="dbo\Tables\BankAccount.sql" />
-    <Build Include="dbo\Tables\StatementFile.sql" />
+    <Build Include="dbo\Tables\BankVersion.sql" />
+    <Build Include="dbo\Tables\BankStatementFile.sql" />
+    <None Include="Script01.sql" />
+    <Build Include="Sqlite\script.sql" />
   </ItemGroup>
   <ItemGroup>
-    <PostDeploy Include="Script.PostDeployment1.sql" />
+    <PostDeploy Include="Script.PostDeployment.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Sqlite\banka.db" />
   </ItemGroup>
 </Project>

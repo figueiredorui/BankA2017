@@ -5,23 +5,63 @@ using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
 using BankA.Data.Models;
-using BankA.Data.Models.Mapping;
+using SQLite.CodeFirst;
+using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace BankA.Data.Contexts
 {
     public partial class BankAContext : DbContext
     {
-        static BankAContext()
-        {
-            Database.SetInitializer<BankAContext>(null);
-        }
-
         public BankAContext()
-            : base("Name=DefaultConnection")
+            : base("name=BankAContext")
         {
-            
         }
 
+        public virtual DbSet<BankAccount> BankAccounts { get; set; }
+        public virtual DbSet<BankStatementFile> BankStatementFiles { get; set; }
+        public virtual DbSet<BankTransaction> BankTransactions { get; set; }
+        public virtual DbSet<BankVersion> BankVersions { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+
+            modelBuilder.Entity<BankAccount>()
+                .Property(e => e.Description)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<BankAccount>()
+                .Property(e => e.BankName)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<BankAccount>()
+                .Property(e => e.RowVersion)
+                .IsFixedLength();
+
+            modelBuilder.Entity<BankAccount>()
+                .HasMany(e => e.BankTransactions)
+                .WithRequired(e => e.BankAccount)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<BankStatementFile>()
+                .Property(e => e.RowVersion)
+                .IsFixedLength();
+
+            modelBuilder.Entity<BankTransaction>()
+                .Property(e => e.Description)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<BankTransaction>()
+                .Property(e => e.Tag)
+                .IsUnicode(false);
+
+            //modelBuilder.Entity<BankTransaction>()
+            //    .Property(e => e.RowVersion)
+            //    .IsFixedLength();
+            modelBuilder.Entity<BankTransaction>().Ignore(e => e.RowVersion);
+        }
+
+       
         public override int SaveChanges()
         {
             try
@@ -49,16 +89,7 @@ namespace BankA.Data.Contexts
             }
         }
 
-        public DbSet<BankAccountTable> Accounts { get; set; }
-        public DbSet<BankTransactionTable> Transactions { get; set; }
-        public DbSet<StatementFileTable> StatementFiles { get; set; }
-
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            modelBuilder.Configurations.Add(new BankAccountMap());
-            modelBuilder.Configurations.Add(new BankTransactionMap());
-            modelBuilder.Configurations.Add(new StatementFileMap());
-        }
+       
 
         
     }

@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Accounts\IAccountService.cs" />
+    <Compile Include="Admin\AdminService.cs" />
     <Compile Include="Reports\IReportService.cs" />
     <Compile Include="Statements\Helpers\BankNameAttribute.cs" />
     <Compile Include="Statements\Helpers\IStatementMap.cs" />

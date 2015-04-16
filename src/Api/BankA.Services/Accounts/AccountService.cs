@@ -58,8 +58,8 @@ namespace BankA.Services.Accounts
                           {
                               AccountID = account.AccountID,
                               Description = account.Description,
-                              Balance = (decimal?)account.Transactions.Sum(o => o.CreditAmount - o.DebitAmount) ?? 0,
-                              LastTransactionDate = (DateTime?)account.Transactions.Max(o => o.TransactionDate)?? null
+                              Balance = (decimal?)account.BankTransactions.Sum(o => o.CreditAmount - o.DebitAmount) ?? 0,
+                              LastTransactionDate = (DateTime?)account.BankTransactions.Max(o => o.TransactionDate)?? null
                           }).ToList();
 
             var total = new AccountSummary() { AccountID = 0, Description = "All Accounts", Balance = accountLst.Sum(q => q.Balance), LastTransactionDate = null };

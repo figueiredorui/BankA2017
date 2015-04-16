@@ -12,7 +12,7 @@ namespace BankA.Services.Transactions
 {
     public static class TransactionExtensions
     {
-        public static Transaction ToModel(this BankTransactionTable table)
+        public static Transaction ToModel(this BankTransaction table)
         {
             return new Transaction()
             {
@@ -28,16 +28,16 @@ namespace BankA.Services.Transactions
             };
         }
 
-        public static List<Transaction> ToModel(this List<BankTransactionTable> tableLst)
+        public static List<Transaction> ToModel(this List<BankTransaction> tableLst)
         {
             var lst = new List<Transaction>();
             tableLst.ForEach(i => lst.Add(i.ToModel()));
             return lst;
         }
 
-        public static BankTransactionTable ToTable(this Transaction model)
+        public static BankTransaction ToTable(this Transaction model)
         {
-            return new BankTransactionTable()
+            return new BankTransaction()
             {
                 ID = model.ID,
                 AccountID = model.AccountID,
