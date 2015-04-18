@@ -1,9 +1,30 @@
 'use strict';
-app.controller('ExpenseAnalysisCtrl', function($scope, $state, AccountService, ReportsService) {
+app.controller('ExpenseAnalysisCtrl', function($scope, $state, $stateParams, AccountService, ReportsService) {
+
+    $scope.SelectedAccountID = '';
+    $scope.ChangedAccountID = loadExpensesReport;
+    
+
+    loadAccounts();
     loadExpensesReport();
 
+    function loadAccounts() {
+        AccountService.getSummary()
+            .success(function (response) {
+            $scope.Accounts = response;
+
+
+        })
+            .error(function (error) {
+            $scope.errorMsg = error.Message;
+        })
+            .finally(function () {
+        });
+    }
+
+
     function loadExpensesReport() {
-        ReportsService.getExpenses().success(function(response) {
+        ReportsService.getExpenses($scope.SelectedAccountID).success(function(response) {
             showPivot(response);
         }).error(function(error) {
             $scope.errorMsg = error.Message;
@@ -11,13 +32,19 @@ app.controller('ExpenseAnalysisCtrl', function($scope, $state, AccountService, R
         finally(function() {});
     }
 
+
     function showPivot(data) {
-        $("#pivotTableOutput").pivotUI(data, {
+        $scope.data = data;
+
+        var sum = $.pivotUtilities.aggregatorTemplates.sum;
+        var numberFormat = $.pivotUtilities.numberFormat;
+        var intFormat = numberFormat({digitsAfterDecimal: 2}); 
+
+        $("#pivotTableOutput").pivot(data, {
             rows: ["Tag"],
             cols: ["Year", "Month"],
-            vals: ["Amount"],
-            rendererName: "Table",
-            aggregatorName: "Sum"
+            aggregator: sum(intFormat)(["Amount"]),
         });
+
     }
 })

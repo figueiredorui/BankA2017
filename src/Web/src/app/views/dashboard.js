@@ -2,7 +2,8 @@
 
 app.controller('DashboardCtrl', function ($scope, $rootScope, $state, AccountService, ReportsService) {
 
-
+    $rootScope.accountID = '';
+    
     $scope.showTransaction= showTransaction;
     $scope.selectAccount= selectAccount;
 
@@ -33,9 +34,6 @@ app.controller('DashboardCtrl', function ($scope, $rootScope, $state, AccountSer
     }
 
     function loadChart() {
-
-        if ($rootScope.accountID === undefined)
-            $rootScope.accountID = 0;
 
         ReportsService.getGetMonthlyCashFlow($rootScope.accountID)
             .success(function (response) {

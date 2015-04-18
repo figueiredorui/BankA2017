@@ -12,7 +12,7 @@ module.exports = function(grunt) {
 
         wiredep: {
             target: {
-                src: 'index.html' // point to your HTML file.
+                src: 'src/index.html' // point to your HTML file.
             }
         },
         copy: {
@@ -48,36 +48,36 @@ module.exports = function(grunt) {
                     replacements: [
                         // place files inline example
                         {
-                            pattern: 'http://localhost/banka.api/',
-                            replacement: 'https://apibanka.apphb.com/'
+                            pattern: 'http://localhost/banka.webapi/api/',
+                            replacement: 'https://apibanka.apphb.com/api/'
                         }
                     ]
                 }
             }
         },
         buildcontrol: {
-    options: {
-      dir: 'dist',
-      commit: true,
-      push: false,
-      message: 'Built %sourceName% from commit %sourceCommit% on branch %sourceBranch%'
-    },
-    
-    production: {
-      options: {
-        remote: 'git@5apps.com:figueiredorui_banka.git',
-        branch: 'master'
-      }
-    },
-    
-  }
+			options: {
+			  dir: 'dist',
+			  commit: true,
+			  push: false,
+			  message: 'Built %sourceName% from commit %sourceCommit% on branch %sourceBranch%'
+			},
+			
+			production: {
+			  options: {
+				remote: 'git@5apps.com:figueiredorui_banka.git',
+				branch: 'master'
+			  }
+			},
+			
+		 }
      
     });
 
     grunt.registerTask(
         'build',
         'Compiles all of the assets and copies the files to the dist directory.',
-        [ 'clean:build', 'copy','string-replace', 'clean:afterbuild', 'buildcontrol' ]
+        [ 'clean:build', 'copy','string-replace', 'clean:afterbuild' ]
     );
 
 };

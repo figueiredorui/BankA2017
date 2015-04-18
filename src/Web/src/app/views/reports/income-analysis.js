@@ -1,9 +1,28 @@
 'use strict';
 app.controller('IncomeAnalysisCtrl', function($scope, $state, AccountService, ReportsService) {
+
+    $scope.SelectedAccountID = '';
+    $scope.ChangedAccountID = loadIncomeReport;
+
+    loadAccounts();
     loadIncomeReport();
 
+    function loadAccounts() {
+        AccountService.getSummary()
+            .success(function (response) {
+            $scope.Accounts = response;
+
+
+        })
+            .error(function (error) {
+            $scope.errorMsg = error.Message;
+        })
+            .finally(function () {
+        });
+    }
+
     function loadIncomeReport() {
-        ReportsService.getIncome().success(function(response) {
+        ReportsService.getIncome($scope.SelectedAccountID).success(function(response) {
             showPivot(response);
         }).error(function(error) {
             $scope.errorMsg = error.Message;
@@ -12,12 +31,15 @@ app.controller('IncomeAnalysisCtrl', function($scope, $state, AccountService, Re
     }
 
     function showPivot(data) {
-        $("#pivotTableOutput").pivotUI(data, {
+
+        var sum = $.pivotUtilities.aggregatorTemplates.sum;
+        var numberFormat = $.pivotUtilities.numberFormat;
+        var intFormat = numberFormat({digitsAfterDecimal: 2}); 
+
+        $("#pivotTableOutput").pivot(data, {
             rows: ["Tag"],
             cols: ["Year", "Month"],
-            vals: ["Amount"],
-            rendererName: "Table",
-            aggregatorName: "Sum"
+            aggregator: sum(intFormat)(["Amount"]),
         });
     }
 })

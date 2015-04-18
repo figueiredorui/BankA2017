@@ -1,9 +1,28 @@
 'use strict';
 app.controller('ExpensebyTagCtrl', function($scope, $state, AccountService, ReportsService) {
+    
+     $scope.SelectedAccountID = '';
+     $scope.ChangedAccountID = loadExpensesByTag;
+
+    loadAccounts();
     loadExpensesByTag();
 
+    function loadAccounts() {
+        AccountService.getSummary()
+            .success(function (response) {
+            $scope.Accounts = response;
+
+
+        })
+            .error(function (error) {
+            $scope.errorMsg = error.Message;
+        })
+            .finally(function () {
+        });
+    }
+
     function loadExpensesByTag() {
-        ReportsService.getExpensesByTag().success(function(response) {
+        ReportsService.getExpensesByTag($scope.SelectedAccountID).success(function(response) {
             showChart(response);
         }).error(function(error) {
             $scope.errorMsg = error.Message;

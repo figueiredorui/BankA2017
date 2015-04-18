@@ -1,3 +1,7 @@
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
 .nopadding {
    padding: 0 !important;
    margin: 0 !important;
@@ -61,6 +65,7 @@ inputs-moz-placeholder {
     -moz-transition: background 0.2s linear, box-shadow 0.6s linear;
     -o-transition: background 0.2s linear, box-shadow 0.6s linear;
     transition: background 0.2s linear, box-shadow 0.6s linear;
+   background:#5cb85c;
 }
 
 .inputs:focus {
@@ -69,6 +74,14 @@ inputs-moz-placeholder {
     -webkit-box-shadow: 2px 2px 7px #E8E8E8 inset;
     -moz-box-shadow: 2px 2px 7px #E8E8E8 inset;
     box-shadow: 2px 2px 7px #E8E8E8 inset;
+}
+
+.inputs.bgred {
+    background:#eba5a3;
+}
+
+.inputs.bggreen {
+    background:#5cb85c;
 }
 
 

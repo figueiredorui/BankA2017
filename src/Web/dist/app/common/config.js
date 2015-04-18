@@ -6,7 +6,7 @@
 app.constant('AppSettings', {
     AppName: 'BankA',
     AppVersion: '1.0.1',
-    ApiUrl: 'https://apibanka.apphb.com/',
+    ApiUrl: 'https://apibanka.apphb.com/api/',
 });
 
 //-------------------------------------------------------------

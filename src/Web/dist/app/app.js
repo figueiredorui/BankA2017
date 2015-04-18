@@ -3,6 +3,7 @@
 var app = angular.module('app', ['ui.router',
                                  'ngCookies',
                                  'ui.bootstrap',
+                                 'ui.select',
                                  'angular-loading-bar',
                                  'daterangepicker',
                                  'angularFileUpload',
@@ -11,9 +12,8 @@ var app = angular.module('app', ['ui.router',
 
 
 
-app.run(function ($rootScope, $state, AppSettings) {
+app.run(function ($rootScope, $state) {
     $rootScope.$state = $state;
-    $rootScope.AppName = AppSettings.AppName;
-    $rootScope.AppVersion = AppSettings.AppVersion;
     
 });
+
