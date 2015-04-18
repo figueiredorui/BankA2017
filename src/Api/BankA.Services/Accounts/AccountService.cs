@@ -62,7 +62,7 @@ namespace BankA.Services.Accounts
                               LastTransactionDate = (DateTime?)account.BankTransactions.Max(o => o.TransactionDate)?? null
                           }).ToList();
 
-            var total = new AccountSummary() { AccountID = 0, Description = "All Accounts", Balance = accountLst.Sum(q => q.Balance), LastTransactionDate = null };
+            var total = new AccountSummary() { AccountID = null, Description = "All Accounts", Balance = accountLst.Sum(q => q.Balance), LastTransactionDate = null };
 
             accountLst.Add(total);
 

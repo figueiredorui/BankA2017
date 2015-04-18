@@ -18,11 +18,11 @@ namespace BankA.Services.Reports
             transactionRepository = new TransactionRepository();
         }
 
-        public List<MonthlyCashFlow> GetMonthlyCashFlow(int accountID, DateTime startDate, DateTime endDate)
+        public List<MonthlyCashFlow> GetMonthlyCashFlow(int? accountID, DateTime startDate, DateTime endDate)
         {
             var transactionsLst = transactionRepository.Table
                                                         .Where(q => q.IsTransfer == false
-                                                            && q.AccountID == (accountID == 0 ? q.AccountID : accountID)
+                                                            && q.AccountID == (accountID ?? q.AccountID)
                                                         && q.TransactionDate >= startDate 
                                                         && q.TransactionDate <= endDate)
                                                         .ToList();
@@ -55,10 +55,10 @@ namespace BankA.Services.Reports
             return lst = lst.OrderBy(o => o.Year).ThenBy(o => o.Month).ToList();
         }
 
-        public List<RunningBalance> GetRunningBalance(int accountID, DateTime startDate, DateTime endDate)
+        public List<RunningBalance> GetRunningBalance(int? accountID, DateTime startDate, DateTime endDate)
         {
             var transactionsLst = transactionRepository.Table
-                                                       .Where(q => q.AccountID == (accountID == 0 ? q.AccountID : accountID))
+                                                       .Where(q => q.AccountID == (accountID ?? q.AccountID))
                                                        .OrderBy(o => o.TransactionDate)
                                                        .ToList();
 
@@ -73,10 +73,10 @@ namespace BankA.Services.Reports
                     RunningAmount = balance
                 };
             }).Where(q => q.TransactionDate >= startDate && q.TransactionDate <= endDate).ToList();
+            //return statement.OrderBy(o => o.TransactionDate).ToList();
 
             var result = new List<RunningBalance>();
-            var date = new DateTime(endDate.Year, endDate.Month, 5);
-            //var date = endDate;
+            var date = new DateTime(endDate.Year, endDate.Month, endDate.Day);
 
             while (date > startDate)
             {
@@ -91,7 +91,6 @@ namespace BankA.Services.Reports
 
             return result.OrderBy(o => o.TransactionDate).ToList();
         }
-
 
         public List<ExpensesReport> GetExpenses(int? accountID, DateTime startDate, DateTime endDate)
         {
@@ -169,5 +168,6 @@ namespace BankA.Services.Reports
 
             return lst;
         }
+
     }
 }

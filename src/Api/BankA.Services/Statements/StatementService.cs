@@ -45,6 +45,7 @@ namespace BankA.Services.Statements
                 Stream stream = new MemoryStream(statement.FileContent);
                 using (var reader = new CsvReader(new StreamReader(stream)))
                 {
+                    reader.Configuration.HasHeaderRecord = false;
                     Type statementMap = GetStatementMap(statement.AccountID);
                     reader.Configuration.RegisterClassMap(statementMap);
                     statementRows = reader.GetRecords<StatementRow>().ToList();

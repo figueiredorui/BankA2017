@@ -11,10 +11,10 @@ namespace BankA.Data.Repositories
     public class TransactionRepository : Repository<BankTransaction>
     {
 
-
+        
         public void AddBatch(List<BankTransaction> transactionLst)
         {
-            
+            transactionLst = transactionLst.OrderBy(o => o.TransactionDate).ToList();    
             using (var ctx = new BankAContext())
             {
                 foreach (var trans in transactionLst)

@@ -36,8 +36,8 @@ namespace BankA.Api.Controllers
         }
 
         // GET: api/Reports/Chart
-        [Route("Reports/MonthlyCashFlow/{accountID}")]
-        public IHttpActionResult GetMonthlyCashFlow(int accountID)
+        [Route("Reports/MonthlyCashFlow/{accountID:int?}")]
+        public IHttpActionResult GetMonthlyCashFlow(int? accountID = null)
         {
             var dates = DateFilterHelper.Calc(12);
             var lst = svc.GetMonthlyCashFlow(accountID, dates.StartDate, dates.EndDate);
@@ -45,35 +45,35 @@ namespace BankA.Api.Controllers
         }
 
         // GET: api/Reports/RunningBalance
-        [Route("Reports/RunningBalance/{accountID}")]
-        public IHttpActionResult GetRunningBalance(int accountID)
+        [Route("Reports/RunningBalance/{accountID:int?}")]
+        public IHttpActionResult GetRunningBalance(int? accountID = null)
         {
-            var dates = DateFilterHelper.Calc(24);
+            var dates = DateFilterHelper.Calc(12);
             var lst = svc.GetRunningBalance(accountID, dates.StartDate, dates.EndDate);
             return Ok(lst);
         }
 
-        [Route("Reports/Expenses")]
-        public IHttpActionResult GetExpenses()
+        [Route("Reports/Expenses/{accountID:int?}")]
+        public IHttpActionResult GetExpenses(int? accountID = null)
         {
             var dates = DateFilterHelper.Calc(12);
-            var lst = svc.GetExpenses(null, dates.StartDate, dates.EndDate);
+            var lst = svc.GetExpenses(accountID, dates.StartDate, dates.EndDate);
             return Ok(lst);
         }
 
-        [Route("Reports/ExpensesByTag")]
-        public IHttpActionResult GetExpensesByTag()
+        [Route("Reports/ExpensesByTag/{accountID:int?}")]
+        public IHttpActionResult GetExpensesByTag(int? accountID = null)
         {
             var dates = DateFilterHelper.Calc(12);
-            var lst = svc.GetExpensesByTag(null, dates.StartDate, dates.EndDate);
+            var lst = svc.GetExpensesByTag(accountID, dates.StartDate, dates.EndDate);
             return Ok(lst);
         }
 
-        [Route("Reports/Income")]
-        public IHttpActionResult GetIncome()
+        [Route("Reports/Income/{accountID:int?}")]
+        public IHttpActionResult GetIncome(int? accountID = null)
         {
             var dates = DateFilterHelper.Calc(12);
-            var lst = svc.GetIncome(null, dates.StartDate, dates.EndDate);
+            var lst = svc.GetIncome(accountID, dates.StartDate, dates.EndDate);
             return Ok(lst);
         }
     }
@@ -82,10 +82,12 @@ namespace BankA.Api.Controllers
     {
         public static BetweenDates Calc(int months)
         {
+            int currentDay = DateTime.Now.Date.Day;
             return new BetweenDates()
             {
-                 StartDate = new DateTime(DateTime.Now.Date.AddMonths(-months).Year, DateTime.Now.Date.AddMonths(-months).Month, 1),
-                 EndDate = DateTime.Now.Date
+                EndDate = DateTime.Now.Date,
+                StartDate = new DateTime(DateTime.Now.Date.AddMonths(-months).Year, DateTime.Now.Date.AddMonths(-months).Month, currentDay),
+                
             };
         }
 
