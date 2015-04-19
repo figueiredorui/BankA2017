@@ -2,8 +2,8 @@
 
 app.controller('DashboardCtrl', function ($scope, $rootScope, $state, AccountService, ReportsService) {
 
-    $rootScope.accountID = '';
-    
+    $rootScope.accountID = null;
+
     $scope.showTransaction= showTransaction;
     $scope.selectAccount= selectAccount;
 
@@ -34,6 +34,8 @@ app.controller('DashboardCtrl', function ($scope, $rootScope, $state, AccountSer
     }
 
     function loadChart() {
+        
+        
 
         ReportsService.getGetMonthlyCashFlow($rootScope.accountID)
             .success(function (response) {
@@ -83,6 +85,11 @@ app.controller('DashboardCtrl', function ($scope, $rootScope, $state, AccountSer
 
             $scope.runningBalance= runningBalance;
 
+
+            LoadChartNvd3(response);
+
+
+
         })
             .error(function (error) {
             $scope.errorMsg = error.Message;
@@ -93,5 +100,40 @@ app.controller('DashboardCtrl', function ($scope, $rootScope, $state, AccountSer
 
 
     }
+
+
+    function LoadChartNvd3(dataValues)
+    {
+        $scope.data = [{
+            key: '',
+            values:dataValues
+        }];
+
+        $scope.options = {
+            chart: {
+                type: 'lineChart',
+                height: 450,
+                margin : {
+                    top: 20,
+                    right: 20,
+                    bottom: 60,
+                    left: 55
+                },
+                x: function(d){ return d.TransactionDate; },
+                y: function(d){ return d.RunningAmount; },
+                xAxis: {
+                    axisLabel: 'Date',
+                    tickFormat: function(d) {
+                        var label = d.TransactionDate;
+                        return label;
+                    }
+                }
+
+
+            }
+        };
+
+    }
+
 })
 

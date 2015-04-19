@@ -5,10 +5,18 @@ app.service("ReportsService", function ($http, AppSettings) {
     var urlBase = AppSettings.ApiUrl + 'Reports';
 
     this.getGetMonthlyCashFlow = function (accountID) {
+        
+        if (accountID == null)
+            accountID = '';
+        
         return $http.get(urlBase + '/MonthlyCashFlow/' + accountID);
     }
 
     this.getRunningBalance = function (accountID) {
+        
+        if (accountID == null)
+            accountID = '';
+        
         return $http.get(urlBase + '/RunningBalance/' + accountID);
     }
 
