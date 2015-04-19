@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankA.Api", "BankA.Api\BankA.Api.csproj", "{34DA7F99-CAA4-4CED-83B8-91B7624B7F7B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankA.Api", "BankA.Api\BankA.Api.csproj", "{A8D81792-9BE3-4691-99A4-3F067FB6ABCC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BankA", "BankA", "{8820CE86-8CDE-49D6-95F8-686BF0751F1E}"
 EndProject
@@ -20,7 +20,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{86556C
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankA.WebHost", "BankA.WebHost\BankA.WebHost.csproj", "{AF5EA238-EE09-413B-982A-10D767238882}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankA.WebApi", "BankA.WebApi\BankA.WebApi.csproj", "{AF5EA238-EE09-413B-982A-10D767238882}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,10 +28,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{34DA7F99-CAA4-4CED-83B8-91B7624B7F7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{34DA7F99-CAA4-4CED-83B8-91B7624B7F7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{34DA7F99-CAA4-4CED-83B8-91B7624B7F7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{34DA7F99-CAA4-4CED-83B8-91B7624B7F7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8D81792-9BE3-4691-99A4-3F067FB6ABCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8D81792-9BE3-4691-99A4-3F067FB6ABCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8D81792-9BE3-4691-99A4-3F067FB6ABCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8D81792-9BE3-4691-99A4-3F067FB6ABCC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{55EDB1BA-73D5-40F2-B05F-FEF7F3A939A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{55EDB1BA-73D5-40F2-B05F-FEF7F3A939A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{55EDB1BA-73D5-40F2-B05F-FEF7F3A939A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -53,7 +53,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{34DA7F99-CAA4-4CED-83B8-91B7624B7F7B} = {8820CE86-8CDE-49D6-95F8-686BF0751F1E}
+		{A8D81792-9BE3-4691-99A4-3F067FB6ABCC} = {8820CE86-8CDE-49D6-95F8-686BF0751F1E}
 		{55EDB1BA-73D5-40F2-B05F-FEF7F3A939A8} = {8820CE86-8CDE-49D6-95F8-686BF0751F1E}
 		{D55901A8-B1AC-4406-A546-1BA93CDC0108} = {8820CE86-8CDE-49D6-95F8-686BF0751F1E}
 		{7FC49923-4A41-4E6F-AE67-6909748C23A5} = {8820CE86-8CDE-49D6-95F8-686BF0751F1E}

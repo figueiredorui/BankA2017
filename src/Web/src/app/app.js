@@ -3,11 +3,11 @@
 var app = angular.module('app', ['ui.router',
                                  'ngCookies',
                                  'ui.bootstrap',
-                                 'ui.select',
                                  'angular-loading-bar',
                                  'daterangepicker',
                                  'angularFileUpload',
                                  'chart.js',
+                                 'nvd3',
                                  'toastr']);
 
 
