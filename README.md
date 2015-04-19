@@ -1,4 +1,4 @@
-# BankA.Web
+# BankA
 Web app to import, categorize and analyse bank transactions
 
 Demo  
