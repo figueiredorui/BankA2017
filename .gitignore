@@ -7,7 +7,7 @@ src/bower_components
 !src/Web/dist/vendor/
 src/Web/Src/vendor/
 
-
+!src/api/.nuget/nuget.exe
 
 >>>>>>> 79d30b45ac826eb2c912b4690620db277a1e2bc6
 ## Ignore Visual Studio temporary files, build results, and
@@ -157,7 +157,7 @@ publish/
 # except build/, which is used as an MSBuild target.
 !**/packages/build/
 # If using the old MSBuild-Integrated Package Restore, uncomment this:
-#!**/packages/repositories.config
+!**/packages/repositories.config
 
 # Windows Azure Build Output
 csx/
