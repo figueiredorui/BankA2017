@@ -13,7 +13,7 @@ namespace BankA.Data.Contexts
     public partial class BankAContext : DbContext
     {
         public BankAContext()
-            : base("name=BankAContext")
+            : base("name=DefaultConnection")
         {
         }
 
