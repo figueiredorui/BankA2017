@@ -104,6 +104,8 @@ app.controller('DashboardCtrl', function ($scope, $rootScope, $state, AccountSer
 
     function LoadChartNvd3(dataValues)
     {
+       
+        
         $scope.data = [{
             key: '',
             values:dataValues
@@ -112,6 +114,7 @@ app.controller('DashboardCtrl', function ($scope, $rootScope, $state, AccountSer
         $scope.options = {
             chart: {
                 type: 'lineChart',
+                interpolate: 'basis', 
                 height: 450,
                 margin : {
                     top: 20,
@@ -119,14 +122,20 @@ app.controller('DashboardCtrl', function ($scope, $rootScope, $state, AccountSer
                     bottom: 60,
                     left: 55
                 },
-                x: function(d){ return d.TransactionDate; },
+                useInteractiveGuideline: true,
+                transitionDuration: 500,
+                x: function(d){ return new Date(d.TransactionDate) },
                 y: function(d){ return d.RunningAmount; },
+                xScale : d3.time.scale(), 
                 xAxis: {
+                    showMaxMin: false,
                     axisLabel: 'Date',
+                    ticks : d3.time.months,
                     tickFormat: function(d) {
-                        var label = d.TransactionDate;
+                        var label = d3.time.format('%b/%y')(new Date(d))
                         return label;
-                    }
+                    },
+                    axisLabelDistance: 50
                 }
 
 
