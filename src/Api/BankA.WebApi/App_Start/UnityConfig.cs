@@ -13,7 +13,7 @@ namespace BankA.WebApi
         public static void RegisterComponents()
         {
 			var container = new UnityContainer();
-            
+
             // register all your components with the container here
             // it is NOT necessary to register your controllers
 
@@ -21,7 +21,7 @@ namespace BankA.WebApi
             container.RegisterType<IReportService, ReportService>();
             container.RegisterType<ITransactionService, TransactionService>();
             container.RegisterType<IStatementService, StatementService>();
-            
+
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }
     }

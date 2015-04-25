@@ -10,13 +10,14 @@ namespace BankA.Data.Models
     public partial class BankStatementFile
     {
         [Key]
-        public int FileID { get; set; }
+        public long FileID { get; set; }
 
         [Required]
         [StringLength(50)]
         public string FileName { get; set; }
 
         [Required]
+        [MaxLength(2147483647)]
         public byte[] FileContent { get; set; }
 
         [Required]
@@ -33,9 +34,8 @@ namespace BankA.Data.Models
         [StringLength(50)]
         public string ChangedBy { get; set; }
 
-        [Column(TypeName = "timestamp")]
-        [MaxLength(8)]
-        [Timestamp]
+        [Required]
+        [MaxLength(2147483647)]
         public byte[] RowVersion { get; set; }
     }
 }

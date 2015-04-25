@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Web;
 using System.Web.Http;
 
-namespace BankA.Api.Controllers
+namespace BankA.WebApi.Controllers
 {
     public class HomeController : ApiController
     {
@@ -20,6 +20,7 @@ namespace BankA.Api.Controllers
                 Name = "BankA API",
                 Version = GetVersion(),
                 GitHub = "https://github.com/figueiredorui/BankA.Api",
+                Help= this.Request.RequestUri + "swagger/ui/index",
                 DbVersion = dbVersion
             });
         }

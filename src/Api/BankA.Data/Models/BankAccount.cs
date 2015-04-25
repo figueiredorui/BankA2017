@@ -9,6 +9,7 @@ namespace BankA.Data.Models
     [Table("BankAccount")]
     public partial class BankAccount
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public BankAccount()
         {
             BankTransactions = new HashSet<BankTransaction>();
@@ -37,11 +38,11 @@ namespace BankA.Data.Models
         [StringLength(50)]
         public string ChangedBy { get; set; }
 
-        [Column(TypeName = "timestamp")]
-        [MaxLength(8)]
-        [Timestamp]
+        [Required]
+        [MaxLength(2147483647)]
         public byte[] RowVersion { get; set; }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BankTransaction> BankTransactions { get; set; }
     }
 }

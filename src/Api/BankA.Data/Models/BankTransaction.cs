@@ -13,7 +13,6 @@ namespace BankA.Data.Models
 
         public int AccountID { get; set; }
 
-        [Column(TypeName = "date")]
         public DateTime TransactionDate { get; set; }
 
         [StringLength(500)]
@@ -28,7 +27,7 @@ namespace BankA.Data.Models
 
         public bool IsTransfer { get; set; }
 
-        public int? FileID { get; set; }
+        public long? FileID { get; set; }
 
         public DateTime? CreatedOn { get; set; }
 
@@ -40,9 +39,8 @@ namespace BankA.Data.Models
         [StringLength(50)]
         public string ChangedBy { get; set; }
 
-        [Column(TypeName = "timestamp")]
-        [MaxLength(8)]
-        [Timestamp]
+        [Required]
+        [MaxLength(2147483647)]
         public byte[] RowVersion { get; set; }
 
         public virtual BankAccount BankAccount { get; set; }
