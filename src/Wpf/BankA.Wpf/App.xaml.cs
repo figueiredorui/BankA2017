@@ -1,4 +1,5 @@
-﻿using BankA.SelfHost.Config;
+﻿using BankA.Services.Accounts;
+using BankA.Wpf.Config;
 using Microsoft.Owin.FileSystems;
 using Microsoft.Owin.Hosting;
 using Microsoft.Owin.StaticFiles;
@@ -15,7 +16,7 @@ using System.Web.Http;
 using System.Web.Http.Cors;
 using System.Windows;
 
-namespace BankA.SelfHost
+namespace BankA.Wpf
 {
     /// <summary>
     /// Interaction logic for App.xaml
@@ -27,6 +28,10 @@ namespace BankA.SelfHost
             string baseAddress = "http://localhost:9000/";
             // Start OWIN host 
             WebApp.Start<HostConfig>(url: baseAddress);
+
+            //var svc = new AccountService().GetAccountSummary();
+
+
         }
     }
 

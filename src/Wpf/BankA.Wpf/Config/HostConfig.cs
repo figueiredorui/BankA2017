@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Cors;
 
-namespace BankA.SelfHost.Config
+namespace BankA.Wpf.Config
 {
     class HostConfig
     {
@@ -19,7 +19,6 @@ namespace BankA.SelfHost.Config
         // parameter in the WebApp.Start method.
         public void Configuration(IAppBuilder appBuilder)
         {
-            Type t1 = typeof(BankA.Api.Controllers.HomeController);
             Type t2 = typeof(BankA.Api.Controllers.AccountsController);
             Type t3 = typeof(BankA.Api.Controllers.ReportsController);
             Type t4 = typeof(BankA.Api.Controllers.TransactionsController);

@@ -34,8 +34,5 @@ namespace BankA.Data.Models
         [StringLength(50)]
         public string ChangedBy { get; set; }
 
-        [Required]
-        [MaxLength(2147483647)]
-        public byte[] RowVersion { get; set; }
     }
 }

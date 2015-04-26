@@ -38,10 +38,6 @@ namespace BankA.Data.Models
         [StringLength(50)]
         public string ChangedBy { get; set; }
 
-        [Required]
-        [MaxLength(2147483647)]
-        public byte[] RowVersion { get; set; }
-
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BankTransaction> BankTransactions { get; set; }
     }

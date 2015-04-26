@@ -95,7 +95,14 @@ namespace BankA.Api.Controllers
                 {
                     throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
                 }
-                string root = System.Web.HttpContext.Current.Server.MapPath("~/App_Data/");
+
+                string root = string.Empty;
+                if (System.Web.HttpContext.Current != null)
+                    root = System.Web.HttpContext.Current.Server.MapPath("~/App_Data/");
+                else
+                    root = System.AppDomain.CurrentDomain.BaseDirectory;
+                
+                
                 var provider = new MultipartFormDataStreamProvider(root);
                 await Request.Content.ReadAsMultipartAsync(provider);
 

@@ -1,4 +1,4 @@
-﻿<Window x:Class="BankA.SelfHost.MainWindow"
+﻿<Window x:Class="BankA.Wpf.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
          xmlns:cefSharp="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf" KeyDown="Window_KeyDown"
