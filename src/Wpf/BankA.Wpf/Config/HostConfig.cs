@@ -39,6 +39,8 @@ namespace BankA.Wpf.Config
                 defaults: new { controller = "Home", id = RouteParameter.Optional }
             );
 
+            
+
             appBuilder.UseFileServer(new FileServerOptions()
             {
                 FileSystem = new PhysicalFileSystem(GetRootDirectory()),

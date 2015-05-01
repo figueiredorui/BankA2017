@@ -5,6 +5,7 @@ namespace BankA.Data.Contexts
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
     using BankA.Data.Models;
+    using SQLite.CodeFirst;
 
     public partial class BankAContext : DbContext
     {
@@ -48,6 +49,9 @@ namespace BankA.Data.Contexts
             modelBuilder.Entity<BankTransaction>()
                 .Property(e => e.Tag)
                 .IsUnicode(false);
+
+            var sqliteConnectionInitializer = new SqliteCreateDatabaseIfNotExists<BankAContext>(Database.Connection.ConnectionString, modelBuilder);
+            Database.SetInitializer(sqliteConnectionInitializer);
         }
     }
 }

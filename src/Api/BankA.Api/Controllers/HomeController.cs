@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Web;
 using System.Web.Http;
 
-namespace BankA.WebApi.Controllers
+namespace BankA.Api.Controllers
 {
     public class HomeController : ApiController
     {
@@ -27,8 +27,8 @@ namespace BankA.WebApi.Controllers
 
         private void CreateIfNotExists()
         {
-            //var svc = new AdminService();
-            //svc.CreateIfNotExists();
+            var svc = new AdminService();
+            svc.CreateIfNotExists();
         }
 
         private string GetDbVersion()

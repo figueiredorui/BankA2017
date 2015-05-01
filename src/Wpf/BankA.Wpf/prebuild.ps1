@@ -1,9 +1,10 @@
 ﻿#Set-ExecutionPolicy unrestricted
 
 $dir = $args[0]
+$configuation = $args[1]
 
 $src = $dir + "..\..\Web\dist\*.*"
-$des = $dir + "bin\x86\Debug\html\"
+$des = $dir + "bin\x86\" + $configuation +"\html\"
 
 XCOPY $src $des /D/E/C/F/R/Y
 
