@@ -266,9 +266,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Content Include="App_Data\banka-demo.db">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <None Include="BankA.Wpf_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="prebuild.ps1" />
