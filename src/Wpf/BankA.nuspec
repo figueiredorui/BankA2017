@@ -2,9 +2,10 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>BankA</id>
-        <version>1.0.10</version>
+        <version>1.0.13</version>
         <authors>Rui Figueiredo</authors>
         <projectUrl>https://github.com/figueiredorui/BankA</projectUrl>
+        <iconUrl>https://raw.githubusercontent.com/figueiredorui/BankA/master/docs/icon32x32.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Bank Analysis</description>
     </metadata>
@@ -633,23 +634,29 @@
         <file src="BankA.Wpf\bin\x86\Debug\BankA.Models.dll" target="lib\net45\BankA.Models.dll" />
         <file src="BankA.Wpf\bin\x86\Debug\BankA.Services.dll" target="lib\net45\BankA.Services.dll" />
         <file src="BankA.Wpf\bin\x86\Debug\BankA.Wpf.exe" target="lib\net45\BankA.Wpf.exe" />
-        <file src="BankA.Wpf\bin\x86\Debug\BankA.Wpf.vshost.exe" target="lib\net45\BankA.Wpf.vshost.exe" />
+        <file src="BankA.Wpf\bin\x86\Debug\BankA.Wpf.exe.config" target="lib\net45\BankA.Wpf.exe.config" />
+        <file src="BankA.Wpf\bin\x86\Debug\BankA.Wpf.exe.manifest" target="lib\net45\BankA.Wpf.exe.manifest" />
+        <file src="BankA.Wpf\bin\x86\Debug\cef.pak" target="lib\net45\cef.pak" />
         <file src="BankA.Wpf\bin\x86\Debug\CefSharp.BrowserSubprocess.Core.dll" target="lib\net45\CefSharp.BrowserSubprocess.Core.dll" />
         <file src="BankA.Wpf\bin\x86\Debug\CefSharp.BrowserSubprocess.exe" target="lib\net45\CefSharp.BrowserSubprocess.exe" />
         <file src="BankA.Wpf\bin\x86\Debug\CefSharp.Core.dll" target="lib\net45\CefSharp.Core.dll" />
         <file src="BankA.Wpf\bin\x86\Debug\CefSharp.dll" target="lib\net45\CefSharp.dll" />
         <file src="BankA.Wpf\bin\x86\Debug\CefSharp.Wpf.dll" target="lib\net45\CefSharp.Wpf.dll" />
+        <file src="BankA.Wpf\bin\x86\Debug\cef_100_percent.pak" target="lib\net45\cef_100_percent.pak" />
+        <file src="BankA.Wpf\bin\x86\Debug\cef_200_percent.pak" target="lib\net45\cef_200_percent.pak" />
         <file src="BankA.Wpf\bin\x86\Debug\CsvHelper.dll" target="lib\net45\CsvHelper.dll" />
         <file src="BankA.Wpf\bin\x86\Debug\d3dcompiler_43.dll" target="lib\net45\d3dcompiler_43.dll" />
         <file src="BankA.Wpf\bin\x86\Debug\d3dcompiler_47.dll" target="lib\net45\d3dcompiler_47.dll" />
         <file src="BankA.Wpf\bin\x86\Debug\DeltaCompressionDotNet.dll" target="lib\net45\DeltaCompressionDotNet.dll" />
         <file src="BankA.Wpf\bin\x86\Debug\DeltaCompressionDotNet.MsDelta.dll" target="lib\net45\DeltaCompressionDotNet.MsDelta.dll" />
         <file src="BankA.Wpf\bin\x86\Debug\DeltaCompressionDotNet.PatchApi.dll" target="lib\net45\DeltaCompressionDotNet.PatchApi.dll" />
+        <file src="BankA.Wpf\bin\x86\Debug\devtools_resources.pak" target="lib\net45\devtools_resources.pak" />
         <file src="BankA.Wpf\bin\x86\Debug\EntityFramework.dll" target="lib\net45\EntityFramework.dll" />
         <file src="BankA.Wpf\bin\x86\Debug\EntityFramework.SqlServer.dll" target="lib\net45\EntityFramework.SqlServer.dll" />
         <file src="BankA.Wpf\bin\x86\Debug\ffmpegsumo.dll" target="lib\net45\ffmpegsumo.dll" />
         <file src="BankA.Wpf\bin\x86\Debug\FluentScheduler.dll" target="lib\net45\FluentScheduler.dll" />
         <file src="BankA.Wpf\bin\x86\Debug\ICSharpCode.SharpZipLib.dll" target="lib\net45\ICSharpCode.SharpZipLib.dll" />
+        <file src="BankA.Wpf\bin\x86\Debug\icudtl.dat" target="lib\net45\icudtl.dat" />
         <file src="BankA.Wpf\bin\x86\Debug\libcef.dll" target="lib\net45\libcef.dll" />
         <file src="BankA.Wpf\bin\x86\Debug\libEGL.dll" target="lib\net45\libEGL.dll" />
         <file src="BankA.Wpf\bin\x86\Debug\libGLESv2.dll" target="lib\net45\libGLESv2.dll" />

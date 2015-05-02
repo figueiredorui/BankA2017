@@ -27,7 +27,7 @@ namespace BankA.Data.Models
 
         public bool IsTransfer { get; set; }
 
-        public long? FileID { get; set; }
+        public int? FileID { get; set; }
 
         public DateTime? CreatedOn { get; set; }
 

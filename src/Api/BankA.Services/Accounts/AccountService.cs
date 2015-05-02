@@ -47,8 +47,7 @@ namespace BankA.Services.Accounts
 
         public void Delete(int id)
         {
-            var bank = accountRepository.Find(id);
-            accountRepository.Delete(bank);
+            accountRepository.DeleteAccountAndTransactions(id);
         }
 
         public List<AccountSummary> GetAccountSummary()

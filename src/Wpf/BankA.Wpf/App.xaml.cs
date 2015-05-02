@@ -45,14 +45,15 @@ namespace BankA.Wpf
         {
             // add custom accent and theme resource dictionaries
             ThemeManager.AddAccent("BankAStyle", new Uri("pack://application:,,,/BankA.Wpf;component/Resources/BankAStyle.xaml"));
+            ThemeManager.AddAppTheme("BankATheme", new Uri("pack://application:,,,/BankA.Wpf;component/Resources/BankATheme.xaml"));
 
             // get the theme from the current application
             var theme = ThemeManager.DetectAppStyle(Application.Current);
 
             // now use the custom accent
             ThemeManager.ChangeAppStyle(Application.Current,
-                                    ThemeManager.GetAccent("BankAStyle"),
-                                    theme.Item1);
+                                    ThemeManager.GetAccent("BankAStyle"), ThemeManager.GetAppTheme("BankATheme"));
+//                                    theme.Item1);
 
             base.OnStartup(e);
 

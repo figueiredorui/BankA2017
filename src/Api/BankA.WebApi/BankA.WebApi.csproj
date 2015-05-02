@@ -142,7 +142,6 @@
   <ItemGroup>
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="App_Data\banka.db" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

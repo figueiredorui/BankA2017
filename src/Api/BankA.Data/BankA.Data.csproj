@@ -80,6 +80,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contexts\BankAContext.partial.cs" />
+    <Compile Include="Contexts\BankASQLiteContextInitializer.cs" />
     <Compile Include="Models\BankAccount.cs" />
     <Compile Include="Contexts\BankAContext.cs" />
     <Compile Include="Models\BankStatementFile.cs" />

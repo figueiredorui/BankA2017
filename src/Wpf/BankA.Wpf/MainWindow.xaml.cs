@@ -3,6 +3,7 @@ using MahApps.Metro.Controls;
 using Squirrel;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
@@ -34,8 +35,33 @@ namespace BankA.Wpf
             this.Title = "BankA v." + Assembly.GetExecutingAssembly().GetName().Version.ToString();
             btnNewVersion.Visibility = Visibility.Hidden;
             ScheduleAppUpdates();
+            wb.Visibility = System.Windows.Visibility.Hidden;
+            wb.FrameLoadEnd += wb_FrameLoadEnd;
             
         }
+
+        void wb_FrameLoadEnd(object sender, CefSharp.FrameLoadEndEventArgs e)
+        {
+            Dispatcher.Invoke(() =>
+            {
+                wb.Visibility = System.Windows.Visibility.Visible;
+                prgRing.Visibility = System.Windows.Visibility.Hidden;
+            });
+        }
+
+        //private void OnWebViewPropertyChanged(object sender, PropertyChangedEventArgs e)
+        //{
+        //    switch (e.PropertyName)
+        //    {
+        //        case "IsBrowserInitialized":
+        //            if (WebView.IsBrowserInitialized)
+        //            {
+        //                WebView.Load("http://10.211.55.2:42000");
+        //            }
+
+        //            break;
+        //    }
+        //}
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {

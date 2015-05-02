@@ -1,4 +1,5 @@
-﻿using BankA.Data.Models;
+﻿using BankA.Data.Contexts;
+using BankA.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,22 @@ namespace BankA.Data.Repositories
     public class AccountRepository : Repository<BankAccount>
     {
      
+        public void DeleteAccountAndTransactions(int accountID)
+        {
+            using (var ctx = new BankAContext())
+            {
+                var transactions = ctx.BankTransactions.Where(q => q.AccountID == accountID);
+                foreach (var item in transactions)
+                    ctx.BankTransactions.Remove(item);
+
+                var account = ctx.BankAccounts.Find(accountID);
+                ctx.BankAccounts.Remove(account);
+
+                ctx.SaveChanges();
+            }
+
+
+        }
    
     }
 }

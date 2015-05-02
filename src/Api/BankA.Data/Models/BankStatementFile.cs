@@ -10,7 +10,7 @@ namespace BankA.Data.Models
     public partial class BankStatementFile
     {
         [Key]
-        public long FileID { get; set; }
+        public int FileID { get; set; }
 
         [Required]
         [StringLength(50)]

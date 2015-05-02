@@ -40,18 +40,21 @@ namespace BankA.Data.Contexts
 
             modelBuilder.Entity<BankTransaction>()
                 .Property(e => e.DebitAmount)
-                .HasPrecision(53, 0);
+                .HasPrecision(30, 2);
 
             modelBuilder.Entity<BankTransaction>()
                 .Property(e => e.CreditAmount)
-                .HasPrecision(53, 0);
+                .HasPrecision(30, 2);
 
             modelBuilder.Entity<BankTransaction>()
                 .Property(e => e.Tag)
                 .IsUnicode(false);
 
-            var sqliteConnectionInitializer = new SqliteCreateDatabaseIfNotExists<BankAContext>(Database.Connection.ConnectionString, modelBuilder);
-            Database.SetInitializer(sqliteConnectionInitializer);
+            if (Database.Connection is System.Data.SQLite.SQLiteConnection)
+            {
+                var sqliteConnectionInitializer = new BankASQLiteContextInitializer(Database.Connection.ConnectionString, modelBuilder);
+                Database.SetInitializer(sqliteConnectionInitializer);
+            }
         }
     }
 }
