@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>BankA</id>
-        <version>1.0.13</version>
+        <version>1.0.14</version>
         <authors>Rui Figueiredo</authors>
         <projectUrl>https://github.com/figueiredorui/BankA</projectUrl>
         <iconUrl>https://raw.githubusercontent.com/figueiredorui/BankA/master/docs/icon32x32.png</iconUrl>

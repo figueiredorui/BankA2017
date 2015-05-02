@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:cefSharp="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf" KeyDown="Window_KeyDown"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        Title="BankA" Height="550" Width="925" 
+        Title="BankA" Height="550" Width="1220" 
                       GlowBrush="{DynamicResource AccentColorBrush}"
                       WindowStartupLocation="CenterScreen">
 

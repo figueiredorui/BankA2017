@@ -37,7 +37,6 @@ namespace BankA.Wpf
             ScheduleAppUpdates();
             wb.Visibility = System.Windows.Visibility.Hidden;
             wb.FrameLoadEnd += wb_FrameLoadEnd;
-            
         }
 
         void wb_FrameLoadEnd(object sender, CefSharp.FrameLoadEndEventArgs e)
@@ -48,20 +47,6 @@ namespace BankA.Wpf
                 prgRing.Visibility = System.Windows.Visibility.Hidden;
             });
         }
-
-        //private void OnWebViewPropertyChanged(object sender, PropertyChangedEventArgs e)
-        //{
-        //    switch (e.PropertyName)
-        //    {
-        //        case "IsBrowserInitialized":
-        //            if (WebView.IsBrowserInitialized)
-        //            {
-        //                WebView.Load("http://10.211.55.2:42000");
-        //            }
-
-        //            break;
-        //    }
-        //}
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
@@ -77,8 +62,8 @@ namespace BankA.Wpf
 
         private async void ScheduleApplicationUpdates()
         {
-            
-            var location = @"D:\GitHub\BankA\src\Wpf\Releases";
+
+            var location = @"https://raw.githubusercontent.com/figueiredorui/BankA/master/src/Wpf/Releases";
             var appName = "BankA";
             using (var mgr = new UpdateManager(location, appName, FrameworkVersion.Net45))
             {
@@ -111,7 +96,6 @@ namespace BankA.Wpf
                 }
             }
         }
-
        
         private async Task ShutdownApp()
         {
@@ -125,50 +109,11 @@ namespace BankA.Wpf
             btnNewVersion.Visibility = Visibility.Visible;
         }
 
-        // This listens for Windows messages so we can pop up this window if the
-        // user tries to launch a second instance of the application. You can 
-        // find more information in NativeMethods.cs and StartupManager.cs.
-        //protected override void OnSourceInitialized(EventArgs eventArgs)
-        //{
-        //    base.OnSourceInitialized(eventArgs);
-        //    var source = PresentationSource.FromVisual(this) as HwndSource;
-        //    if (source != null) source.AddHook(WndProc);
-        //}
-
-        //private IntPtr WndProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
-        //{
-        //    if (msg == NativeMethods.WM_SHOWME)
-        //    {
-        //        Show();
-        //        WindowState = WindowState.Normal;
-        //    }
-        //    return IntPtr.Zero;
-        //}
-
         private async void RestartButtonClicked(object sender, MouseButtonEventArgs e)
         {
             await ShutdownApp();
         }
     }
 
-
-    
-    class NativeMethods
-    {
-        // The following code is used to setup Win32 messaging so we can handle
-        // messages from subsequent instances of this app that try to start. They
-        // won't be able to start because of the mutex registered in StartupManager.cs
-        // but they will send a message before they exit. The current instance will
-        // respond to that message and show the Main window as a result.
-
-        public const int HWND_BROADCAST = 0xffff;
-        public static readonly int WM_SHOWME = RegisterWindowMessage("WM_SHOWME");
-
-        [DllImport("user32")]
-        public static extern bool PostMessage(IntPtr hwnd, int msg, IntPtr wparam, IntPtr lparam);
-
-        [DllImport("user32")]
-        public static extern int RegisterWindowMessage(string message);
-    }
 }
 
