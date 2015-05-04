@@ -20,7 +20,7 @@ namespace BankA.Api.Controllers
                 Name = "BankA API",
                 Version = apiVersion,
                 GitHub = "https://github.com/figueiredorui/BankA",
-                Help= this.Request.RequestUri.AbsoluteUri + "swagger/ui/index",
+                Help = ToPublicUrl(this.Request.RequestUri) + "swagger/ui/index",
                 DbVersion = dbVersion
             });
         }
@@ -39,6 +39,27 @@ namespace BankA.Api.Controllers
             string myVersion = webName.Version.ToString();
 
             return myVersion;
+
+        }
+
+        public string ToPublicUrl(Uri relativeUri)
+        {
+            var httpContext = HttpContext.Current;
+
+            var uriBuilder = new UriBuilder
+            {
+                Host = httpContext.Request.Url.Host,
+                Path = "/",
+                Port = 80,
+                Scheme = "http",
+            };
+
+            if (httpContext.Request.IsLocal)
+            {
+                uriBuilder.Port = httpContext.Request.Url.Port;
+            }
+
+            return new Uri(uriBuilder.Uri, relativeUri).AbsoluteUri;
         }
     }
 
