@@ -15,11 +15,6 @@ namespace BankA.Services.Admin
             versionRepository = new VersionRepository();
         }
 
-        public void CreateIfNotExists()
-        {
-            versionRepository.CreateIfNotExists();
-        }
-
         public string GetDbVersion()
         {
             var t = versionRepository.Table.ToList();

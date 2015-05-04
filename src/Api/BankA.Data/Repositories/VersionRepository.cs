@@ -10,16 +10,6 @@ namespace BankA.Data.Repositories
 {
     public class VersionRepository : Repository<BankVersion>
     {
-        public void CreateIfNotExists()
-        {
-            using (var ctx = new BankAContext())
-            {
-                if (!ctx.Database.Exists())
-                {
-
-                }
-                    
-            }
-        }
+        
     }
 }

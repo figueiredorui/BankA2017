@@ -12,23 +12,17 @@ namespace BankA.Api.Controllers
     {
         public IHttpActionResult Get()
         {
-            CreateIfNotExists();
+            var apiVersion = GetApiVersion();
             var dbVersion = GetDbVersion();
 
             return Ok(new
             {
                 Name = "BankA API",
-                Version = GetVersion(),
-                GitHub = "https://github.com/figueiredorui/BankA.Api",
-                Help= this.Request.RequestUri + "swagger/ui/index",
+                Version = apiVersion,
+                GitHub = "https://github.com/figueiredorui/BankA",
+                Help= this.Request.RequestUri.AbsoluteUri + "swagger/ui/index",
                 DbVersion = dbVersion
             });
-        }
-
-        private void CreateIfNotExists()
-        {
-            var svc = new AdminService();
-            svc.CreateIfNotExists();
         }
 
         private string GetDbVersion()
@@ -37,7 +31,7 @@ namespace BankA.Api.Controllers
             return svc.GetDbVersion();
         }
 
-        private string GetVersion()
+        private string GetApiVersion()
         {
             Assembly web = Assembly.GetExecutingAssembly();
             AssemblyName webName = web.GetName();
