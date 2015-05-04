@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankA.Api", "BankA.Api\BankA.Api.csproj", "{A8D81792-9BE3-4691-99A4-3F067FB6ABCC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankA.Api", "Api\BankA.Api\BankA.Api.csproj", "{A8D81792-9BE3-4691-99A4-3F067FB6ABCC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BankA", "BankA", "{8820CE86-8CDE-49D6-95F8-686BF0751F1E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankA.Data", "BankA.Data\BankA.Data.csproj", "{55EDB1BA-73D5-40F2-B05F-FEF7F3A939A8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankA.Data", "Api\BankA.Data\BankA.Data.csproj", "{55EDB1BA-73D5-40F2-B05F-FEF7F3A939A8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankA.Models", "BankA.Models\BankA.Models.csproj", "{D55901A8-B1AC-4406-A546-1BA93CDC0108}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankA.Models", "Api\BankA.Models\BankA.Models.csproj", "{D55901A8-B1AC-4406-A546-1BA93CDC0108}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankA.Services", "BankA.Services\BankA.Services.csproj", "{7FC49923-4A41-4E6F-AE67-6909748C23A5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankA.Services", "Api\BankA.Services\BankA.Services.csproj", "{7FC49923-4A41-4E6F-AE67-6909748C23A5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{86556C68-8CF5-4586-A5B7-91FD8CF4707E}"
 	ProjectSection(SolutionItems) = preProject
@@ -20,7 +20,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{86556C
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankA.WebApi", "BankA.WebApi\BankA.WebApi.csproj", "{AF5EA238-EE09-413B-982A-10D767238882}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankA.WebApi", "Api\BankA.WebApi\BankA.WebApi.csproj", "{AF5EA238-EE09-413B-982A-10D767238882}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

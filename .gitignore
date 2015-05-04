@@ -7,7 +7,8 @@ src/bower_components
 
 src/Web/Src/vendor/
 
-!src/Api/.nuget/nuget.exe
+!src/.nuget/
+
 
 src/Api/BankA.WebApi/App_Data/
 
