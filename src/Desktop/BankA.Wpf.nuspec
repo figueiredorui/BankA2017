@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>BankA</id>
-        <version>1.0.15</version>
+        <version>1.0.16</version>
         <authors>Rui Figueiredo</authors>
         <projectUrl>https://github.com/figueiredorui/BankA</projectUrl>
         <iconUrl>https://raw.githubusercontent.com/figueiredorui/BankA/master/docs/icon32x32.png</iconUrl>
@@ -90,7 +90,6 @@
         <file src="BankA.Wpf\bin\x86\Debug\html\vendor\angular-daterangepicker\package.json" target="lib\net45\html\vendor\angular-daterangepicker\package.json" />
         <file src="BankA.Wpf\bin\x86\Debug\html\vendor\angular-daterangepicker\README.md" target="lib\net45\html\vendor\angular-daterangepicker\README.md" />
         <file src="BankA.Wpf\bin\x86\Debug\html\vendor\angular-i18n\angular-locale_en-gb.js" target="lib\net45\html\vendor\angular-i18n\angular-locale_en-gb.js" />
-        <file src="BankA.Wpf\bin\x86\Debug\html\vendor\angular-i18n\el-gr.js" target="lib\net45\html\vendor\angular-i18n\el-gr.js" />
         <file src="BankA.Wpf\bin\x86\Debug\html\vendor\angular-loading-bar\build\loading-bar.css" target="lib\net45\html\vendor\angular-loading-bar\build\loading-bar.css" />
         <file src="BankA.Wpf\bin\x86\Debug\html\vendor\angular-loading-bar\build\loading-bar.js" target="lib\net45\html\vendor\angular-loading-bar\build\loading-bar.js" />
         <file src="BankA.Wpf\bin\x86\Debug\html\vendor\angular-loading-bar\build\loading-bar.min.css" target="lib\net45\html\vendor\angular-loading-bar\build\loading-bar.min.css" />
@@ -546,7 +545,6 @@
         <file src="BankA.Wpf\bin\x86\Debug\html\vendor\moment\CHANGELOG.md" target="lib\net45\html\vendor\moment\CHANGELOG.md" />
         <file src="BankA.Wpf\bin\x86\Debug\html\vendor\moment\LICENSE" target="lib\net45\html\vendor\moment\LICENSE" />
         <file src="BankA.Wpf\bin\x86\Debug\html\vendor\moment\moment.js" target="lib\net45\html\vendor\moment\moment.js" />
-        <file src="BankA.Wpf\bin\x86\Debug\html\vendor\moment\Moment.js.nuspec" target="lib\net45\html\vendor\moment\Moment.js.nuspec" />
         <file src="BankA.Wpf\bin\x86\Debug\html\vendor\moment\README.md" target="lib\net45\html\vendor\moment\README.md" />
         <file src="BankA.Wpf\bin\x86\Debug\html\vendor\ng-file-upload\angular-file-upload-all.js" target="lib\net45\html\vendor\ng-file-upload\angular-file-upload-all.js" />
         <file src="BankA.Wpf\bin\x86\Debug\html\vendor\ng-file-upload\angular-file-upload-all.min.js" target="lib\net45\html\vendor\ng-file-upload\angular-file-upload-all.min.js" />
@@ -628,6 +626,8 @@
         <file src="BankA.Wpf\bin\x86\Debug\locales\vi.pak" target="lib\net45\locales\vi.pak" />
         <file src="BankA.Wpf\bin\x86\Debug\locales\zh-CN.pak" target="lib\net45\locales\zh-CN.pak" />
         <file src="BankA.Wpf\bin\x86\Debug\locales\zh-TW.pak" target="lib\net45\locales\zh-TW.pak" />
+        <file src="BankA.Wpf\bin\x86\Debug\x64\SQLite.Interop.dll" target="lib\net45\x64\SQLite.Interop.dll" />
+        <file src="BankA.Wpf\bin\x86\Debug\x86\SQLite.Interop.dll" target="lib\net45\x86\SQLite.Interop.dll" />
         <file src="BankA.Wpf\bin\x86\Debug\AutoMapper.dll" target="lib\net45\AutoMapper.dll" />
         <file src="BankA.Wpf\bin\x86\Debug\BankA.Api.dll" target="lib\net45\BankA.Api.dll" />
         <file src="BankA.Wpf\bin\x86\Debug\BankA.Data.dll" target="lib\net45\BankA.Data.dll" />
@@ -678,9 +678,9 @@
         <file src="BankA.Wpf\bin\x86\Debug\Splat.dll" target="lib\net45\Splat.dll" />
         <file src="BankA.Wpf\bin\x86\Debug\SQLite.CodeFirst.dll" target="lib\net45\SQLite.CodeFirst.dll" />
         <file src="BankA.Wpf\bin\x86\Debug\Squirrel.dll" target="lib\net45\Squirrel.dll" />
-      <file src="BankA.Wpf\bin\x86\Debug\System.Data.SQLite.dll" target="lib\net45\System.Data.SQLite.dll" />
-      <file src="BankA.Wpf\bin\x86\Debug\System.Data.SQLite.Linq.dll" target="lib\net45\System.Data.SQLite.Linq.dll" />
+        <file src="BankA.Wpf\bin\x86\Debug\System.Data.SQLite.dll" target="lib\net45\System.Data.SQLite.dll" />
         <file src="BankA.Wpf\bin\x86\Debug\System.Data.SQLite.EF6.dll" target="lib\net45\System.Data.SQLite.EF6.dll" />
+        <file src="BankA.Wpf\bin\x86\Debug\System.Data.SQLite.Linq.dll" target="lib\net45\System.Data.SQLite.Linq.dll" />
         <file src="BankA.Wpf\bin\x86\Debug\System.Net.Http.Formatting.dll" target="lib\net45\System.Net.Http.Formatting.dll" />
         <file src="BankA.Wpf\bin\x86\Debug\System.Web.Cors.dll" target="lib\net45\System.Web.Cors.dll" />
         <file src="BankA.Wpf\bin\x86\Debug\System.Web.Http.Cors.dll" target="lib\net45\System.Web.Http.Cors.dll" />

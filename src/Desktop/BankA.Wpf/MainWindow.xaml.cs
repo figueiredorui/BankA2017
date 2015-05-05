@@ -69,26 +69,27 @@ namespace BankA.Wpf
             {
                 try
                 {
-                    
+
                     UpdateInfo updateInfo = await mgr.CheckForUpdate();
-                    Trace.WriteLine("CheckForUpdate");
+                    TraceWrite("Check For Update - " + location);
                     if (updateInfo.FutureReleaseEntry != null)
                     {
-                        Trace.WriteLine("check Version");
+                        TraceWrite("checking Version");
                         if (updateInfo.CurrentlyInstalledVersion.Version == updateInfo.FutureReleaseEntry.Version)
                         {
-                            Trace.WriteLine("Same Version");
+                            TraceWrite("Same Version - " + updateInfo.CurrentlyInstalledVersion.Version.ToString());
                             return;
                         }
+                        TraceWrite("Start UpdateApp");
                         await mgr.UpdateApp();
-                        Trace.WriteLine("UpdateApp");
+                        TraceWrite("End UpdateApp");
                         // This will show a button that will let the user restart the app
                         Dispatcher.Invoke(ShowUpdateIsAvailable);
-                        Trace.WriteLine("ShowUpdateIsAvailable");
+                        TraceWrite("ShowUpdateIsAvailable");
                         // This will restart the app automatically
                         //Dispatcher.InvokeAsync<Task>(ShutdownApp);
                     }
-                    
+
                 }
                 catch (Exception ex)
                 {
@@ -96,7 +97,7 @@ namespace BankA.Wpf
                 }
             }
         }
-       
+
         private async Task ShutdownApp()
         {
             //UpdateManager.RestartApp();
@@ -112,6 +113,11 @@ namespace BankA.Wpf
         private async void RestartButtonClicked(object sender, MouseButtonEventArgs e)
         {
             await ShutdownApp();
+        }
+
+        private void TraceWrite(string message)
+        {
+            Trace.WriteLine(string.Format("{0} - {1}", DateTime.Now, message));
         }
     }
 
