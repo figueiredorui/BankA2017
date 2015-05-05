@@ -27,7 +27,7 @@ src/Api/BankA.WebApi/App_Data/
 #[Rr]elease/
 [Rr]eleases/
 
-!src/Wpf/Releases/
+!src/Desktop/Releases/
 
 x64/
 x86/
@@ -156,7 +156,7 @@ publish/
 !**/packages/build/
 # If using the old MSBuild-Integrated Package Restore, uncomment this:
 !**/packages/repositories.config
-!src/Wpf/Releases/*.nupkg
+!src/Desktop/Releases/*.nupkg
 
 # Windows Azure Build Output
 csx/
