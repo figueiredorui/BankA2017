@@ -21,6 +21,7 @@ namespace BankA.Data.Repositories
                 {
                     var accountTrans = ctx.BankTransactions.SingleOrDefault(q => q.TransactionDate == trans.TransactionDate
                                                                                        //&& q.Description == trans.Description
+                                                                                       && q.AccountID == trans.AccountID
                                                                                        && q.DebitAmount == trans.DebitAmount
                                                                                        && q.CreditAmount == trans.CreditAmount);
                     if (accountTrans == null)

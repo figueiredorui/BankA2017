@@ -154,11 +154,11 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BankA.Api\BankA.Api.csproj">
+    <ProjectReference Include="..\..\Core\BankA.Api\BankA.Api.csproj">
       <Project>{a8d81792-9be3-4691-99a4-3f067fb6abcc}</Project>
       <Name>BankA.Api</Name>
     </ProjectReference>
-    <ProjectReference Include="..\BankA.Services\BankA.Services.csproj">
+    <ProjectReference Include="..\..\Core\BankA.Services\BankA.Services.csproj">
       <Project>{7fc49923-4a41-4e6f-ae67-6909748c23a5}</Project>
       <Name>BankA.Services</Name>
     </ProjectReference>
