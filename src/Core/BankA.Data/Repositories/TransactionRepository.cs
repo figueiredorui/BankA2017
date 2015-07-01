@@ -19,7 +19,7 @@ namespace BankA.Data.Repositories
             {
                 foreach (var trans in transactionLst)
                 {
-                    var accountTrans = ctx.BankTransactions.SingleOrDefault(q => q.TransactionDate == trans.TransactionDate
+                    var accountTrans = ctx.BankTransactions.FirstOrDefault(q => q.TransactionDate == trans.TransactionDate
                                                                                        //&& q.Description == trans.Description
                                                                                        && q.AccountID == trans.AccountID
                                                                                        && q.DebitAmount == trans.DebitAmount
