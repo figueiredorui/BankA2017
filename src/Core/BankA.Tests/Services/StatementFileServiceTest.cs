@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BankA.Services.Statements;
 
-namespace BankA.Api.Tests.Services
+namespace BankA.Tests.Services
 {
     [TestClass]
     public class StatementFileServiceTest

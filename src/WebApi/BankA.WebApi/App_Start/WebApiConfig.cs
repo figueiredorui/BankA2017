@@ -10,10 +10,10 @@ namespace BankA.WebApi
     {
         public static void Register(HttpConfiguration config)
         {
-            Type t1 = typeof(BankA.Api.Controllers.HomeController);
-            Type t2 = typeof(BankA.Api.Controllers.AccountsController);
-            Type t3 = typeof(BankA.Api.Controllers.ReportsController);
-            Type t4 = typeof(BankA.Api.Controllers.TransactionsController);
+            Type t1 = typeof(BankA.Controllers.Controllers.HomeController);
+            Type t2 = typeof(BankA.Controllers.Controllers.AccountsController);
+            Type t3 = typeof(BankA.Controllers.Controllers.ReportsController);
+            Type t4 = typeof(BankA.Controllers.Controllers.TransactionsController);
 
 
             config.EnableCors(new EnableCorsAttribute("*", "*", "*"));

@@ -293,9 +293,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Core\BankA.Api\BankA.Api.csproj">
+    <ProjectReference Include="..\..\Core\BankA.Controllers\BankA.Controllers.csproj">
       <Project>{a8d81792-9be3-4691-99a4-3f067fb6abcc}</Project>
-      <Name>BankA.Api</Name>
+      <Name>BankA.Controllers</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Core\BankA.Models\BankA.Models.csproj">
       <Project>{d55901a8-b1ac-4406-a546-1ba93cdc0108}</Project>

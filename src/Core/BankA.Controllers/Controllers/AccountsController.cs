@@ -12,7 +12,7 @@ using BankA.Models.Enums;
 using BankA.Services.Accounts;
 using BankA.Models.Accounts;
 
-namespace BankA.Api.Controllers
+namespace BankA.Controllers.Controllers
 {
     public class AccountsController : ApiController
     {

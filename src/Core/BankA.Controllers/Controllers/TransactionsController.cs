@@ -17,7 +17,7 @@ using BankA.Services.Transactions;
 using BankA.Models.Transactions;
 using BankA.Services.Statements;
 
-namespace BankA.Api.Controllers
+namespace BankA.Controllers.Controllers
 {
     [RoutePrefix("api")]
     public class TransactionsController : ApiController

@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Web;
 using System.Web.Http;
 
-namespace BankA.Api.Controllers
+namespace BankA.Controllers.Controllers
 {
     public class HomeController : ApiController
     {

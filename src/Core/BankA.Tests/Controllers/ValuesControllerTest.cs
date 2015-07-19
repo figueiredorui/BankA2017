@@ -4,10 +4,9 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using BankA.Api;
-//using BankA.Api.Controllers;
 
-namespace BankA.Api.Tests.Controllers
+
+namespace BankA.Tests.Controllers
 {
     [TestClass]
     public class ValuesControllerTest

@@ -19,9 +19,9 @@ namespace BankA.Wpf.Config
         // parameter in the WebApp.Start method.
         public void Configuration(IAppBuilder appBuilder)
         {
-            Type t2 = typeof(BankA.Api.Controllers.AccountsController);
-            Type t3 = typeof(BankA.Api.Controllers.ReportsController);
-            Type t4 = typeof(BankA.Api.Controllers.TransactionsController);
+            Type t2 = typeof(BankA.Controllers.Controllers.AccountsController);
+            Type t3 = typeof(BankA.Controllers.Controllers.ReportsController);
+            Type t4 = typeof(BankA.Controllers.Controllers.TransactionsController);
 
 
 
