@@ -45,7 +45,7 @@ app.controller('TransactionsListCtrl', function ($scope, $rootScope, $location, 
 
     function loadFilters() {
         $scope.tFilter.DateRange = {};
-        $scope.tFilter.DateRange.startDate = moment().subtract(1, "months").toDate();
+        $scope.tFilter.DateRange.startDate = moment().subtract(moment().dayOfYear() - 1, 'days');
         $scope.tFilter.DateRange.endDate = moment().toDate();
 
         $scope.tFilter.dateRangeOpts = {
