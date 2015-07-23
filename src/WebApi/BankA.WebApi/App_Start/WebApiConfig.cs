@@ -14,6 +14,7 @@ namespace BankA.WebApi
             Type t2 = typeof(BankA.Controllers.Controllers.AccountsController);
             Type t3 = typeof(BankA.Controllers.Controllers.ReportsController);
             Type t4 = typeof(BankA.Controllers.Controllers.TransactionsController);
+            Type t5 = typeof(BankA.Controllers.Controllers.RulesController);
 
 
             config.EnableCors(new EnableCorsAttribute("*", "*", "*"));

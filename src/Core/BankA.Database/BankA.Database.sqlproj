@@ -69,11 +69,15 @@
     <Build Include="dbo\Tables\BankStatementFile.sql" />
     <None Include="Script01.sql" />
     <Build Include="Sqlite\script.sql" />
+    <Build Include="dbo\Tables\BankTransactionRule.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Sqlite\banka.db" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="BankA.Database.refactorlog" />
   </ItemGroup>
 </Project>

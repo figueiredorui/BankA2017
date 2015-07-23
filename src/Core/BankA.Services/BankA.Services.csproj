@@ -89,6 +89,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Rules\RulesMapExtensions.cs" />
+    <Compile Include="Rules\RulesService.cs" />
+    <Compile Include="Rules\IRulesService.cs" />
     <Compile Include="Accounts\IAccountService.cs" />
     <Compile Include="Admin\AdminService.cs" />
     <Compile Include="Reports\IReportService.cs" />

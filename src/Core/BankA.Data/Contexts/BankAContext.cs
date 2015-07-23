@@ -17,6 +17,8 @@ namespace BankA.Data.Contexts
         public virtual DbSet<BankAccount> BankAccounts { get; set; }
         public virtual DbSet<BankStatementFile> BankStatementFiles { get; set; }
         public virtual DbSet<BankTransaction> BankTransactions { get; set; }
+
+        public virtual DbSet<BankTransactionRule> BankTransactionRules { get; set; }
         public virtual DbSet<BankVersion> BankVersions { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -49,6 +51,8 @@ namespace BankA.Data.Contexts
             modelBuilder.Entity<BankTransaction>()
                 .Property(e => e.Tag)
                 .IsUnicode(false);
+
+
 
             if (Database.Connection is System.Data.SQLite.SQLiteConnection)
             {
