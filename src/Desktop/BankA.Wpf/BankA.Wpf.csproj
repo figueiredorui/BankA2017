@@ -280,7 +280,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="BankA.Wpf_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="prebuild.ps1" />
     <None Include="Properties\Settings.settings">

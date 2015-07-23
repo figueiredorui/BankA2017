@@ -6,12 +6,10 @@
                     <a ng-click="selectAccount(account.AccountID)" class="widget-icon green pull-right" ng-class="{'blue': account.AccountID == accountID}" style="cursor: pointer">
                         <i class="fa fa-gbp"></i>
                     </a>
-                    <a ng-click="selectAccount(account.AccountID)" class="widget-icon green pull-right" ng-class="{'blue': account.AccountID == accountID}" style="cursor: pointer">
                         <div class="comment">
                             <strong>{{account.Description}}</strong>
                         </div>
                         <div class="title">{{account.Balance | number : 2}}</div>
-                    </a>
                     <div ng-show="account.AccountID > 0" class="comment  pull-left">
                         <a ng-click="showTransaction(account.AccountID)" style="cursor: pointer"><small>Last Transaction: {{account.LastTransactionDate | date}}</small></a>
                     </div>
