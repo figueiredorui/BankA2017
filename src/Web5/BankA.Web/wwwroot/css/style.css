@@ -1,0 +1,151 @@
+html {overflow-y: scroll; overflow-x:scroll;
+margin: 0;
+    padding: 0;}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.nopadding {
+   padding: 0 !important;
+   margin: 0 !important;
+}
+
+
+.badge-info {
+  background-color: #3a87ad;
+}
+
+
+#loading-bar-spinner {
+  display: block;
+  position: fixed;
+  z-index: 10002;
+  top: 50%;
+  left: 50%;
+}
+
+
+#loading-bar-spinner .spinner-icon {
+  width: 48px;
+  height: 48px;
+    margin: 5px;
+
+  border:  solid 5px transparent;
+  border-top-color:  #29d;
+  border-left-color: #29d;
+  border-radius: 25px;
+
+  -webkit-animation: loading-bar-spinner 400ms linear infinite;
+  -moz-animation:    loading-bar-spinner 400ms linear infinite;
+  -ms-animation:     loading-bar-spinner 400ms linear infinite;
+  -o-animation:      loading-bar-spinner 400ms linear infinite;
+  animation:         loading-bar-spinner 400ms linear infinite;
+}
+
+
+
+inputs:-webkit-input-placeholder {
+    color: #b5b5b5;
+}
+
+inputs-moz-placeholder {
+    color: #b5b5b5;
+}
+
+.inputs {
+    outline: none;
+    display: block;
+    width: 100px;
+    height: 24px;
+    padding: 4px 8px;
+    border: 1px dashed #DBDBDB;
+    color: #3F3F3F;
+    font-family: 'Droid Sans', Tahoma, Arial, Verdana sans-serif;
+    font-size: 14px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    -webkit-transition: background 0.2s linear, box-shadow 0.6s linear;
+    -moz-transition: background 0.2s linear, box-shadow 0.6s linear;
+    -o-transition: background 0.2s linear, box-shadow 0.6s linear;
+    transition: background 0.2s linear, box-shadow 0.6s linear;
+   background:#5cb85c;
+}
+
+.inputs:focus {
+    background: #F7F7F7;
+    border: dashed 1px #969696;
+    -webkit-box-shadow: 2px 2px 7px #E8E8E8 inset;
+    -moz-box-shadow: 2px 2px 7px #E8E8E8 inset;
+    box-shadow: 2px 2px 7px #E8E8E8 inset;
+}
+
+.inputs.bgred {
+    background:#eba5a3;
+}
+
+.inputs.bggreen {
+    background:#5cb85c;
+}
+
+
+
+.hv:hover {
+ 
+  -webkit-transform: scale(1.03);
+      -ms-transform: scale(1.03);
+          transform: scale(1.03);
+  -webkit-transition-property: -webkit-transform,background;
+          transition-property: transform,background;
+  -webkit-transition-duration: .3s;
+          transition-duration: .3s;
+  position: relative;
+  z-index: 1;
+}
+
+/*
+.hv.active {
+ 
+  -webkit-transform: scale(1.05);
+      -ms-transform: scale(1.05);
+          transform: scale(1.05);
+  -webkit-transition-property: -webkit-transform,background;
+          transition-property: transform,background;
+  -webkit-transition-duration: .3s;
+          transition-duration: .3s;
+  position: relative;
+  z-index: 1;
+}
+*/
+
+ a .delete-btn-hover { opacity:0; float:right }
+      a:hover .delete-btn-hover { opacity:1 }
+
+
+
+
+
+::-webkit-scrollbar
+{
+	width: 15px;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-track {
+      background-color: #2d3e63;
+} /* the new scrollbar will have a flat appearance with the set background color */
+ 
+::-webkit-scrollbar-thumb {
+      background-color: #428BCA; 
+} /* this will style the thumb, ignoring the track */
+ 
+::-webkit-scrollbar-button {
+      background-color: #2d3e63;
+} /* optionally, you can style the top and the bottom buttons (left and right for horizontal bars) */
+ 
+::-webkit-scrollbar-corner {
+      background-color: black;
+}

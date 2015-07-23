@@ -6,6 +6,7 @@ src/bower_components
 !src/Web/dist/vendor/angular-ui-router/release/
 
 src/Web/Src/vendor/
+src/Web5/BankA.Web/wwwroot/vendor/
 
 !src/.nuget/
 

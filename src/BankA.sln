@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{8820CE86-8CDE-49D6-95F8-686BF0751F1E}"
 EndProject
@@ -35,6 +35,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankA.Controllers", "Core\BankA.Controllers\BankA.Controllers.csproj", "{A8D81792-9BE3-4691-99A4-3F067FB6ABCC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankA.Tests", "Core\BankA.Tests\BankA.Tests.csproj", "{E9989E2F-418D-4852-A650-7380DD9911BE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web5", "Web5", "{0EAD4F3E-8C73-4E09-9067-D079C5C9BAB5}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "BankA.Web", "Web5\BankA.Web\BankA.Web.xproj", "{321011B9-DA3E-43E3-84BD-AC7458C5F577}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -98,6 +102,14 @@ Global
 		{E9989E2F-418D-4852-A650-7380DD9911BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E9989E2F-418D-4852-A650-7380DD9911BE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E9989E2F-418D-4852-A650-7380DD9911BE}.Release|x86.ActiveCfg = Release|Any CPU
+		{321011B9-DA3E-43E3-84BD-AC7458C5F577}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{321011B9-DA3E-43E3-84BD-AC7458C5F577}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{321011B9-DA3E-43E3-84BD-AC7458C5F577}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{321011B9-DA3E-43E3-84BD-AC7458C5F577}.Debug|x86.Build.0 = Debug|Any CPU
+		{321011B9-DA3E-43E3-84BD-AC7458C5F577}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{321011B9-DA3E-43E3-84BD-AC7458C5F577}.Release|Any CPU.Build.0 = Release|Any CPU
+		{321011B9-DA3E-43E3-84BD-AC7458C5F577}.Release|x86.ActiveCfg = Release|Any CPU
+		{321011B9-DA3E-43E3-84BD-AC7458C5F577}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -111,5 +123,6 @@ Global
 		{845F0680-F285-4CFB-A5C1-C022B10B18EC} = {0D689385-2608-4940-9572-68FDCF5F4272}
 		{A8D81792-9BE3-4691-99A4-3F067FB6ABCC} = {8820CE86-8CDE-49D6-95F8-686BF0751F1E}
 		{E9989E2F-418D-4852-A650-7380DD9911BE} = {DA09BFCD-1533-48C2-B2E3-6B3D99FB90CB}
+		{321011B9-DA3E-43E3-84BD-AC7458C5F577} = {0EAD4F3E-8C73-4E09-9067-D079C5C9BAB5}
 	EndGlobalSection
 EndGlobal
