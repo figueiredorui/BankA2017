@@ -28,6 +28,8 @@ namespace BankA.Data.Models
         [StringLength(50)]
         public string TagGroup { get; set; }
 
+        public bool IsTransfer { get; set; }
+
         public DateTime? CreatedOn { get; set; }
 
         [StringLength(50)]
@@ -38,7 +40,6 @@ namespace BankA.Data.Models
         [StringLength(50)]
         public string ChangedBy { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BankTransaction> BankTransactions { get; set; }
+        
     }
 }

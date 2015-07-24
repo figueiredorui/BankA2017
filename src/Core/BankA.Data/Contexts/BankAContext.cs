@@ -17,28 +17,15 @@ namespace BankA.Data.Contexts
         public virtual DbSet<BankAccount> BankAccounts { get; set; }
         public virtual DbSet<BankStatementFile> BankStatementFiles { get; set; }
         public virtual DbSet<BankTransaction> BankTransactions { get; set; }
-
         public virtual DbSet<BankTransactionRule> BankTransactionRules { get; set; }
         public virtual DbSet<BankVersion> BankVersions { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<BankAccount>()
-                .Property(e => e.Description)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<BankAccount>()
-                .Property(e => e.BankName)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<BankAccount>()
                 .HasMany(e => e.BankTransactions)
                 .WithRequired(e => e.BankAccount)
                 .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<BankTransaction>()
-                .Property(e => e.Description)
-                .IsUnicode(false);
 
             modelBuilder.Entity<BankTransaction>()
                 .Property(e => e.DebitAmount)
@@ -48,11 +35,10 @@ namespace BankA.Data.Contexts
                 .Property(e => e.CreditAmount)
                 .HasPrecision(30, 2);
 
-            modelBuilder.Entity<BankTransaction>()
-                .Property(e => e.Tag)
-                .IsUnicode(false);
-
-
+            modelBuilder.Entity<BankStatementFile>()
+                .HasMany(e => e.BankTransactions)
+                .WithRequired(e => e.BankStatementFile)
+                .WillCascadeOnDelete(false);
 
             if (Database.Connection is System.Data.SQLite.SQLiteConnection)
             {

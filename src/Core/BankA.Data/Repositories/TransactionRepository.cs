@@ -10,22 +10,25 @@ namespace BankA.Data.Repositories
 {
     public class TransactionRepository : Repository<BankTransaction>
     {
-
-        
-        public void AddBatch(List<BankTransaction> transactionLst)
+        public void AddTransactions(BankStatementFile statementFile, List<BankTransaction> transactionLst)
         {
-            transactionLst = transactionLst.OrderBy(o => o.TransactionDate).ToList();    
             using (var ctx = new BankAContext())
             {
-                foreach (var trans in transactionLst)
+                ctx.BankStatementFiles.Add(statementFile);
+
+                foreach (var transaction in transactionLst.OrderBy(o => o.TransactionDate).ToList())
                 {
-                    var accountTrans = ctx.BankTransactions.FirstOrDefault(q => q.TransactionDate == trans.TransactionDate
-                                                                                       //&& q.Description == trans.Description
-                                                                                       && q.AccountID == trans.AccountID
-                                                                                       && q.DebitAmount == trans.DebitAmount
-                                                                                       && q.CreditAmount == trans.CreditAmount);
-                    if (accountTrans == null)
-                        ctx.BankTransactions.Add(trans);
+                    var exists = ctx.BankTransactions.Any(q => q.TransactionDate == transaction.TransactionDate
+                                                            && q.AccountID == transaction.AccountID
+                                                            && q.DebitAmount == transaction.DebitAmount
+                                                            && q.CreditAmount == transaction.CreditAmount);
+                    if (exists == false)
+                    {
+                        transaction.AccountID = statementFile.AccountID;
+                        transaction.FileID = statementFile.FileID;
+
+                        ctx.BankTransactions.Add(transaction);
+                    }
                 }
                 
                 ctx.SaveChanges();

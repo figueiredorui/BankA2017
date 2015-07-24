@@ -6,15 +6,20 @@
     [DebitAmount]     DECIMAL (18, 2) NOT NULL,
     [CreditAmount]    DECIMAL (18, 2) NOT NULL,
     [Tag]             VARCHAR (50)    NULL,
+    [TagGroup]        NVARCHAR (50)   NULL,
     [IsTransfer]      BIT             NOT NULL,
     [FileID]          INT             NULL,
     [CreatedOn]       DATETIME        NULL,
-    [CreatedBy]       NVARCHAR (50)   COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+    [CreatedBy]       NVARCHAR (50)   NULL,
     [ChangedOn]       DATETIME        NULL,
-    [ChangedBy]       NVARCHAR (50)   COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
-    CONSTRAINT [PK__BankTran__3214EC278FE2CE39] PRIMARY KEY CLUSTERED ([ID] ASC),
+    [ChangedBy]       NVARCHAR (50)   NULL,
+    CONSTRAINT [PK_ID] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_BankTransaction_BankAccount] FOREIGN KEY ([AccountID]) REFERENCES [dbo].[BankAccount] ([AccountID])
 );
+
+
+
+
 
 
 

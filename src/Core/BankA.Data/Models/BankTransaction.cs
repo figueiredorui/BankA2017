@@ -25,6 +25,9 @@ namespace BankA.Data.Models
         [StringLength(50)]
         public string Tag { get; set; }
 
+        [StringLength(50)]
+        public string TagGroup { get; set; }
+
         public bool IsTransfer { get; set; }
 
         public int? FileID { get; set; }
@@ -40,5 +43,7 @@ namespace BankA.Data.Models
         public string ChangedBy { get; set; }
 
         public virtual BankAccount BankAccount { get; set; }
+
+        public virtual BankStatementFile BankStatementFile { get; set; }
     }
 }

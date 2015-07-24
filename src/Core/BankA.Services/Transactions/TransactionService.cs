@@ -52,8 +52,6 @@ namespace BankA.Services.Transactions
         public void Update(Transaction model)
         {
             var transaction = model.ToTable();
-            if (transaction.Tag == null)
-                transaction.Tag = string.Empty;
 
             transactionRepository.Update(transaction);
         }

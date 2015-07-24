@@ -1,4 +1,5 @@
 'use strict';
+'use strict';
 
 app.service("AccountService", function ($http, AppSettings) {
 

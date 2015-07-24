@@ -1,11 +1,16 @@
-﻿CREATE TABLE [dbo].[BankTransactionRule]
-(
-	[RuleID] INT NOT NULL PRIMARY KEY,
-	Description NVARCHAR (50) ,
-	Tag NVARCHAR (50) ,
-	TagGroup NVARCHAR (50) ,
-	[CreatedOn]        DATETIME      NULL,
-    [CreatedBy]        NVARCHAR (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
-    [ChangedOn]        DATETIME      NULL,
-    [ChangedBy]        NVARCHAR (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
-)
+﻿CREATE TABLE [dbo].[BankTransactionRule] (
+    [RuleID]      INT           IDENTITY (1, 1) NOT NULL,
+    [Description] NVARCHAR (50) NOT NULL,
+    [Tag]         NVARCHAR (50) NULL,
+    [TagGroup]    NVARCHAR (50) NULL,
+    [IsTransfer]  BIT           NOT NULL,
+    [CreatedOn]   DATETIME      NULL,
+    [CreatedBy]   NVARCHAR (50) NULL,
+    [ChangedOn]   DATETIME      NULL,
+    [ChangedBy]   NVARCHAR (50) NULL,
+    CONSTRAINT [PK_RuleID] PRIMARY KEY CLUSTERED ([RuleID] ASC)
+);
+
+
+
+

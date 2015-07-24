@@ -65,60 +65,98 @@ namespace BankA.Services.Statements
 
         private void ImportFile(StatementFile statementFile, List<StatementRow> statementRows)
         {
-            var transactionLst = new List<BankTransaction>();
-            var historyLst = GetTagHistory();
+            var bankFile = CreateBankStatmentFile(statementFile);
+            var bankTransaction = CreateBankTransaction(statementRows);
 
-            foreach (var row in statementRows)
-            {
-                transactionLst.Add(CreateTransaction(statementFile, row, historyLst));
-            }
-
-            transactionRepository.AddBatch(transactionLst);
+            transactionRepository.AddTransactions(bankFile, bankTransaction);
         }
 
-        private BankTransaction CreateTransaction(StatementFile file, StatementRow row, List<BankTransaction> historyLst)
+        private BankStatementFile CreateBankStatmentFile(StatementFile statementFile)
+        {
+            return new BankStatementFile()
+            {
+                AccountID = statementFile.AccountID,
+                FileName = statementFile.FileName,
+                FileContent = statementFile.FileContent,
+                ContentType = statementFile.ContentType
+            };
+        }
+
+        private List<BankTransaction> CreateBankTransaction(List<StatementRow> statementRows)
+        {
+            var transactionLst = new List<BankTransaction>();
+            foreach (var row in statementRows)
+                transactionLst.Add(CreateBankTransaction(row));
+            return transactionLst;
+        }
+
+        private BankTransaction CreateBankTransaction(StatementRow row)
         {
             var trans = new BankTransaction();
-
-            trans.AccountID = file.AccountID;
-            trans.FileID = file.FileID;
 
             trans.TransactionDate = row.TransactionDate;
             trans.Description = row.Description;
             trans.DebitAmount = row.DebitAmount;
             trans.CreditAmount = row.CreditAmount;
 
-            trans.Tag = GetBestTag(trans.Description, historyLst);
-
             return trans;
         }
 
-        private string GetBestTag(string description, List<BankTransaction> historyLst)
-        {
-            string tag = "NA";
+        //private BankTransaction CreateTransaction(StatementFile file, StatementRow row, List<BankTransaction> historyLst)
+        //{
+        //    var trans = new BankTransaction();
 
-            var matchLst = new Dictionary<BankTransaction, int>();
-            foreach (var item in historyLst)
-            {
-                int compareDistance = Convert.ToInt32((decimal)description.Length / 2);
-                var distance = LevenshteinDistance.Compute(description, item.Description);
-                if (distance <= compareDistance)
-                    matchLst.Add(item, distance);
-            }
+        //    trans.AccountID = file.AccountID;
+        //    trans.FileID = file.FileID;
 
-            var bestMatch = matchLst.Where(q => q.Value == matchLst.Values.Min()).FirstOrDefault();
-            var key = ((BankTransaction)bestMatch.Key);
+        //    trans.TransactionDate = row.TransactionDate;
+        //    trans.Description = row.Description;
+        //    trans.DebitAmount = row.DebitAmount;
+        //    trans.CreditAmount = row.CreditAmount;
 
-            if (key != null)
-                tag = key.Tag;
+        //    //trans.Tag = GetBestTag(trans.Description, historyLst);
 
-            return tag;
-        }
+        //    return trans;
+        //}
 
-        private List<BankTransaction> GetTagHistory()
-        {
-            return transactionRepository.Table.ToList();
-        }
+        //private void ImportFile(StatementFile statementFile, List<StatementRow> statementRows)
+        //{
+        //    var transactionLst = new List<BankTransaction>();
+        //    var historyLst = GetTagHistory();
+
+        //    foreach (var row in statementRows)
+        //    {
+        //        transactionLst.Add(CreateTransaction(statementFile, row, historyLst));
+        //    }
+
+        //    transactionRepository.AddBatch(transactionLst);
+        //}
+        //private string GetBestTag(string description, List<BankTransaction> historyLst)
+        //{
+        //    string tag = "NA";
+
+        //    var matchLst = new Dictionary<BankTransaction, int>();
+        //    foreach (var item in historyLst)
+        //    {
+        //        int compareDistance = Convert.ToInt32((decimal)description.Length / 2);
+        //        var distance = LevenshteinDistance.Compute(description, item.Description);
+        //        if (distance <= compareDistance)
+        //            matchLst.Add(item, distance);
+        //    }
+
+        //    var bestMatch = matchLst.Where(q => q.Value == matchLst.Values.Min()).FirstOrDefault();
+        //    var key = ((BankTransaction)bestMatch.Key);
+
+        //    if (key != null)
+        //        tag = key.Tag;
+
+        //    return tag;
+        //}
+
+        //private List<BankTransaction> GetTagHistory()
+        //{
+        //    return transactionRepository.Table.ToList();
+        //}
 
         private Type GetStatementMap(int accountID)
         {

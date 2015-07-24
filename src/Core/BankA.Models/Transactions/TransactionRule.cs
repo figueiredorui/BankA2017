@@ -12,5 +12,7 @@ namespace BankA.Models.Transactions
 
         public string Tag { get; set; }
         public string TagGroup { get; set; }
+
+        public bool IsTransfer { get; set; }
     }
 }

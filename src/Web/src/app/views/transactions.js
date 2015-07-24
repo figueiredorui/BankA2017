@@ -6,7 +6,7 @@ app.controller('TransactionsListCtrl', function ($scope, $rootScope, $location, 
 
     $scope.transactionList = [];
     $scope.transaction = null;
-    
+
     $scope.selectedAccountID = 0;
     if ($rootScope.accountID != "")
         $scope.selectedAccountID = $rootScope.accountID;
@@ -17,13 +17,15 @@ app.controller('TransactionsListCtrl', function ($scope, $rootScope, $location, 
     $scope.uploadFile = uploadFile;
     $scope.addTransaction = addTransaction;
     $scope.editTransaction = editTransaction;
+    $scope.createRule = createRule;
 
     $scope.newAccount = newAccount;
     $scope.editAccount = editAccount;
     $scope.selectAccount = selectAccount;
-    
+
     $scope.updateTag = updateTag;
     $scope.originalTag = originalTag;
+    $scope.originalTagGroup = originalTagGroup;
 
 
     init();
@@ -59,28 +61,28 @@ app.controller('TransactionsListCtrl', function ($scope, $rootScope, $location, 
 
         TransactionsService.getTags()
             .success(function (response) {
-                $scope.tFilter.Tags = response;
-            })
+            $scope.tFilter.Tags = response;
+        })
             .error(function (error) {
-                $scope.errorMsg = error.Message;
-            })
+            $scope.errorMsg = error.Message;
+        })
             .finally(function () {
 
-            });
+        });
 
     }
 
     function loadAccounts() {
         AccountService.getSummary()
             .success(function (response) {
-                $scope.tFilter.Accounts = response;
-            })
+            $scope.tFilter.Accounts = response;
+        })
             .error(function (error) {
-                $scope.errorMsg = error.Message;
-            })
+            $scope.errorMsg = error.Message;
+        })
             .finally(function () {
 
-            });
+        });
     }
 
     function loadTransactions() {
@@ -89,39 +91,48 @@ app.controller('TransactionsListCtrl', function ($scope, $rootScope, $location, 
 
         TransactionsService.getAll(accountID, $scope.tFilter.DateRange.startDate, $scope.tFilter.DateRange.endDate, $scope.tFilter.Tag)
             .success(function (response) {
-                $scope.transactionList = response;
-            })
+            $scope.transactionList = response;
+        })
             .error(function (error) {
-                $scope.errorMsg = error.Message;
-            })
+            $scope.errorMsg = error.Message;
+        })
             .finally(function () {
 
-            });
+        });
 
     };
 
     var oldTag= '';
+    var oldTagGroup= '';
     function originalTag(tag) {
         oldTag = tag;
     }
 
+    function originalTagGroup(tagGroup) {
+        oldTagGroup = tagGroup;
+    }
+
     function updateTag(transaction) {
 
-        if (oldTag != transaction.Tag)
+        if (oldTag != transaction.Tag || oldTagGroup != transaction.TagGroup)
         {
+            updateTransaction(transaction)
+        }
+
+    };
+
+    function updateTransaction(transaction) {
 
         TransactionsService.update(transaction)
             .success(function (response) {
 
-            })
+        })
             .error(function (error) {
-                $scope.errorMsg = error.Message;
-            })
+            $scope.errorMsg = error.Message;
+        })
             .finally(function () {
 
-            });
-        }
-
+        });
     };
 
     function selectAccount(accountID) {
@@ -186,7 +197,28 @@ app.controller('TransactionsListCtrl', function ($scope, $rootScope, $location, 
             // $log.info('Modal dismissed at: ' + new Date());
         });
     }
-    
+
+    function createRule(transaction) {
+
+        var modalInstance = $modal.open({
+            templateUrl: 'CreateRuleModal.html',
+            controller: 'CreateRuleModalCtrl',
+            backdrop: false,
+            resolve: {
+                transaction: function () { return transaction; },
+            }
+        })
+
+        modalInstance.result.then(function () {
+
+            updateTag(transaction);
+
+
+        }, function () {
+            // $log.info('Modal dismissed at: ' + new Date());
+        });
+    }
+
     function newAccount() {
 
         var modalInstance = $modal.open({
@@ -206,7 +238,7 @@ app.controller('TransactionsListCtrl', function ($scope, $rootScope, $location, 
             // $log.info('Modal dismissed at: ' + new Date());
         });
     }
-    
+
     function editAccount(id) {
 
         var modalInstance = $modal.open({
@@ -239,16 +271,16 @@ app.controller('UploadFileModalCtrl', function ($scope, $modalInstance, $timeout
 
     function getAccountsLookUp() {
         AccountService.getAll()
-                .success(function (response) {
-                    $scope.Accounts = response;
-                    $scope.AccountID = accountID;
-                })
-                .error(function (error) {
-                    $scope.errorMsg = error.Message;
-                })
-                .finally(function () {
+            .success(function (response) {
+            $scope.Accounts = response;
+            $scope.AccountID = accountID;
+        })
+            .error(function (error) {
+            $scope.errorMsg = error.Message;
+        })
+            .finally(function () {
 
-                });
+        });
     }
 
     function submitFile(files) {
@@ -299,7 +331,6 @@ app.controller('UploadFileModalCtrl', function ($scope, $modalInstance, $timeout
     };
 });
 
-
 app.controller('TransactionsModalCtrl', function ($scope, $modalInstance, TransactionsService, AccountService, accountID, transactionID) {
 
     $scope.saveTransaction = saveTransaction;
@@ -317,67 +348,67 @@ app.controller('TransactionsModalCtrl', function ($scope, $modalInstance, Transa
         }
         else {
             TransactionsService.get(transactionID)
-                    .success(function (response) {
-                        $scope.transaction = response;
-                    })
-                    .error(function (error) {
-                        $scope.errorMsg = error.Message;
-                    })
-                    .finally(function () {
+                .success(function (response) {
+                $scope.transaction = response;
+            })
+                .error(function (error) {
+                $scope.errorMsg = error.Message;
+            })
+                .finally(function () {
 
-                    });
+            });
         }
     }
 
     function getAccountsLookUp() {
         AccountService.getAll()
-                .success(function (response) {
-                    $scope.Accounts = response;
-                })
-                .error(function (error) {
-                    $scope.errorMsg = error.Message;
-                })
-                .finally(function () {
+            .success(function (response) {
+            $scope.Accounts = response;
+        })
+            .error(function (error) {
+            $scope.errorMsg = error.Message;
+        })
+            .finally(function () {
 
-                });
+        });
     }
 
     function getTagsLookUp() {
         TransactionsService.getTags()
-                .success(function (response) {
-                    $scope.Tags = response;
-                })
-                .error(function (error) {
-                    $scope.errorMsg = error.Message;
-                })
-                .finally(function () {
+            .success(function (response) {
+            $scope.Tags = response;
+        })
+            .error(function (error) {
+            $scope.errorMsg = error.Message;
+        })
+            .finally(function () {
 
-                });
+        });
     }
 
     function saveTransaction() {
         if ($scope.transaction.ID == 0)
             TransactionsService.add($scope.transaction)
                 .success(function (response) {
-                    $modalInstance.close();
-                })
+                $modalInstance.close();
+            })
                 .error(function (error) {
-                    $scope.errorMsg = error.Message;
-                })
+                $scope.errorMsg = error.Message;
+            })
                 .finally(function () {
 
-                });
+            });
         else
             TransactionsService.update($scope.transaction)
                 .success(function (response) {
-                    $modalInstance.close();
-                })
+                $modalInstance.close();
+            })
                 .error(function (error) {
-                    $scope.errorMsg = error.Message;
-                })
+                $scope.errorMsg = error.Message;
+            })
                 .finally(function () {
 
-                });
+            });
 
 
 
@@ -386,14 +417,81 @@ app.controller('TransactionsModalCtrl', function ($scope, $modalInstance, Transa
     function deleteTransaction() {
         TransactionsService.delete($scope.transaction.ID)
             .success(function (response) {
-                $modalInstance.close();
-            })
+            $modalInstance.close();
+        })
             .error(function (error) {
-                $scope.errorMsg = error.Message;
-            })
+            $scope.errorMsg = error.Message;
+        })
             .finally(function () {
 
-            });
+        });
+
+    };
+
+    function cancel() {
+        $modalInstance.dismiss('cancel');
+    };
+
+    $scope.open = function ($event) {
+        $event.preventDefault();
+        $event.stopPropagation();
+
+        $scope.opened = true;
+    };
+
+
+
+});
+
+app.controller('CreateRuleModalCtrl', function ($scope, $modalInstance, TransactionsService, RuleService, transaction) {
+
+    $scope.saveRule = saveRule;
+    $scope.cancel = cancel;
+
+    getTagsLookUp();
+    createRule();
+
+    function createRule() {
+
+        $scope.rule = { 
+            RuleID: 0, 
+            Description: transaction.Description, 
+            Tag: transaction.Tag, 
+            TagGroup: transaction.TagGroup, 
+            IsTransfer: transaction.IsTransfer 
+        };
+    }
+
+
+    function getTagsLookUp() {
+        TransactionsService.getTags()
+            .success(function (response) {
+            $scope.Tags = response;
+        })
+            .error(function (error) {
+            $scope.errorMsg = error.Message;
+        })
+            .finally(function () {
+
+        });
+    }
+
+    function saveRule() {
+        RuleService.add($scope.rule)
+            .success(function (response) {
+
+            transaction.Tag= $scope.rule.Tag;
+            transaction.TagGroup= $scope.rule.TagGroup; 
+            transaction.IsTransfer= $scope.rule.IsTransfer; 
+
+            $modalInstance.close();
+        })
+            .error(function (error) {
+            $scope.errorMsg = error.Message;
+        })
+            .finally(function () {
+
+        });
 
     };
 

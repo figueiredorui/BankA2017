@@ -4,11 +4,13 @@
     [BankName]         VARCHAR (50)  NOT NULL,
     [IsSavingsAccount] BIT           NOT NULL,
     [CreatedOn]        DATETIME      NULL,
-    [CreatedBy]        NVARCHAR (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+    [CreatedBy]        NVARCHAR (50) NULL,
     [ChangedOn]        DATETIME      NULL,
-    [ChangedBy]        NVARCHAR (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
-    CONSTRAINT [PK__BankAcco__349DA586FF5445F7] PRIMARY KEY CLUSTERED ([AccountID] ASC)
+    [ChangedBy]        NVARCHAR (50) NULL,
+    CONSTRAINT [PK_AccountID] PRIMARY KEY CLUSTERED ([AccountID] ASC)
 );
+
+
 
 
 
