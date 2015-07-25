@@ -4,7 +4,7 @@ namespace BankA.Data.Contexts
     using System.Data.Entity;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
-    using BankA.Data.Models;
+    using BankA.Data.Entities;
     using System.Data.Entity.Validation;
     using System.Collections.Generic;
 

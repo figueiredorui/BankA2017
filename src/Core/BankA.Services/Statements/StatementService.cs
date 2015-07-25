@@ -1,4 +1,4 @@
-﻿using BankA.Data.Models;
+﻿using BankA.Data.Entities;
 using BankA.Data.Repositories;
 using BankA.Models;
 using BankA.Models.Enums;
@@ -22,22 +22,27 @@ namespace BankA.Services.Statements
     public class StatementService : BankA.Services.Statements.IStatementService
     {
         private readonly TransactionRepository transactionRepository;
+        private readonly TransactionRuleRepository transactionRuleRepository;
         private readonly AccountRepository accountRepository;
+        private readonly StatementFileRepository statementFileRepository;
+        
 
         public StatementService()
         {
             transactionRepository = new TransactionRepository();
+            transactionRuleRepository = new TransactionRuleRepository();
             accountRepository = new AccountRepository();
+            statementFileRepository = new StatementFileRepository();
         }
 
-        public void ImportFile(StatementFile statement)
+        public void ImportFile(StatementImport statement)
         {
             var statementRows = ReadStatementFile(statement);
             if (statementRows.Any())
                 ImportFile(statement, statementRows);
         }
 
-        private List<StatementRow> ReadStatementFile(StatementFile statement)
+        private List<StatementRow> ReadStatementFile(StatementImport statement)
         {
             try
             {
@@ -63,7 +68,7 @@ namespace BankA.Services.Statements
             }
         }
 
-        private void ImportFile(StatementFile statementFile, List<StatementRow> statementRows)
+        private void ImportFile(StatementImport statementFile, List<StatementRow> statementRows)
         {
             var bankFile = CreateBankStatmentFile(statementFile);
             var bankTransaction = CreateBankTransaction(statementRows);
@@ -71,7 +76,7 @@ namespace BankA.Services.Statements
             transactionRepository.AddTransactions(bankFile, bankTransaction);
         }
 
-        private BankStatementFile CreateBankStatmentFile(StatementFile statementFile)
+        private BankStatementFile CreateBankStatmentFile(StatementImport statementFile)
         {
             return new BankStatementFile()
             {
@@ -84,12 +89,21 @@ namespace BankA.Services.Statements
 
         private List<BankTransaction> CreateBankTransaction(List<StatementRow> statementRows)
         {
+            
+
             var transactionLst = new List<BankTransaction>();
             foreach (var row in statementRows)
-                transactionLst.Add(CreateBankTransaction(row));
+            {
+                var transaction = CreateBankTransaction(row);
+                transactionLst.Add(transaction);
+            }
+
+            ApplyBestRule(transactionLst);
+                
             return transactionLst;
         }
 
+       
         private BankTransaction CreateBankTransaction(StatementRow row)
         {
             var trans = new BankTransaction();
@@ -101,6 +115,23 @@ namespace BankA.Services.Statements
 
             return trans;
         }
+
+        private void ApplyBestRule(List<BankTransaction> transactionLst)
+        {
+            var transactionRules = transactionRuleRepository.Table.ToList();
+
+            foreach (var transaction in transactionLst)
+            {
+                var rule = transactionRules.Where(q => transaction.Description.ToUpper().Contains(q.Description.ToUpper())).FirstOrDefault();
+                if (rule != null)
+                {
+                    transaction.Tag = rule.Tag;
+                    transaction.TagGroup = rule.TagGroup;
+                    transaction.IsTransfer = rule.IsTransfer;
+                }
+            }
+        }
+
 
         //private BankTransaction CreateTransaction(StatementFile file, StatementRow row, List<BankTransaction> historyLst)
         //{
@@ -188,6 +219,25 @@ namespace BankA.Services.Statements
                 }
             }
             return typeFound;
+        }
+
+        public void Delete(int id)
+        {
+            var entity = statementFileRepository.Find(id);
+
+            var transactionList = transactionRepository.Table.Where(q => q.FileID == id).ToList();
+            foreach (var transaction in transactionList)
+            {
+                transactionRepository.Delete(transaction);
+            }
+
+            statementFileRepository.Delete(entity);
+        }
+
+        public List<StatementFile> GetList()
+        {
+            var entity = statementFileRepository.Table.ToList();
+            return entity.ToModel();
         }
     }
 }

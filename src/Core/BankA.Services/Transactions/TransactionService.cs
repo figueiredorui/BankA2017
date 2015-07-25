@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BankA.Data.Models;
+using BankA.Data.Entities;
 using BankA.Data.Repositories;
 using BankA.Models;
 using System.IO;

@@ -17,9 +17,9 @@ namespace BankA.Models.Transactions
         public decimal CreditAmount { get; set; }
         public decimal Amount { get; set; }
         public string Tag { get; set; }
-
         public string TagGroup { get; set; }
         public bool IsTransfer { get; set; }
+        public int? FileID { get; set; }
     }
 
 }

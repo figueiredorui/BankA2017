@@ -1,17 +1,21 @@
 'use strict';
 
-app.controller('SettingsCtrl', function ($scope, $state, $modal, RuleService) {
+app.controller('SettingsCtrl', function ($scope, $state, $modal, RuleService, StatementsService) {
 
     $scope.pageTitle = 'Rules';
     $scope.RuleList = [];
+    $scope.FileList = [];
 
     $scope.editRule = editRule;
     $scope.newRule = newRule;
+    
+    $scope.deleteStatementFile = deleteStatementFile;
 
     init();
 
     function init() {
         loadRules();
+        getStatementFiles();
     };
 
     function loadRules() {
@@ -68,6 +72,43 @@ app.controller('SettingsCtrl', function ($scope, $state, $modal, RuleService) {
             // $log.info('Modal dismissed at: ' + new Date());
         });
     }
+    
+    
+    //------------------------
+    
+   
+
+    function getStatementFiles() {
+       
+        StatementsService.getAll()
+            .success(function (response) {
+                $scope.FileList = response;
+            })
+            .error(function (error) {
+                $scope.errorMsg = error.Message;
+            })
+            .finally(function () {
+
+            });
+        
+    }
+    
+    function deleteStatementFile(fileID) {
+       
+        StatementsService.delete(fileID)
+            .success(function (response) {
+                getStatementFiles();
+            })
+            .error(function (error) {
+                $scope.errorMsg = error.Message;
+            })
+            .finally(function () {
+
+            });
+        
+    }
+    
+    
 })
 
 // Please note that $modalInstance represents a modal window (instance) dependency.

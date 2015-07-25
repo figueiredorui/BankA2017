@@ -23,6 +23,7 @@ app.controller('TransactionsListCtrl', function ($scope, $rootScope, $location, 
     $scope.editAccount = editAccount;
     $scope.selectAccount = selectAccount;
 
+    $scope.updateTransaction = updateTransaction;
     $scope.updateTag = updateTag;
     $scope.originalTag = originalTag;
     $scope.originalTagGroup = originalTagGroup;
@@ -211,7 +212,9 @@ app.controller('TransactionsListCtrl', function ($scope, $rootScope, $location, 
 
         modalInstance.result.then(function () {
 
-            updateTag(transaction);
+            loadTransactions();
+            //updateTag(transaction);
+            
 
 
         }, function () {
@@ -487,7 +490,7 @@ app.controller('CreateRuleModalCtrl', function ($scope, $modalInstance, Transact
             $modalInstance.close();
         })
             .error(function (error) {
-            $scope.errorMsg = error.Message;
+            $scope.errorMsg = error.ExceptionMessage;
         })
             .finally(function () {
 

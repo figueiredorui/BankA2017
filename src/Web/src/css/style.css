@@ -129,8 +129,11 @@ z-index: 1;
 }
 */
 
-a .delete-btn-hover { opacity:0; float:right }
-a:hover .delete-btn-hover { opacity:1 }
+a .show-on-row-hover { opacity:0; float:right }
+a:hover .show-on-row-hover { opacity:1 }
+
+tr .show-on-row-hover { opacity:0; float:right }
+tr:hover .show-on-row-hover { opacity:1 }
 
 
 

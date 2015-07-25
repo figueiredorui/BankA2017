@@ -100,6 +100,7 @@
     <Compile Include="Statements\IStatementService.cs" />
     <Compile Include="Statements\Maps\LloydsStatementMap.cs" />
     <Compile Include="Statements\Maps\HsbcStatementMap.cs" />
+    <Compile Include="Statements\StatementMapExtensions.cs" />
     <Compile Include="Statements\StatementService.cs" />
     <Compile Include="Statements\Helpers\LevenshteinDistance.cs" />
     <Compile Include="Reports\ReportService.cs" />

@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using BankA.Data.Models;
+using BankA.Data.Entities;
 using BankA.Models;
 using BankA.Models.Accounts;
 using System;

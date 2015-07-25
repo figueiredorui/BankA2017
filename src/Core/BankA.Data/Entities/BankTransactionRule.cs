@@ -1,4 +1,4 @@
-namespace BankA.Data.Models
+namespace BankA.Data.Entities
 {
     using System;
     using System.Collections.Generic;

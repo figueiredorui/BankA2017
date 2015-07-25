@@ -111,7 +111,7 @@ namespace BankA.Controllers.Controllers
                 var fileContent = System.IO.File.ReadAllBytes(file.LocalFileName);
 
 
-                new StatementService().ImportFile(new StatementFile()
+                new StatementService().ImportFile(new StatementImport()
                             {
                                 FileName = file.Headers.ContentDisposition.FileName.Trim('"'),
                                 FileContent = fileContent,

@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using BankA.Data.Models;
+using BankA.Data.Entities;
 using BankA.Models;
 using BankA.Models.Transactions;
 using System;
@@ -25,7 +25,8 @@ namespace BankA.Services.Transactions
                 Amount = table.CreditAmount - table.DebitAmount,
                 IsTransfer = table.IsTransfer,
                 Tag = table.Tag,
-                TagGroup = table.TagGroup
+                TagGroup = table.TagGroup,
+                FileID = table.FileID,
             };
         }
 
@@ -49,6 +50,7 @@ namespace BankA.Services.Transactions
                 IsTransfer = model.IsTransfer,
                 Tag = model.Tag ?? string.Empty,
                 TagGroup = model.TagGroup ?? string.Empty,
+                FileID = model.FileID,
             };
         }
     }

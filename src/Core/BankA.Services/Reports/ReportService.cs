@@ -1,4 +1,4 @@
-﻿using BankA.Data.Models;
+﻿using BankA.Data.Entities;
 using BankA.Data.Repositories;
 using BankA.Models.Reports;
 using System;

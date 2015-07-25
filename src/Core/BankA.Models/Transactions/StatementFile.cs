@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace BankA.Models.Transactions
 {
-    public partial class StatementFile
+    public partial class StatementImport
     {
         public int FileID { get; set; }
         public string FileName { get; set; }
@@ -12,6 +12,14 @@ namespace BankA.Models.Transactions
         public string ContentType { get; set; }
         public int AccountID { get; set; }
 
-        //public List<StatementRow> Rows { get; set; }
+    }
+
+    public partial class StatementFile
+    {
+        public int FileID { get; set; }
+        public string FileName { get; set; }
+        public DateTime? CreatedOn { get; set; }
+        public string Account { get; set; }
+
     }
 }

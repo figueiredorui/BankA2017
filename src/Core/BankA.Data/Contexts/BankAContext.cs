@@ -4,7 +4,7 @@ namespace BankA.Data.Contexts
     using System.Data.Entity;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
-    using BankA.Data.Models;
+    using BankA.Data.Entities;
     using SQLite.CodeFirst;
 
     public partial class BankAContext : DbContext
@@ -24,6 +24,11 @@ namespace BankA.Data.Contexts
         {
             modelBuilder.Entity<BankAccount>()
                 .HasMany(e => e.BankTransactions)
+                .WithRequired(e => e.BankAccount)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<BankAccount>()
+                .HasMany(e => e.BankStatementFiles)
                 .WithRequired(e => e.BankAccount)
                 .WillCascadeOnDelete(false);
 

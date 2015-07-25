@@ -1,4 +1,4 @@
-﻿using BankA.Data.Models;
+﻿using BankA.Data.Entities;
 using BankA.Models.Transactions;
 using System;
 using System.Collections.Generic;
@@ -18,6 +18,7 @@ namespace BankA.Services.Rules
                 Description = table.Description,
                 Tag = table.Tag,
                 TagGroup = table.TagGroup,
+                IsTransfer = table.IsTransfer
             };
         }
 
@@ -36,6 +37,7 @@ namespace BankA.Services.Rules
                 Description = model.Description,
                 Tag = model.Tag,
                 TagGroup = model.TagGroup,
+                IsTransfer = model.IsTransfer
             };
         }
     }
