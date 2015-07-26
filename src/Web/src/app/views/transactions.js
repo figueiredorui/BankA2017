@@ -7,11 +7,6 @@ app.controller('TransactionsListCtrl', function ($scope, $rootScope, $location, 
     $scope.transactionList = [];
     $scope.transaction = null;
 
-    $scope.selectedAccountID = 0;
-    if ($rootScope.accountID != "")
-        $scope.selectedAccountID = $rootScope.accountID;
-
-
     $scope.Search = Search;
     $scope.refresh = refresh;
     $scope.uploadFile = uploadFile;
@@ -19,26 +14,24 @@ app.controller('TransactionsListCtrl', function ($scope, $rootScope, $location, 
     $scope.editTransaction = editTransaction;
     $scope.createRule = createRule;
 
-    $scope.newAccount = newAccount;
-    $scope.editAccount = editAccount;
-    $scope.selectAccount = selectAccount;
-
     $scope.updateTransaction = updateTransaction;
     $scope.updateTag = updateTag;
     $scope.originalTag = originalTag;
     $scope.originalTagGroup = originalTagGroup;
 
+    $scope.$on('selectedAccountChanged', function(event, args) {
+        loadTransactions();
+    });
+
 
     init();
 
     function init() {
-        loadAccounts();
         loadFilters();
         loadTransactions();
     };
 
     function refresh() {
-        loadAccounts();
         loadTransactions();
     };
 
@@ -73,22 +66,9 @@ app.controller('TransactionsListCtrl', function ($scope, $rootScope, $location, 
 
     }
 
-    function loadAccounts() {
-        AccountService.getSummary()
-            .success(function (response) {
-            $scope.tFilter.Accounts = response;
-        })
-            .error(function (error) {
-            $scope.errorMsg = error.Message;
-        })
-            .finally(function () {
-
-        });
-    }
-
     function loadTransactions() {
 
-        var accountID = $scope.selectedAccountID
+        var accountID = $rootScope.accountID
 
         TransactionsService.getAll(accountID, $scope.tFilter.DateRange.startDate, $scope.tFilter.DateRange.endDate, $scope.tFilter.Tag)
             .success(function (response) {
@@ -136,13 +116,6 @@ app.controller('TransactionsListCtrl', function ($scope, $rootScope, $location, 
         });
     };
 
-    function selectAccount(accountID) {
-
-        $scope.selectedAccountID = accountID;
-
-        loadTransactions();
-
-    };
 
     function uploadFile() {
         var modalInstance = $modal.open({
@@ -150,7 +123,7 @@ app.controller('TransactionsListCtrl', function ($scope, $rootScope, $location, 
             controller: 'UploadFileModalCtrl',
             backdrop: false,
             resolve: {
-                accountID: function () { return $scope.selectedAccountID }
+                accountID: function () { return $rootScope.accountID }
             }
         })
 
@@ -169,7 +142,7 @@ app.controller('TransactionsListCtrl', function ($scope, $rootScope, $location, 
             backdrop: false,
             resolve: {
                 transactionID: function () { return 0; },
-                accountID: function () { return $scope.selectedAccountID }
+                accountID: function () { return $rootScope.accountID }
             }
         })
 
@@ -214,7 +187,7 @@ app.controller('TransactionsListCtrl', function ($scope, $rootScope, $location, 
 
             loadTransactions();
             //updateTag(transaction);
-            
+
 
 
         }, function () {
@@ -222,45 +195,7 @@ app.controller('TransactionsListCtrl', function ($scope, $rootScope, $location, 
         });
     }
 
-    function newAccount() {
 
-        var modalInstance = $modal.open({
-            templateUrl: 'EditAccountModal.html',
-            controller: 'AccountsModalCtrl',
-            backdrop: false,
-            resolve: {
-                accountID: function () {
-                    return 0;
-                }
-            }
-        })
-
-        modalInstance.result.then(function () {
-            loadAccounts();
-        }, function () {
-            // $log.info('Modal dismissed at: ' + new Date());
-        });
-    }
-
-    function editAccount(id) {
-
-        var modalInstance = $modal.open({
-            templateUrl: 'EditAccountModal.html',
-            controller: 'AccountsModalCtrl',
-            backdrop: false,
-            resolve: {
-                accountID: function () {
-                    return id;
-                }
-            }
-        })
-
-        modalInstance.result.then(function () {
-            loadAccounts();
-        }, function () {
-            // $log.info('Modal dismissed at: ' + new Date());
-        });
-    }
 })
 
 // Please note that $modalInstance represents a modal window (instance) dependency.

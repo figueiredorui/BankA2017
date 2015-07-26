@@ -8,7 +8,7 @@
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Account: </label>
                         <div class="col-lg-9">
-                            <select class="form-control" ng-model="SelectedAccountID" name="AccountID" id="AccountID" 
+                            <select class="form-control" ng-model="selectedAccountID" name="AccountID" id="AccountID" 
                                     ng-change="ChangedAccountID()">
                                 <option ng-repeat="item in Accounts" value="{{item.AccountID}}">{{item.Description}}</option>
                             </select>

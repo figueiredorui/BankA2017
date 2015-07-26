@@ -1,7 +1,7 @@
 'use strict';
 app.controller('ExpenseAnalysisCtrl', function($scope, $state, $stateParams, AccountService, ReportsService) {
 
-    $scope.SelectedAccountID = '';
+    $scope.selectedAccountID = '';
     $scope.ChangedAccountID = loadExpensesReport;
     
 
@@ -24,7 +24,7 @@ app.controller('ExpenseAnalysisCtrl', function($scope, $state, $stateParams, Acc
 
 
     function loadExpensesReport() {
-        ReportsService.getExpenses($scope.SelectedAccountID).success(function(response) {
+        ReportsService.getExpenses($scope.selectedAccountID).success(function(response) {
             showPivot(response);
         }).error(function(error) {
             $scope.errorMsg = error.Message;

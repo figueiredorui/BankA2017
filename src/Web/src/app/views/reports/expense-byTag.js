@@ -1,28 +1,14 @@
 'use strict';
-app.controller('ExpensebyTagCtrl', function($scope, $state, AccountService, ReportsService) {
+app.controller('ExpensebyTagCtrl', function($rootScope, $scope, $state, AccountService, ReportsService) {
     
-     $scope.SelectedAccountID = '';
-     $scope.ChangedAccountID = loadExpensesByTag;
-
-    loadAccounts();
+    $scope.$on('selectedAccountChanged', function(event, args) {
+        loadExpensesByTag();
+    });
+    
     loadExpensesByTag();
 
-    function loadAccounts() {
-        AccountService.getSummary()
-            .success(function (response) {
-            $scope.Accounts = response;
-
-
-        })
-            .error(function (error) {
-            $scope.errorMsg = error.Message;
-        })
-            .finally(function () {
-        });
-    }
-
     function loadExpensesByTag() {
-        ReportsService.getExpensesByTag($scope.SelectedAccountID).success(function(response) {
+        ReportsService.getExpensesByTag($rootScope.accountID).success(function(response) {
             showChart(response);
         }).error(function(error) {
             $scope.errorMsg = error.Message;

@@ -1,101 +1,97 @@
 
 
-<div id="page-wrapper" ng-class="{'open': toggle}" ng-cloak>
-    <!-- Sidebar -->
-    <div id="sidebar-wrapper">
-        <ul class="sidebar">
-            <li class="sidebar-main">
-                <a ng-click="toggleSidebar()">
-                    {{AppName}} v.{{AppVersion}}
-                    
-                    <span class="menu-icon glyphicon glyphicon-transfer"></span>
-                </a>
-            </li>
-            <li class="sidebar-title">
-                <span>NAVIGATION</span>
-            </li>
-            <li class="sidebar-list">
-                <a ui-sref="app.dashboard" ui-sref-active="active" 
-                            data-toggle="tooltip" data-placement="right" title="Dashboard">Dashboard 
-                    <span class="menu-icon fa fa-tachometer"></span>
-                </a>
-            </li>
-            <li class="sidebar-list">
-                <a ui-sref="app.transactions" ui-sref-active="active"
-                   data-toggle="tooltip" data-placement="right" title="Transactions">Transactions 
-                    <span class="menu-icon fa fa-table"></span>
-                </a>
-            </li>
-            <li class="sidebar-list">
-                <a ui-sref="app.reports.menu" ui-sref-active="active"
-                   data-toggle="tooltip" data-placement="right" title="Reports">Reports 
-                    <span class="menu-icon fa fa-bar-chart "></span>
-                </a>
-            </li>
-            <li class="sidebar-list">
-                <a ui-sref="app.settings" ui-sref-active="active"
-                   data-toggle="tooltip" data-placement="right" title="Settings">Settings 
-                    <span class="menu-icon fa fa-wrench "></span>
-                </a>
-            </li>
-        </ul>
-        <div class="sidebar-footer">
-            <div class="row">
-                <div class="col-xs-4">
-                    <a href="https://github.com/figueiredorui/BankA" target="_blank">
-                    Github
-                </a>
-                </div>
-                <div class="col-xs-4">
-                    <a href="https://github.com/figueiredorui" target="_blank">
-                    About
-                </a>
-                </div>
-                <div class="col-xs-4">
-                    <a href="https://github.com/rdash/rdash-angular" target="_blank">
-                    RDash
-                </a>
-                </div>
-            </div>
-            <div class="row">
-                <a href="{{ApiUrl}}" target="_blank">
-                    Api v.{{ApiVersion}}
-                </a>
-            </div>
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--2-col  " >
+
+        <div class="mdl-grid">
+            &nbsp;
         </div>
-    </div>
-    <!-- End Sidebar -->
-    <div id="content-wrapper">
-        <div class="page-content">
-            <!-- Header Bar -->
-            <div class="row header">
-                <div class="col-xs-12">
-                    <div class="user pull-right">
-                        <div class="item dropdown">
-                            <a href="#" class="dropdown-toggle">
-                                <img src="img/avatar.jpg">
-                                </a>
-                               
-                            </div>
+        <div class="accounts-box">
+
+            <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp ">
+                <thead>
+                    <tr >
+                        <th class="mdl-data-table__cell--non-numeric">
+                            <h5>Accounts</h5>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="account in Accounts" ng-click="selectAccount(account.AccountID)" ng-class="{'is-selected': account.AccountID == accountID}" style="cursor: pointer">
+                        <td class="mdl-data-table__cell--non-numeric" >
+
+                                <strong>{{account.Description}}</strong>
+                             <button ng-click="editAccount(account.AccountID)" ng-show="account.AccountID > 0" 
+                                    class="btn btn-link btn-xs show-on-row-hover pull-left" 
+                                    style="padding-left:0px"><span class="fa fa-pencil"></span></button>
                             
-                        </div>
-                        <div class="meta">
-                            <div class="page">
-                                <h4 ng-bind="$state.current.data.pageTitle"></h4>
+                            <br>
+                            <small>£{{account.Balance | number : 2}}</small>
+                            <br>
+                            <div ng-show="account.AccountID > 0" class="comment  pull-left">
+                                <a ng-click="showTransactions(account.AccountID)" style="cursor: pointer"><small>Last Transaction: {{account.LastTransactionDate | date}}</small></a>
                             </div>
-                            <!--<div class="breadcrumb-links">
-                            Home / Dashboard
-                        </div>-->
-                        </div>
-                    </div>
-                </div>
-                <!-- End Header Bar -->
-                <!-- Main Content -->
-                <div ui-view></div>
-            </div>
-            <!-- End Page Content -->
+                            <div class="comment">&nbsp;</div>
+
+                        </td>
+                    </tr>
+                </tbody>
+                <tfooter>
+                    <tr>
+                        <th style="height: 60px;">
+                            <button ng-click="newAccount()" id="btnAddAccount" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored">
+                                <i class="material-icons">add</i>
+                            </button>
+                            <div class="mdl-tooltip" for="btnAddAccount">
+                                Follow
+                            </div>
+                        </th>
+                    </tr>
+                </tfooter>
+
+            </table>
         </div>
-        <!-- End Content Wrapper -->
+
     </div>
-    <!-- End Page Wrapper -->
-    <script></script>
+    <div class="mdl-cell mdl-cell--10-col">
+        <!-- Main Content -->
+        <div ui-view></div>
+    </div>
+</div>
+
+
+<script type="text/ng-template" id="EditAccountModal.html">
+    <div class="modal-header">
+        <h3 class="modal-title">Account</h3>
+    </div>
+    <div class="modal-body">
+        <alert type="danger" close="errorMsg=null" ng-show="errorMsg">{{errorMsg}}</alert>
+        <form class="bs-example form-horizontal ng-pristine ng-valid">
+            <div class="form-group">
+                <label class="col-lg-3 control-label">Description</label>
+                <div class="col-lg-9">
+                    <input type="text" class="form-control" ng-model="account.Description" placeholder="Description">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-3 control-label">Bank</label>
+                <div class="col-lg-9">
+                    <select class="form-control" ng-model="account.BankName">
+                        <option ng-repeat="item in Banks" value="{{item}}">{{item}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-3 control-label">Savings Account</label>
+                <div class="col-lg-9">
+                    <input type="checkbox" class="form-control1" ng-model="account.IsSavingsAccount" />
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-danger pull-left" ng-click="deleteAccount()">Delete</button>
+        <button class="btn btn-success" ng-click="saveAccount()">Save</button>
+        <button class="btn btn-default" ng-click="cancel()">Cancel</button>
+    </div>
+</script>

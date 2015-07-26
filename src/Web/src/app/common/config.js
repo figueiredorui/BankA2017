@@ -68,7 +68,18 @@ app.run(function ($rootScope, $state, authService) {
     //    }
     //});
 
+    $rootScope.$on("$stateChangeSuccess", function(event, toState, toParams, fromState, fromParams) {
+        if ($("#banka-side-bar").hasClass( "is-visible" ))
+        {
+            $("#banka-side-bar").toggleClass("is-visible")
+        }
+        
+        $rootScope.title = $state.current.data.pageTitle;
+    });
+
 });
+
+
 
 
 //-------------------------------------------------------------

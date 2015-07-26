@@ -1,7 +1,7 @@
 'use strict';
 app.controller('IncomeAnalysisCtrl', function($scope, $state, AccountService, ReportsService) {
 
-    $scope.SelectedAccountID = '';
+    $scope.selectedAccountID = '';
     $scope.ChangedAccountID = loadIncomeReport;
 
     loadAccounts();
@@ -22,7 +22,7 @@ app.controller('IncomeAnalysisCtrl', function($scope, $state, AccountService, Re
     }
 
     function loadIncomeReport() {
-        ReportsService.getIncome($scope.SelectedAccountID).success(function(response) {
+        ReportsService.getIncome($scope.selectedAccountID).success(function(response) {
             showPivot(response);
         }).error(function(error) {
             $scope.errorMsg = error.Message;

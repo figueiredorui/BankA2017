@@ -1,7 +1,7 @@
 'use strict';
 app.controller('ExpensebyTagCtrl', function($scope, $state, AccountService, ReportsService) {
     
-     $scope.SelectedAccountID = '';
+     $scope.selectedAccountID = '';
      $scope.ChangedAccountID = loadExpensesByTag;
 
     loadAccounts();
@@ -22,7 +22,7 @@ app.controller('ExpensebyTagCtrl', function($scope, $state, AccountService, Repo
     }
 
     function loadExpensesByTag() {
-        ReportsService.getExpensesByTag($scope.SelectedAccountID).success(function(response) {
+        ReportsService.getExpensesByTag($scope.selectedAccountID).success(function(response) {
             showChart(response);
         }).error(function(error) {
             $scope.errorMsg = error.Message;

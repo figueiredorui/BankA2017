@@ -2,40 +2,13 @@
 
 app.controller('DashboardCtrl', function ($scope, $rootScope, $state, AccountService, ReportsService) {
 
-    $rootScope.accountID = null;
+    $scope.$on('selectedAccountChanged', function(event, args) {
+        loadChart();
+    });
 
-    $scope.showTransaction= showTransaction;
-    $scope.selectAccount= selectAccount;
-
-    loadAccountSummary();
     loadChart();
 
-    function showTransaction(accountID) {
-        $rootScope.accountID = accountID;
-        $state.go('app.transactions');
-    }
-
-    function selectAccount(accountID) {
-        $rootScope.accountID = accountID;
-        loadChart();
-    }
-
-    function loadAccountSummary() {
-        AccountService.getSummary()
-            .success(function (response) {
-            $scope.Accounts = response;
-        })
-            .error(function (error) {
-            $scope.errorMsg = error.Message;
-        })
-            .finally(function () {
-
-        });
-    }
-
     function loadChart() {
-        
-        
 
         ReportsService.getGetMonthlyCashFlow($rootScope.accountID)
             .success(function (response) {
@@ -88,24 +61,17 @@ app.controller('DashboardCtrl', function ($scope, $rootScope, $state, AccountSer
 
             LoadChartNvd3(response);
 
-
-
         })
             .error(function (error) {
             $scope.errorMsg = error.Message;
         })
             .finally(function () {
-
         });
-
-
     }
 
 
     function LoadChartNvd3(dataValues)
     {
-       
-        
         $scope.data = [{
             key: '',
             values:dataValues
@@ -137,12 +103,7 @@ app.controller('DashboardCtrl', function ($scope, $rootScope, $state, AccountSer
                     },
                     axisLabelDistance: 50
                 }
-
-
             }
         };
-
     }
-
 })
-
