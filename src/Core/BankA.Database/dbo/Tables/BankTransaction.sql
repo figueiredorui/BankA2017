@@ -10,12 +10,13 @@
     [IsTransfer]      BIT             NOT NULL,
     [FileID]          INT             NULL,
     [CreatedOn]       DATETIME        NULL,
-    [CreatedBy]       NVARCHAR (50)   NULL,
+    [CreatedBy]       NVARCHAR (50)   COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
     [ChangedOn]       DATETIME        NULL,
-    [ChangedBy]       NVARCHAR (50)   NULL,
-    CONSTRAINT [PK_ID] PRIMARY KEY CLUSTERED ([ID] ASC),
-    CONSTRAINT [FK_BankTransaction_BankAccount] FOREIGN KEY ([AccountID]) REFERENCES [dbo].[BankAccount] ([AccountID])
+    [ChangedBy]       NVARCHAR (50)   COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+    CONSTRAINT [PK_ID] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
+
+
 
 
 
