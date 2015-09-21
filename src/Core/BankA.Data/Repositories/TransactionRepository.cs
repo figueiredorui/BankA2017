@@ -19,7 +19,7 @@ namespace BankA.Data.Repositories
                 foreach (var transaction in transactionLst.OrderBy(o => o.TransactionDate).ToList())
                 {
                     var exists = ctx.BankTransactions.Any(q => q.TransactionDate == transaction.TransactionDate
-                                                            && q.AccountID == transaction.AccountID
+                                                            && q.AccountID == statementFile.AccountID
                                                             && q.DebitAmount == transaction.DebitAmount
                                                             && q.CreditAmount == transaction.CreditAmount);
                     if (exists == false)

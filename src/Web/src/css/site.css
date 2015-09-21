@@ -1,0 +1,95 @@
+.accounts-box
+{
+    position: fixed;
+    padding: 0px;
+
+}
+
+.chart-box
+{
+    width: 100%;
+    height: 500px;
+    padding: 5px 20px 20px 20px;
+
+}
+
+.regular-box
+{
+    width: 100%;
+    padding: 5px 20px 20px 20px;
+
+}
+
+
+#view-source {
+    position: fixed;
+    display: block;
+    right: 0;
+    bottom: 0;
+    margin-right: 40px;
+    margin-bottom: 40px;
+    z-index: 900;
+}
+
+
+a .show-on-row-hover { opacity:0; float:right }
+a:hover .show-on-row-hover { opacity:1 }
+
+tr .show-on-row-hover { opacity:0; float:right }
+tr:hover .show-on-row-hover { opacity:1 }
+
+
+.mdl-data-table tbody tr.is-selected
+{
+    
+    border-left: 3px solid #009688;
+    
+        
+    
+}
+
+
+#loading-bar-spinner {
+    display: block;
+    position: fixed;
+    z-index: 100002;
+    top: 50%;
+    left: 50%;
+}
+
+#loading-bar-spinner .spinner-icon {
+    width: 24px;
+    height: 24px;
+
+    border:  solid 2px transparent;
+    border-top-color:  #29d;
+    border-left-color: #29d;
+    border-radius: 10px;
+
+    -webkit-animation: loading-bar-spinner 400ms linear infinite;
+    -moz-animation:    loading-bar-spinner 400ms linear infinite;
+    -ms-animation:     loading-bar-spinner 400ms linear infinite;
+    -o-animation:      loading-bar-spinner 400ms linear infinite;
+    animation:         loading-bar-spinner 400ms linear infinite;
+}
+
+@-webkit-keyframes loading-bar-spinner {
+    0%   { -webkit-transform: rotate(0deg);   transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); transform: rotate(360deg); }
+}
+@-moz-keyframes loading-bar-spinner {
+    0%   { -moz-transform: rotate(0deg);   transform: rotate(0deg); }
+    100% { -moz-transform: rotate(360deg); transform: rotate(360deg); }
+}
+@-o-keyframes loading-bar-spinner {
+    0%   { -o-transform: rotate(0deg);   transform: rotate(0deg); }
+    100% { -o-transform: rotate(360deg); transform: rotate(360deg); }
+}
+@-ms-keyframes loading-bar-spinner {
+    0%   { -ms-transform: rotate(0deg);   transform: rotate(0deg); }
+    100% { -ms-transform: rotate(360deg); transform: rotate(360deg); }
+}
+@keyframes loading-bar-spinner {
+    0%   { transform: rotate(0deg);   transform: rotate(0deg); }
+    100% { transform: rotate(360deg); transform: rotate(360deg); }
+}
