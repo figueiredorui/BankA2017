@@ -18,6 +18,6 @@ The best way to install npm is to install node using the node.js installer https
 
 ```
 git clone https://github.com/figueiredorui/BankA.git
-cd banka
+cd banka\src
 build.bat
 ```
