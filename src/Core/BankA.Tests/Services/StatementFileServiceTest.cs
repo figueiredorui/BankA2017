@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using BankA.Services.Statements;
+using BankA.Services.Files;
 
 namespace BankA.Tests.Services
 {
@@ -10,7 +10,7 @@ namespace BankA.Tests.Services
         [TestMethod]
         public void GetBankTest()
         {
-            var svc = new StatementService();
+            var svc = new FilesService();
             //svc.GetStatementMap(1);
 
         }

@@ -22,17 +22,11 @@ namespace BankA.Controllers.Controllers
     [RoutePrefix("api")]
     public class ReportsController : ApiController
     {
-        private readonly IReportService svc;
+        private readonly ReportService svc;
 
         public ReportsController()
         {
             this.svc = new ReportService();
-        }
-
-
-        public ReportsController(IReportService svc)
-        {
-            this.svc = svc;
         }
 
         // GET: api/Reports/Chart

@@ -9,7 +9,6 @@ namespace BankA.Data.Entities
     [Table("BankAccount")]
     public partial class BankAccount
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public BankAccount()
         {
             BankTransactions = new HashSet<BankTransaction>();
@@ -41,6 +40,6 @@ namespace BankA.Data.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BankTransaction> BankTransactions { get; set; }
 
-        public virtual ICollection<BankStatementFile> BankStatementFiles { get; set; }
+        public virtual ICollection<BankFile> BankStatementFiles { get; set; }
     }
 }

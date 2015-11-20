@@ -13,6 +13,8 @@ namespace BankA.Data.Entities
 
         public int AccountID { get; set; }
 
+        public string TransactionType { get; set; }
+
         public DateTime TransactionDate { get; set; }
 
         [StringLength(500)]
@@ -44,6 +46,6 @@ namespace BankA.Data.Entities
 
         public virtual BankAccount BankAccount { get; set; }
 
-        public virtual BankStatementFile BankStatementFile { get; set; }
+        public virtual BankFile BankStatementFile { get; set; }
     }
 }

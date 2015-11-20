@@ -1,14 +1,12 @@
 'use strict';
-app.controller('ExpensebyTagCtrl', function($rootScope, $scope, $state, AccountService, ReportsService) {
+app.controller('ExpensebyTagCtrl', function($stateParams, $scope, $state, AccountsService, ReportsService) {
     
-    $scope.$on('selectedAccountChanged', function(event, args) {
-        loadExpensesByTag();
-    });
+    var accountID = $stateParams.accountID;
     
     loadExpensesByTag();
 
     function loadExpensesByTag() {
-        ReportsService.getExpensesByTag($rootScope.accountID).success(function(response) {
+        ReportsService.getExpensesByTag(accountID).success(function(response) {
             showChart(response);
         }).error(function(error) {
             $scope.errorMsg = error.Message;

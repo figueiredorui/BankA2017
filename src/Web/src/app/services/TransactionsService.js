@@ -8,18 +8,8 @@ app.service("TransactionsService", function ($http, AppSettings) {
         return urlBase + '/upload';
     }
 
-    this.getAll = function (accountID, startDate, endDate, tag) {
-
-        var search = {
-            AccountID: accountID,
-            StartDate: startDate,
-            EndDate: endDate,
-            Tag: tag
-        }
-
-        return $http.get(urlBase + '/Search', {
-            params: search
-        });
+     this.getAll = function (search) {
+        return $http.post(urlBase + '/Search', search);
     }
 
     this.get = function (id) {
@@ -38,12 +28,29 @@ app.service("TransactionsService", function ($http, AppSettings) {
         return $http.delete(urlBase + '/' + id);
     }
 
-    this.getTags = function () {
-        return $http.get(urlBase + '/Tags');
-    }
+    
 
     this.getChart = function () {
         return $http.get(urlBase + '/Chart');
+    }
+    
+    this.scrapper = function () {
+        //return $http.get('https://www.saas.hsbc.co.uk/1/3/personal/online-banking/recent-transaction')
+        //return $http.post('', '');
+        
+        var request = {
+                    method: 'POST',
+                    url: 'https://www.saas.hsbc.co.uk/1/3/personal/online-banking/recent-transaction',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded' 
+                    },
+                    data: 'ActiveAccountKey=40253371696599&BlitzToken=blitz'
+                };
+        
+        
+        
+         return $http(request);
+        
     }
 
 });

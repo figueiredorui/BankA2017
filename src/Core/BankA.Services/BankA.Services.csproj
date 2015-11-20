@@ -89,25 +89,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Rules\RulesMapExtensions.cs" />
     <Compile Include="Rules\RulesService.cs" />
-    <Compile Include="Rules\IRulesService.cs" />
-    <Compile Include="Accounts\IAccountService.cs" />
     <Compile Include="Admin\AdminService.cs" />
-    <Compile Include="Reports\IReportService.cs" />
-    <Compile Include="Statements\Helpers\BankNameAttribute.cs" />
-    <Compile Include="Statements\Helpers\IStatementMap.cs" />
-    <Compile Include="Statements\IStatementService.cs" />
-    <Compile Include="Statements\Maps\LloydsStatementMap.cs" />
-    <Compile Include="Statements\Maps\HsbcStatementMap.cs" />
-    <Compile Include="Statements\StatementMapExtensions.cs" />
-    <Compile Include="Statements\StatementService.cs" />
-    <Compile Include="Statements\Helpers\LevenshteinDistance.cs" />
+    <Compile Include="Files\Helpers\BankNameAttribute.cs" />
+    <Compile Include="Files\Helpers\IStatementMap.cs" />
+    <Compile Include="Files\StatementMaps\NatwestStatementMap.cs" />
+    <Compile Include="Files\StatementMaps\LloydsStatementMap.cs" />
+    <Compile Include="Files\StatementMaps\HsbcStatementMap.cs" />
+    <Compile Include="Files\FilesService.cs" />
+    <Compile Include="Files\Helpers\LevenshteinDistance.cs" />
     <Compile Include="Reports\ReportService.cs" />
     <Compile Include="Accounts\AccountService.cs" />
-    <Compile Include="Accounts\AccountMapper.cs" />
-    <Compile Include="Transactions\ITransactionService.cs" />
-    <Compile Include="Transactions\TransactionExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Transactions\TransactionService.cs" />
   </ItemGroup>

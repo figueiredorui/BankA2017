@@ -1,44 +1,52 @@
-html {overflow-y: scroll; overflow-x:scroll;}
-
+/* Styles go here */
 body {
-    font-family: 'Roboto', sans-serif;
-    
+    padding-top: 80px;
+    background-color: #eee;
 }
 
-.nopadding {
-   padding: 0 !important;
-   margin: 0 !important;
+/* this is only to style the sidebar - you can make the sidebar look any way you want */
+
+.sidebar {
+    position: fixed;
+    display: block;
+    top: 0px; 
+    bottom: 0;
+    z-index: 11000;
+    min-height: 100%;
+    max-height: none;
+    overflow: auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-right: 1px solid #eee;
 }
 
 
-.badge-info {
-  background-color: #3a87ad;
-}
 
 
 #loading-bar-spinner {
-  display: block;
-  position: fixed;
-  z-index: 10002;
-  top: 50%;
-  left: 50%;
+    display: block;
+    position: fixed;
+    z-index: 90002;
+    top: 50%;
+    left: 50%;
 }
 
 
 #loading-bar-spinner .spinner-icon {
-  width: 24px;
-  height: 24px;
+    width: 48px;
+    height: 48px;
+    margin: 5px;
 
-  border:  solid 2px transparent;
-  border-top-color:  #29d;
-  border-left-color: #29d;
-  border-radius: 10px;
+    border:  solid 5px transparent;
+    border-top-color:  #29d;
+    border-left-color: #29d;
+    border-radius: 25px;
 
-  -webkit-animation: loading-bar-spinner 400ms linear infinite;
-  -moz-animation:    loading-bar-spinner 400ms linear infinite;
-  -ms-animation:     loading-bar-spinner 400ms linear infinite;
-  -o-animation:      loading-bar-spinner 400ms linear infinite;
-  animation:         loading-bar-spinner 400ms linear infinite;
+    -webkit-animation: loading-bar-spinner 400ms linear infinite;
+    -moz-animation:    loading-bar-spinner 400ms linear infinite;
+    -ms-animation:     loading-bar-spinner 400ms linear infinite;
+    -o-animation:      loading-bar-spinner 400ms linear infinite;
+    animation:         loading-bar-spinner 400ms linear infinite;
 }
 
 
@@ -68,7 +76,7 @@ inputs-moz-placeholder {
     -moz-transition: background 0.2s linear, box-shadow 0.6s linear;
     -o-transition: background 0.2s linear, box-shadow 0.6s linear;
     transition: background 0.2s linear, box-shadow 0.6s linear;
-   background:#5cb85c;
+
 }
 
 .inputs:focus {
@@ -79,69 +87,54 @@ inputs-moz-placeholder {
     box-shadow: 2px 2px 7px #E8E8E8 inset;
 }
 
-.inputs.bgred {
-    background:#eba5a3;
+
+.text-red {
+    color:#D9534F;
 }
 
-.inputs.bggreen {
-    background:#5cb85c;
+.text-green {
+    color:#449D44;
 }
 
 
 
 .hv:hover {
- 
-  -webkit-transform: scale(1.03);
-      -ms-transform: scale(1.03);
-          transform: scale(1.03);
-  -webkit-transition-property: -webkit-transform,background;
-          transition-property: transform,background;
-  -webkit-transition-duration: .3s;
-          transition-duration: .3s;
-  position: relative;
-  z-index: 1;
+
+    -webkit-transform: scale(1.03);
+    -ms-transform: scale(1.03);
+    transform: scale(1.03);
+    -webkit-transition-property: -webkit-transform,background;
+    transition-property: transform,background;
+    -webkit-transition-duration: .3s;
+    transition-duration: .3s;
+    position: relative;
+    z-index: 1;
 }
 
-/*
-.hv.active {
- 
-  -webkit-transform: scale(1.05);
-      -ms-transform: scale(1.05);
-          transform: scale(1.05);
-  -webkit-transition-property: -webkit-transform,background;
-          transition-property: transform,background;
-  -webkit-transition-duration: .3s;
-          transition-duration: .3s;
-  position: relative;
-  z-index: 1;
-}
-*/
 
- a .delete-btn-hover { opacity:0; float:right }
-      a:hover .delete-btn-hover { opacity:1 }
+
+a .show-on-row-hover { opacity:0; float:right }
+a:hover .show-on-row-hover { opacity:1 }
+
+tr .show-on-row-hover { opacity:0; float:right }
+tr:hover .show-on-row-hover { opacity:1 }
 
 
 
-
-
-::-webkit-scrollbar
-{
-	width: 15px;
-	background-color: #F5F5F5;
+#view-source {
+    position: fixed;
+    display: block;
+    right: 0;
+    bottom: 0;
+    margin-right: 40px;
+    margin-bottom: 40px;
+    z-index: 900;
 }
 
-::-webkit-scrollbar-track {
-      background-color: #2d3e63;
-} /* the new scrollbar will have a flat appearance with the set background color */
- 
-::-webkit-scrollbar-thumb {
-      background-color: rgba(0, 0, 0, 0.2); 
-} /* this will style the thumb, ignoring the track */
- 
-::-webkit-scrollbar-button {
-      background-color: #2d3e63;
-} /* optionally, you can style the top and the bottom buttons (left and right for horizontal bars) */
- 
-::-webkit-scrollbar-corner {
-      background-color: black;
+.panel-body-accounts {
+    padding: 0px;
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
 }

@@ -1,0 +1,8 @@
+{
+    "jscodehints.detectedExclusions": [
+        "D:/GitHub/BankA/src/Web/src/vendor/angular-i18n/af.js",
+        "D:/GitHub/BankA/src/Web/gruntfile.js",
+        "D:/GitHub/BankA/src/Web/src/vendor/angular-daterangepicker/js/angular-daterangepicker.min.js",
+        "D:/GitHub/BankA/src/Web/src/app/services/TransactionsService.js"
+    ]
+}

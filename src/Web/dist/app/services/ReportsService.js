@@ -21,14 +21,26 @@ app.service("ReportsService", function ($http, AppSettings) {
     }
 
     this.getExpenses = function (accountID) {
+        
+        if (accountID == null)
+            accountID = '';
+        
         return $http.get(urlBase + '/Expenses/'+ accountID);
     }
 
     this.getExpensesByTag = function (accountID) {
+        
+        if (accountID == null)
+            accountID = '';
+        
         return $http.get(urlBase + '/ExpensesByTag/'+ accountID);
     }
 
     this.getIncome = function (accountID) {
+        
+        if (accountID == null)
+            accountID = '';
+        
         return $http.get(urlBase + '/Income/'+ accountID);
     }
 

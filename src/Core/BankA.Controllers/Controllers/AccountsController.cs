@@ -16,16 +16,11 @@ namespace BankA.Controllers.Controllers
 {
     public class AccountsController : ApiController
     {
-        private readonly IAccountService svc;
+        private readonly AccountService svc;
 
         public AccountsController()
         {
             this.svc = new AccountService();
-        }
-
-        public AccountsController(IAccountService svc)
-        {
-            this.svc = svc;
         }
 
         // GET: api/Accounts
@@ -76,7 +71,7 @@ namespace BankA.Controllers.Controllers
         [Route("api/Accounts/Banks")]
         public IHttpActionResult GetBanks()
         {
-            var lst = new string[] { BankEnum.HSBC.ToString(), BankEnum.LLOYDS.ToString() };
+            var lst = new string[] { BankEnum.HSBC.ToString(), BankEnum.LLOYDS.ToString(), BankEnum.NATWEST.ToString() };
             return Ok(lst);
         }
 

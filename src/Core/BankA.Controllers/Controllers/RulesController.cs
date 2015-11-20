@@ -14,18 +14,14 @@ using BankA.Models.Transactions;
 
 namespace BankA.Controllers.Controllers
 {
+    [RoutePrefix("api")]
     public class RulesController : ApiController
     {
-        private readonly IRulesService svc;
+        private readonly RulesService svc;
 
         public RulesController()
         {
             this.svc = new RulesService();
-        }
-
-        public RulesController(IRulesService svc)
-        {
-            this.svc = svc;
         }
 
         // GET: api/Rules
@@ -65,6 +61,19 @@ namespace BankA.Controllers.Controllers
         }
 
 
+        // GET: api/Rules/Tags
+        [Route("Rules/Tags")]
+        public IHttpActionResult GetTags()
+        {
+            var lst = svc.GetTags();
+            return Ok(lst);
+        }
 
+        [Route("Rules/Groups")]
+        public IHttpActionResult GetGroups()
+        {
+            var lst = svc.GetGroups();
+            return Ok(lst);
+        }
     }
 }

@@ -15,43 +15,40 @@ using System.IO;
 using System.Net.Http.Headers;
 using BankA.Services.Transactions;
 using BankA.Models.Transactions;
-using BankA.Services.Statements;
+using BankA.Services.Files;
+using BankA.Models.Files;
 
 namespace BankA.Controllers.Controllers
 {
     [RoutePrefix("api")]
     public class TransactionsController : ApiController
     {
-        private readonly ITransactionService transactionSvc;
-        private readonly IStatementService statementSvc;
+        private readonly TransactionService transactionSvc;
+        private readonly FilesService filesSvc;
 
         public TransactionsController()
         {
             this.transactionSvc = new TransactionService();
-            this.statementSvc = new StatementService();
-        }
-
-        public TransactionsController(ITransactionService transactionSvc, IStatementService statementSvc)
-        {
-            this.transactionSvc = transactionSvc;
-            this.statementSvc = statementSvc;
+            this.filesSvc = new FilesService();
         }
 
         // GET: api/Transactions/Search
+        [HttpPost]
         [Route("Transactions/Search")]
-        public IHttpActionResult GetTrans([FromUri] TransactionSearch search)
+        public IHttpActionResult GetTrans(TransactionSearch search)
         {
-            //var startDate = new DateTime();// JsonConvert.DeserializeObject<DateTime>(search.StartDate);
-            //var endDate = JsonConvert.DeserializeObject<DateTime>(search.EndDate);
             if (search == null)
                 return BadRequest();
 
+            if (search.Filter == null)
+                search.Filter = new TransactionFilter();
 
-            search.StartDate = new DateTime(2015, 06, 01);
-            search.EndDate = new DateTime(2015, 10, 01);
+            var lst = transactionSvc.GetTransactions(search.Filter.AccountID, search.Filter.Description);
 
-            var lst = transactionSvc.GetTransactions(search.AccountID, search.StartDate, search.EndDate, search.Tag);
-            return Ok(lst);
+            search.Pagination.TotalItems = lst.Count;
+            search.Transactions = lst.Skip((search.Pagination.Page - 1) * search.Pagination.ItemsPerPage).Take(search.Pagination.ItemsPerPage).ToList();
+
+            return Ok(search);
         }
 
         // GET: api/Transactions/5
@@ -81,14 +78,6 @@ namespace BankA.Controllers.Controllers
             return Ok();
         }
 
-        // GET: api/Transactions/Tags
-        [Route("Transactions/Tags")]
-        public IHttpActionResult GetTags()
-        {
-            var lst = transactionSvc.GetTags();
-            return Ok(lst);
-        }
-
         [Route("Transactions/Upload")]
         public async Task<IHttpActionResult> Upload()
         {
@@ -115,7 +104,7 @@ namespace BankA.Controllers.Controllers
                 var fileContent = System.IO.File.ReadAllBytes(file.LocalFileName);
 
 
-                new StatementService().ImportFile(new StatementImport()
+                filesSvc.ImportFile(new StatementImport()
                             {
                                 FileName = file.Headers.ContentDisposition.FileName.Trim('"'),
                                 FileContent = fileContent,
@@ -131,6 +120,8 @@ namespace BankA.Controllers.Controllers
             }
 
         }
+
+
 
     }
 }

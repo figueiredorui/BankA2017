@@ -15,7 +15,7 @@ namespace BankA.Data.Contexts
         }
 
         public virtual DbSet<BankAccount> BankAccounts { get; set; }
-        public virtual DbSet<BankStatementFile> BankStatementFiles { get; set; }
+        public virtual DbSet<BankFile> BankFiles { get; set; }
         public virtual DbSet<BankTransaction> BankTransactions { get; set; }
         public virtual DbSet<BankTransactionRule> BankTransactionRules { get; set; }
         public virtual DbSet<BankVersion> BankVersions { get; set; }
@@ -23,6 +23,7 @@ namespace BankA.Data.Contexts
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<BankAccount>()
+                .HasKey(e => e.AccountID)
                 .HasMany(e => e.BankTransactions)
                 .WithRequired(e => e.BankAccount)
                 .WillCascadeOnDelete(false);
@@ -33,6 +34,7 @@ namespace BankA.Data.Contexts
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<BankTransaction>()
+                .HasKey(e => e.ID)
                 .Property(e => e.DebitAmount)
                 .HasPrecision(30, 2);
 
@@ -40,7 +42,8 @@ namespace BankA.Data.Contexts
                 .Property(e => e.CreditAmount)
                 .HasPrecision(30, 2);
 
-            modelBuilder.Entity<BankStatementFile>()
+            modelBuilder.Entity<BankFile>()
+                .HasKey(e => e.FileID)
                 .HasMany(e => e.BankTransactions)
                 .WithRequired(e => e.BankStatementFile)
                 .WillCascadeOnDelete(false);

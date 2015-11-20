@@ -10,11 +10,11 @@ namespace BankA.Data.Repositories
 {
     public class TransactionRepository : Repository<BankTransaction>
     {
-        public void AddTransactions(BankStatementFile statementFile, List<BankTransaction> transactionLst)
+        public void AddTransactions(BankFile statementFile, List<BankTransaction> transactionLst)
         {
             using (var ctx = new BankAContext())
             {
-                ctx.BankStatementFiles.Add(statementFile);
+                ctx.BankFiles.Add(statementFile);
 
                 foreach (var transaction in transactionLst.OrderBy(o => o.TransactionDate).ToList())
                 {
@@ -35,12 +35,9 @@ namespace BankA.Data.Repositories
             }
         }
 
-        public List<string> GetTags()
-        {
-            using (var ctx = new BankAContext())
-            {
-                return ctx.BankTransactions.Select(o => o.Tag).Distinct().ToList();
-            }
-        }
+
+        
     }
+
+
 }

@@ -1,14 +1,12 @@
 'use strict';
-app.controller('IncomeAnalysisCtrl', function($rootScope, $scope, $state, AccountService, ReportsService) {
+app.controller('IncomeAnalysisCtrl', function($stateParams, $scope, $state, AccountsService, ReportsService) {
 
-   $scope.$on('selectedAccountChanged', function(event, args) {
-        loadIncomeReport();
-    });
+   var accountID = $stateParams.accountID;
     
     loadIncomeReport();
 
     function loadIncomeReport() {
-        ReportsService.getIncome($rootScope.accountID).success(function(response) {
+        ReportsService.getIncome(accountID).success(function(response) {
             showPivot(response);
         }).error(function(error) {
             $scope.errorMsg = error.Message;

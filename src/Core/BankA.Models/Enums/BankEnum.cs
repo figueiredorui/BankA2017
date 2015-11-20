@@ -9,6 +9,7 @@ namespace BankA.Models.Enums
    public enum BankEnum
     {
         HSBC,
-        LLOYDS
+        LLOYDS,
+        NATWEST
     }
 }

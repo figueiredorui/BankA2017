@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BankA.Services.Reports
 {
-    public class ReportService : BankA.Services.Reports.IReportService
+    public class ReportService 
     {
         TransactionRepository transactionRepository = null;
 
@@ -57,11 +57,6 @@ namespace BankA.Services.Reports
 
         public List<RunningBalance> GetRunningBalance(int? accountID, DateTime startDate, DateTime endDate)
         {
-            //var transactionsLst = transactionRepository.Table
-            //                                           .Where(q => q.AccountID == (accountID ?? q.AccountID))
-            //                                           .OrderBy(o => o.TransactionDate)
-            //                                           .ToList();
-
 
             var transactionsLst = (from trans in transactionRepository.Table.Where(q => q.AccountID == (accountID ?? q.AccountID))
                                    group trans by new
@@ -89,21 +84,6 @@ namespace BankA.Services.Reports
             }).Where(q => q.TransactionDate >= startDate && q.TransactionDate <= endDate).ToList();
             return statement.OrderBy(o => o.TransactionDate).ToList();
 
-            //var result = new List<RunningBalance>();
-            //var date = new DateTime(endDate.Year, endDate.Month, endDate.Day);
-
-            //while (date > startDate)
-            //{
-            //    result.Add(new RunningBalance()
-            //    {
-            //        TransactionDate = date,
-            //        RunningAmount = statement.Where(q => q.TransactionDate <= date).Select(o => o.RunningAmount).LastOrDefault()
-            //    });
-
-            //    date = date.AddMonths(-1);
-            //}
-
-            //return result.OrderBy(o => o.TransactionDate).ToList();
         }
 
         public List<ExpensesReport> GetExpenses(int? accountID, DateTime startDate, DateTime endDate)

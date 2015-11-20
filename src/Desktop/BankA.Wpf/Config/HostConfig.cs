@@ -1,5 +1,6 @@
 ﻿using Microsoft.Owin.FileSystems;
 using Microsoft.Owin.StaticFiles;
+using Microsoft.Owin.Diagnostics;
 using Owin;
 using System;
 using System.Collections.Generic;
@@ -39,7 +40,7 @@ namespace BankA.Wpf.Config
                 defaults: new { controller = "Home", id = RouteParameter.Optional }
             );
 
-            
+            appBuilder.UseErrorPage();
 
             appBuilder.UseFileServer(new FileServerOptions()
             {

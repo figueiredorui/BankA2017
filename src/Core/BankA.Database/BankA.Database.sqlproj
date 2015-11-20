@@ -66,16 +66,13 @@
     <Build Include="dbo\Tables\BankTransaction.sql" />
     <Build Include="dbo\Tables\BankAccount.sql" />
     <Build Include="dbo\Tables\BankVersion.sql" />
-    <Build Include="dbo\Tables\BankStatementFile.sql" />
     <None Include="Script01.sql" />
     <Build Include="Sqlite\script.sql" />
     <Build Include="dbo\Tables\BankTransactionRule.sql" />
+    <Build Include="dbo\Tables\BankFile.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Sqlite\banka.db" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="BankA.Database.refactorlog" />

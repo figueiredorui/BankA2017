@@ -1,30 +1,18 @@
 'use strict';
-app.controller('ExpenseAnalysisCtrl', function($scope, $state, $stateParams, AccountService, ReportsService) {
+app.controller('ExpenseAnalysisCtrl', function($rootScope, $scope, $state, $stateParams, AccountsService, ReportsService) {
 
-    $scope.selectedAccountID = '';
-    $scope.ChangedAccountID = loadExpensesReport;
+    var accountID = $stateParams.accountID;
     
+//    $scope.$on('selectedAccountChanged', function(event, args) {
+//        var accountID = $rootScope.accountID;
+//        loadExpensesReport();
+//    });
 
-    loadAccounts();
     loadExpensesReport();
-
-    function loadAccounts() {
-        AccountService.getSummary()
-            .success(function (response) {
-            $scope.Accounts = response;
-
-
-        })
-            .error(function (error) {
-            $scope.errorMsg = error.Message;
-        })
-            .finally(function () {
-        });
-    }
 
 
     function loadExpensesReport() {
-        ReportsService.getExpenses($scope.selectedAccountID).success(function(response) {
+        ReportsService.getExpenses(accountID).success(function(response) {
             showPivot(response);
         }).error(function(error) {
             $scope.errorMsg = error.Message;

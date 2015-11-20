@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace BankA.Services.Accounts
 {
-    public class AccountService : IAccountService
+    public class AccountService
     {
         AccountRepository accountRepository = null;
         TransactionRepository transactionRepository = null;
@@ -24,24 +24,42 @@ namespace BankA.Services.Accounts
         public Account Find(int id)
         {
             var bank = accountRepository.Find(id);
-            return AccountMapper.Map(bank);
+            return MapToModel(bank);
         }
 
         public List<Account> GetList()
         {
             var bank = accountRepository.Table.ToList();
-            return AccountMapper.Map(bank);
+            return MapToModel(bank);
+        }
+
+        public List<AccountSummary> GetAccountSummary()
+        {
+            var accountLst = (from account in accountRepository.Table
+                              select new AccountSummary()
+                              {
+                                  AccountID = account.AccountID,
+                                  Description = account.Description,
+                                  Balance = (decimal?)account.BankTransactions.Sum(o => o.CreditAmount - o.DebitAmount) ?? 0,
+                                  LastTransactionDate = (DateTime?)account.BankTransactions.Max(o => o.TransactionDate) ?? null
+                              }).ToList();
+
+            var total = new AccountSummary() { AccountID = null, Description = "All Accounts", Balance = accountLst.Sum(q => q.Balance), LastTransactionDate = null };
+
+            accountLst.Add(total);
+
+            return accountLst.OrderBy(o => o.AccountID).ToList();
         }
 
         public void Add(Account model)
         {
-            var bank = AccountMapper.Map(model);
+            var bank = MapToTable(model);
             accountRepository.Add(bank);
         }
 
         public void Update(Account model)
         {
-            var bank = AccountMapper.Map(model);
+            var bank = MapToTable(model);
             accountRepository.Update(bank);
         }
 
@@ -50,22 +68,33 @@ namespace BankA.Services.Accounts
             accountRepository.DeleteAccountAndTransactions(id);
         }
 
-        public List<AccountSummary> GetAccountSummary()
+        private Account MapToModel(BankAccount table)
         {
-            var accountLst = (from account in accountRepository.Table
-                          select new AccountSummary()
-                          {
-                              AccountID = account.AccountID,
-                              Description = account.Description,
-                              Balance = (decimal?)account.BankTransactions.Sum(o => o.CreditAmount - o.DebitAmount) ?? 0,
-                              LastTransactionDate = (DateTime?)account.BankTransactions.Max(o => o.TransactionDate)?? null
-                          }).ToList();
+            return new Account()
+            {
+                AccountID = table.AccountID,
+                Description = table.Description,
+                BankName = table.BankName,
+                IsSavingsAccount = table.IsSavingsAccount
+            };
+        }
 
-            var total = new AccountSummary() { AccountID = null, Description = "All Accounts", Balance = accountLst.Sum(q => q.Balance), LastTransactionDate = null };
+        private List<Account> MapToModel(List<BankAccount> tableLst)
+        {
+            var lst = new List<Account>();
+            tableLst.ForEach(i => lst.Add(MapToModel(i)));
+            return lst;
+        }
 
-            accountLst.Add(total);
-
-            return accountLst.OrderBy(o => o.AccountID).ToList();
+        private BankAccount MapToTable(Account entity)
+        {
+            return new BankAccount()
+            {
+                AccountID = entity.AccountID,
+                Description = entity.Description,
+                BankName = entity.BankName,
+                IsSavingsAccount = entity.IsSavingsAccount
+            };
         }
     }
 }

@@ -7,9 +7,21 @@ namespace BankA.Models.Transactions
 {
     public class TransactionSearch
     {
-        public int? AccountID { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
-        public string Tag { get; set; }
+        public TransactionFilter Filter { get; set; }
+        public TransactionPagination Pagination { get; set; }
+        public List<Transaction> Transactions { get; set; }
+    }
+
+    public class TransactionFilter
+    {
+        public int AccountID { get; set; }
+        public string Description { get; set; }
+    }
+
+    public class TransactionPagination
+    {
+        public int Page { get; set; }
+        public int ItemsPerPage { get; set; }
+        public int TotalItems { get; set; }
     }
 }
