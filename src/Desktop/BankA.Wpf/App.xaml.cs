@@ -26,19 +26,15 @@ namespace BankA.Wpf
     {
         public App()
         {
-            var localPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-            var dbPath = Path.Combine(localPath, "BankA.db");
+            //var localPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            //var dbPath = Path.Combine(localPath, "BankA.db");
 
-            Directory.CreateDirectory(dbPath);
-            AppDomain.CurrentDomain.SetData("DataDirectory", dbPath);
+            //Directory.CreateDirectory(dbPath);
+            //AppDomain.CurrentDomain.SetData("DataDirectory", dbPath);
 
             string baseAddress = "http://localhost:9000/";
             // Start OWIN host 
             WebApp.Start<HostConfig>(url: baseAddress);
-
-            //var svc = new AccountService().GetAccountSummary();
-
-
         }
         protected override void OnStartup(StartupEventArgs e)
         {

@@ -50,7 +50,7 @@ namespace BankA.Data.Contexts
 
             if (Database.Connection is System.Data.SQLite.SQLiteConnection)
             {
-                var sqliteConnectionInitializer = new BankASQLiteContextInitializer(Database.Connection.ConnectionString, modelBuilder);
+                var sqliteConnectionInitializer = new BankASQLiteContextInitializer(modelBuilder);
                 Database.SetInitializer(sqliteConnectionInitializer);
             }
         }

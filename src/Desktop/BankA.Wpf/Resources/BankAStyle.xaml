@@ -2,10 +2,10 @@
                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <!--ACCENT COLORS -->
-    <Color x:Key="HighlightColor">#FF2d3e63</Color>
+    <Color x:Key="HighlightColor">#FF2196F3</Color> <!--change color-->
 
     <!--80%-->
-    <Color x:Key="AccentColor">#FF2d3e63</Color>
+    <Color x:Key="AccentColor">#FF2196F3</Color> <!--change color-->
     <!--60%-->
     <Color x:Key="AccentColor2">#99354975</Color>
     <!--40%-->

@@ -21,6 +21,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CefSharp;
 
 namespace BankA.Wpf
 {
@@ -57,15 +58,15 @@ namespace BankA.Wpf
         private void ScheduleAppUpdates()
         {
             //TaskManager.AddTask(() => ScheduleApplicationUpdates(), x => x.ToRunNow().AndEvery(60).Seconds());
-            ScheduleApplicationUpdates();
+          //  ScheduleApplicationUpdates();
         }
 
         private async void ScheduleApplicationUpdates()
         {
 
             var location = @"https://raw.githubusercontent.com/figueiredorui/BankA/master/src/Desktop/Releases";
-            var appName = "BankA";
-            using (var mgr = new UpdateManager(location, appName, FrameworkVersion.Net45))
+            //var appName = "BankA";
+            using (var mgr = new UpdateManager(location))
             {
                 try
                 {

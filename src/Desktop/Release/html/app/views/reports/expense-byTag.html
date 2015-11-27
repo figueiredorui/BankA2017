@@ -1,0 +1,16 @@
+<div class="panel panel-default">
+    <div class="panel-heading"> Expenses By Tag (Top 10)</div>
+    <div class="panel-body">
+
+        <div class="row">
+            <div class="col-lg-3">
+                <progressbar ng-repeat="item in chart.percentage" animate="true" value="item" max="100" type="success">
+                    <b>{{item | number : 2}}%</b>
+                </progressbar>
+            </div>
+            <div class="col-lg-9">
+                <canvas id="doughnut" class="chart chart-doughnut" data="chart.data" labels="chart.labels" legend="true"></canvas>
+            </div>
+        </div>
+    </div>
+</div>

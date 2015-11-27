@@ -5,7 +5,7 @@
                     mc:Ignorable="options">
 
     <Color x:Key="BlackColor">#FFFFFFFF</Color>
-    <Color x:Key="WhiteColor">#FF2d3e63</Color>
+    <Color x:Key="WhiteColor">#FF2196F3</Color><!--change color-->
 
     <Color x:Key="Gray1">#FFF9F9F9</Color>
     <Color x:Key="Gray2">#FF7F7F7F</Color>

@@ -2,9 +2,10 @@
 
 $dir = $args[0]
 $configuation = $args[1]
+$outputPath = $args[2]
 
 $src = $dir + "..\..\Web\dist\*.*"
-$des = $dir + "bin\x86\" + $configuation +"\html\"
+$des = $outputPath +"\html\"
 
 XCOPY $src $des /D/E/C/F/R/Y
 
