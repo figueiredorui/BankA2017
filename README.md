@@ -8,7 +8,8 @@ Web app to import, categorize and analyse bank transactions
 https://banka.5apps.com
 
 ###Desktop
+```
 run src/build.bat
-
+```
 
 
