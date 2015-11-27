@@ -2,8 +2,13 @@
 # BankA
 Web app to import, categorize and analyse bank transactions
 
-Demo  
+##Demos
+
+###Web
 https://banka.5apps.com
+
+###Desktop
+run src/build.bat
 
 
 
