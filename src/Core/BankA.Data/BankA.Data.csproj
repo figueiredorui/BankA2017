@@ -89,7 +89,9 @@
   <ItemGroup>
     <Compile Include="Contexts\BankAContext.cs" />
     <Compile Include="Contexts\BankAContext.partial.cs" />
-    <Compile Include="Contexts\BankASQLiteContextInitializer.cs" />
+    <Compile Include="Contexts\BankASeed.cs" />
+    <Compile Include="Contexts\BankASqliteCreateDatabaseIfNotExists.cs" />
+    <Compile Include="Contexts\BankACreateDatabaseIfNotExists.cs" />
     <Compile Include="Entities\BankTransactionRule.cs" />
     <Compile Include="Entities\BankAccount.cs" />
     <Compile Include="Entities\BankFile.cs" />

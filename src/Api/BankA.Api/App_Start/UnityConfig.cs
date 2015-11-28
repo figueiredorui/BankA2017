@@ -1,7 +1,3 @@
-using BankA.Services.Accounts;
-using BankA.Services.Reports;
-using BankA.Services.Files;
-using BankA.Services.Transactions;
 using Microsoft.Practices.Unity;
 using System.Web.Http;
 using Unity.WebApi;
