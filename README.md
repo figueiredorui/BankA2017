@@ -5,7 +5,7 @@ Web app to import, categorize and analyse bank transactions
 ##Demos
 
 ###Web
-https://banka.5apps.com
+http://banka-demo.azurewebsites.net
 
 ###Desktop
 ```

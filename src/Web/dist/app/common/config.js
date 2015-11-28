@@ -6,7 +6,7 @@
 app.constant('AppSettings', {
     AppName: 'BankA',
     AppVersion: '1.0.1',
-    ApiUrl: 'http://apibanka.apphb.com/api/',
+    ApiUrl: 'http://localhost/banka.api/api/',
 });
 
 //-------------------------------------------------------------
@@ -15,7 +15,7 @@ app.constant('AppSettings', {
 app.config(function ($httpProvider) {
     $httpProvider.interceptors.push('authInterceptor');
     $httpProvider.defaults.cache = false;
-    $httpProvider.defaults.withCredentials = true;
+    //$httpProvider.defaults.withCredentials = true;
 });
 
 app.config(function (cfpLoadingBarProvider) {
