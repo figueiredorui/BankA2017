@@ -29,13 +29,13 @@ namespace BankA.Services.Accounts
 
         public List<Account> GetList()
         {
-            var bank = accountRepository.Table.ToList();
+            var bank = accountRepository.Table.Where(q => q.Closed == false).ToList();
             return MapToModel(bank);
         }
 
         public List<AccountSummary> GetAccountSummary()
         {
-            var accountLst = (from account in accountRepository.Table
+            var accountLst = (from account in accountRepository.Table.Where(q=>q.Closed == false)
                               select new AccountSummary()
                               {
                                   AccountID = account.AccountID,

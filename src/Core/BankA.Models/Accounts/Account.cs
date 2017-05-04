@@ -12,5 +12,6 @@ namespace BankA.Models.Accounts
         public string Description { get; set; }
         public string BankName { get; set; }
         public bool IsSavingsAccount { get; set; }
+        public bool Closed { get; set; }
     }
 }

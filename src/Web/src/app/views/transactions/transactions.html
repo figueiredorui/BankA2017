@@ -32,7 +32,7 @@
                     <th  style="width:33%">Description</th>
                     <th>Amount</th>
                     <th>Tag</th>
-                    <th>Group</th>
+                    <!--<th>Group</th>-->
                     <th>Transfer</th>
                     <th  style="width:5%"></th>
                 </tr>
@@ -46,9 +46,9 @@
                     <td >
                         <input type="text" ng-blur="updateTag(transaction)" ng-focus="originalTag(transaction.Tag)" ng-model="transaction.Tag" uib-typeahead="item for item in tags | filter:$viewValue | limitTo:8" class="form-control input-sm inputs"  tabindex = "1" />
                     </td>
-                    <td>
+                    <!--<td>
                         <input type="text" ng-blur="updateTag(transaction)" ng-focus="originalTag(transaction.TagGroup)" ng-model="transaction.TagGroup" uib-typeahead="item for item in groups | filter:$viewValue | limitTo:8" class="form-control input-sm inputs"  tabindex = "1" />
-                    </td>
+                    </td>-->
                     <td>
                         <input type="checkbox" ng-model="transaction.IsTransfer" ng-change="updateTransaction(transaction)"/>
                     </td>
@@ -63,7 +63,6 @@
 
         </table>
         
-<!--         <uib-pagination ng-if="pagination.TotalItems>0" total-items="pagination.TotalItems" items-per-page="pagination.ItemsPerPage" ng-model="pagination.Page" ng-change="refresh()" direction-links="false" boundary-links="true"></uib-pagination>-->
         <uib-pager total-items="pagination.TotalItems" items-per-page="pagination.ItemsPerPage" ng-model="pagination.Page" ng-change="refresh()"></uib-pager>
         
     </div>

@@ -27,6 +27,8 @@ namespace BankA.Data.Entities
 
         public bool IsSavingsAccount { get; set; }
 
+        public bool Closed { get; set; }
+
         public DateTime? CreatedOn { get; set; }
 
         [StringLength(50)]
